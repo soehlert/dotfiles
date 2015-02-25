@@ -3,6 +3,7 @@
 " Best view with a 256 color terminal and Powerline fonts
 
 set nocompatible
+set t_Co=256
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/UltiSnips/
