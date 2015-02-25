@@ -29,7 +29,7 @@ Bundle 'airblade/vim-gitgutter'
 " Color Themes
 Bundle 'flazz/vim-colorschemes'
 Bundle 'sickill/vim-monokai'
-colorscheme Monokain
+colorscheme Monokai
 
 """"""""
 if has('autocmd')
