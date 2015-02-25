@@ -7,6 +7,7 @@ set t_Co=256
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/UltiSnips/
+let g:rehash256 = 1
 call pathogen#infect()
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -27,6 +28,7 @@ Bundle 'airblade/vim-gitgutter'
 
 " Color Themes
 Bundle 'flazz/vim-colorschemes'
+Bundle 'sickill/vim-monokai'
 colorscheme Monokain
 
 """"""""
