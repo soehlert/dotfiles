@@ -4,7 +4,7 @@
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global
-  autocrlf     = input
+  autocrlf     = false
   safecrlf     = true
 [color]
   ui = true
