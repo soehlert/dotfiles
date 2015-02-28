@@ -20,9 +20,18 @@ export MANPAGER="less -X"
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
 
+# Shell opts 
+#############
 shopt -s cdspell
 shopt -s nocaseglob
 
+# ALIASES
+#############
+alias ll='ls -al'
+alias hidden='ls -a | grep "^\."'
+
+# FUNCTIONS
+#############
 function http() {
     curl http://httpcode.info/$1
 }
@@ -32,8 +41,6 @@ parse_git_branch() {
 }
 # Set up terminal for git
 PS1='\w$(parse_git_branch) \u\$ '
-
-alias ll='ls -al'
 
 # start ssh agent and add relevant keys
 # start agent and set environment variables, if needed
