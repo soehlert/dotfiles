@@ -40,7 +40,7 @@ parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 # Set up terminal for git
-PS1='\w$(parse_git_branch) \u: \h\$ '
+PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 
 # start ssh agent and add relevant keys
 # start agent and set environment variables, if needed
