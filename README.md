@@ -1,9 +1,9 @@
 # README #
 
 Install stow:
-:::bash
-brew install stow
-yum install stow
+    :::bash
+    brew install stow
+    yum install stow
 
 ssh-add ~/.ssh/bitbucket
 
