@@ -1,21 +1,20 @@
 # README #
 
-Install stow:
-    :::bash
-    brew install stow
-    yum install stow
+##Install stow:
+        brew install stow
+        yum install stow
 
-ssh-add ~/.ssh/bitbucket
+## Add ssh key (may need to use different name)
+        ssh-add ~/.ssh/bitbucket
 
-git clone git@bitbucket.org:soehlert21/dotfiles.git
+## Clone dotfiles repo
+        git clone git@bitbucket.org:soehlert21/dotfiles.git
 
-cd dotfiles; stow vim
-
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-vim
-
-:BundleInstall
+## Vim setup
+        cd dotfiles; stow vim
+        git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        vim
+        :BundleInstall
 
 ### What is this repository for? ###
 
