@@ -1,6 +1,7 @@
 # README #
 
 Install stow:
+:::bash
 brew install stow
 yum install stow
 
