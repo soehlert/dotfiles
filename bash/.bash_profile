@@ -28,7 +28,7 @@ shopt -s nocaseglob
 # ALIASES
 #############
 alias ll='ls -al'
-alias hidden='ls -a | grep "^\."'
+alias hidden='ls -al | grep "^\."'
 
 # FUNCTIONS
 #############
