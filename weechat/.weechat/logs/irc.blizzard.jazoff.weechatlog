@@ -1,0 +1,508 @@
+2014-04-16 13:01:25	jazoff	hi
+2014-04-16 13:01:27	jazoff	oh, derr
+2014-04-16 13:01:48	jazoff	http://projects.puppetlabs.com/issues/1014#note-6
+2014-04-16 13:02:03	soehlert	howd you create the new buffer? when i did msg it just went into the weechat buffer
+2014-04-16 13:04:41	jazoff	oh weird
+2014-04-16 13:04:47	jazoff	I wonder if I have autoquery oromething
+2014-04-16 13:04:50	jazoff	will check and get back to you
+2014-04-16 13:04:53	soehlert	k
+2014-05-22 13:42:55	jazoff	ready
+2014-05-22 13:46:37	soehlert	ok so i thought you said it wasn't the best practice to use global variables
+2014-05-22 13:46:51	jazoff	those are acting as constants
+2014-05-22 13:46:56	jazoff	using global variables for mutable state = bad
+2014-05-22 13:47:06	soehlert	ah but global constants are ok
+2014-05-22 13:47:10	jazoff	yeah
+2014-05-22 13:47:16	jazoff	as long as they are constants, which I think they are?
+2014-05-22 13:47:24	soehlert	ya file names shouldnt change
+2014-05-22 13:47:55	soehlert	so then the next big thing is: get_date.name = "date"                                                                                                                    │        exit 1
+2014-05-22 13:48:02	soehlert	weird copy...ignore the exit 1 stuff
+2014-05-22 13:48:19	jazoff	ah yeah, that's just setting an attribute on the function so I can use it later
+2014-05-22 13:48:26	jazoff	but I realized those are not neede
+2014-05-22 13:48:54	soehlert	why are they not needed? already returning the necessary parts?
+2014-05-22 13:49:41	jazoff	just pushed the change removing them
+2014-05-22 13:49:51	jazoff	see the end of the script
+2014-05-22 13:50:00	jazoff	        res = run(func)
+2014-05-22 13:50:00	jazoff	        report[name] = res
+2014-05-22 13:50:28	soehlert	ya not familiar with run()
+2014-05-22 13:50:31	soehlert	whats that do?
+2014-05-22 13:52:41	jazoff	look 2 lines up
+2014-05-22 13:53:25	soehlert	is that just a way to call the function? two lines up just says print name
+2014-05-22 13:54:11	jazoff	oh er
+2014-05-22 13:54:26	jazoff	10 lines up :)
+2014-05-22 13:54:52	soehlert	oh hah you created that function..
+2014-05-22 13:55:06	soehlert	i dont understand it really at all though. 
+2014-05-22 13:55:06	soehlert	havent learned error handling yet
+2014-05-22 13:55:32	soehlert	is that basically just going to run that function unless it has an IOError?
+2014-05-22 13:55:39	jazoff	yeah
+2014-05-22 13:55:59	soehlert	and set whatever the function returns to be res?
+2014-05-22 13:56:29	jazoff	yeah
+2014-05-22 13:56:38	jazoff	res = run(func) is pretty much the same as res=func()
+2014-05-22 13:56:43	jazoff	just ignoring files not existing
+2014-05-22 13:57:48	soehlert	oh so your IOError is taking care of all my checking if the file exists first stuff? i knew there had to be a better way
+2014-05-22 13:59:44	jazoff	exactly
+2014-05-22 14:00:22	soehlert	ok and why do you do res = run(func) followed up with report[name] = res
+2014-05-22 14:00:34	soehlert	why not just report[name] = run(func)
+2014-05-22 14:00:43	jazoff	same thing
+2014-05-22 14:00:47	jazoff	no reason I guess
+2014-05-22 14:00:59	soehlert	ok i knew they were the same just wondering if there was a specific reason
+2014-05-22 14:01:02	jazoff	i think I had somethign else in there that I removed
+2014-05-22 14:01:11	soehlert	ah ok
+2014-05-22 14:01:58	soehlert	so you're setting the name for each function here right? name = func.__name__.replace("get_", "").replace("_", " ")
+2014-05-22 14:02:09	soehlert	instead of doing that get_date.name = "date" thing right?
+2014-05-22 14:02:17	jazoff	yeah
+2014-05-22 14:02:24	jazoff	func.__name__ is the literal function name
+2014-05-22 14:02:29	jazoff	which is moooostly what I want
+2014-05-22 14:02:41	jazoff	so I just replace things a bit and then it comes out the same as before
+2014-05-22 14:02:41	soehlert	what's with the __name__ part
+2014-05-22 14:02:56	jazoff	>>> def foo(): pass
+2014-05-22 14:02:56	jazoff	...
+2014-05-22 14:02:56	jazoff	>>> foo.__name__
+2014-05-22 14:02:57	jazoff	'foo'
+2014-05-22 14:03:05	soehlert	ahhh just a built in
+2014-05-22 14:03:23	soehlert	method?
+2014-05-22 14:04:36	jazoff	attribute
+2014-05-22 14:04:46	soehlert	ok
+2014-05-22 14:05:03	jazoff	>>> def foo(): pass
+2014-05-22 14:05:04	jazoff	...
+2014-05-22 14:05:04	jazoff	>>> dir(foo)
+2014-05-22 14:05:04	jazoff	['__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__doc__', '__format__', '__get__', '__getattribute__', '__globals__', '__hash__', '__init__', '__module__', '__name__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'func_closure', 'func_code', 'func_defaults', 'func_dict', 'func_doc', 'func_globals', 'func_name']
+2014-05-22 14:05:29	soehlert	whats the difference between func_name and __name__?
+2014-05-22 14:05:36	jazoff	hmm
+2014-05-22 14:05:49	jazoff	nothing
+2014-05-22 14:05:54	soehlert	fair enough
+2014-05-22 14:05:56	jazoff	one is probably better to use
+2014-05-22 14:06:27	soehlert	why are you doing this in tcpwrappers still? if not os.path.isfile(hosts_allow):
+2014-05-22 14:06:36	jazoff	forgot to remove :)
+2014-05-22 14:06:40	soehlert	ah ok
+2014-05-22 14:06:44	soehlert	that makes more sense hah
+2014-05-22 14:06:56	jazoff	ah, and I didn't add it to the list so it's not even being ran
+2014-05-22 14:07:12	soehlert	thats cool it wasn't working yet when i left it off...not sure hwy not
+2014-05-22 14:07:45	jazoff	ah
+2014-05-22 14:07:53	jazoff	it wasn't being called before either
+2014-05-22 14:09:18	soehlert	oh haha. thta explains it. i was gonna say i think the logic is right..
+2014-05-22 14:11:28	soehlert	so how come you created a main() instead of calling them under the if __name__ thing like i had?
+2014-05-22 14:11:32	soehlert	just more pythonic?
+2014-05-22 14:11:51	jazoff	it's nice to have a function at some point
+2014-05-22 14:12:18	soehlert	fair enough. why is the data_sources list not in the main() function?
+2014-05-22 14:12:36	jazoff	doesn't need to be.
+2014-05-22 14:12:47	jazoff	also, just though of a way that the vetting stuff could work slightly differently
+2014-05-22 14:12:52	soehlert	?
+2014-05-22 14:12:53	jazoff	still use a .sh script but do stuff like
+2014-05-22 14:13:02	jazoff	iptables > iptables.txt
+2014-05-22 14:13:15	jazoff	grep root /etc/group > group.txt
+2014-05-22 14:13:16	jazoff	etc
+2014-05-22 14:13:23	jazoff	then tar up the .txt files and ftp that
+2014-05-22 14:13:36	jazoff	then all the parsing etc is done remotely but the vetted system just needs sh and tar
+2014-05-22 14:15:04	soehlert	that might be a better move. since i was having a hard time figuring out how to do some of this stuff in python
+2014-05-22 14:19:07	soehlert	looks like SuSE has tar as does rhel/centos. im presuming ubuntu/debian has it as well?
+2014-05-22 14:22:33	soehlert	so basically scrap this script, fix up the .sh to output to individual files and tar that?
+2014-05-22 14:22:47	jazoff	yeah, everything should have tar
+2014-05-22 14:22:52	jazoff	and not such much scrap this script
+2014-05-22 14:23:26	jazoff	just rather than opening /proc/sys/net/ipv4/ip_forward you could just open ip_forward.txt
+2014-05-22 14:24:06	soehlert	thats true. would it make sense to just create a read_file() function and then in the ip_forwarding() you would just pass a file name to the read_file function?
+2014-05-22 14:24:16	soehlert	and so on for all the others as well..
+2014-05-22 14:24:29	jazoff	yeah.. something like that
+2014-05-22 14:24:37	jazoff	hard to plan ahead that sort of thing sometimes
+2014-05-22 14:24:55	jazoff	i usually just start by donig the simplest thing and if it gets repetetive, refactor
+2014-05-22 14:25:16	soehlert	true. just seems there should be some way functionize that as all the sections are just going to be reading a file and pumping that info into something
+2014-05-22 14:26:14	jazoff	yep
+2014-05-22 14:27:20	soehlert	ok well while we are talking about this stuff...and since it will probably come into play again...can you explain this part
+2014-05-22 14:27:22	soehlert	    fn = "%s-%s.json" % (report["hostname"], report["date"])
+2014-05-22 14:27:22	soehlert	    with open(fn, 'w') as f:
+2014-05-22 14:27:22	soehlert	        json.dump(report, f)
+2014-05-22 14:27:22	soehlert	        f.write("\n")
+2014-05-22 14:27:38	soehlert	the report[] stuff i guess is really the confusing part
+2014-05-22 14:27:43	jazoff	fn = "%s-%s.json" % (report["hostname"], report["date"]) just formats the filename
+2014-05-22 14:27:48	soehlert	is that a variable? 
+2014-05-22 14:27:57	soehlert	right i get what its doing just dont know the report stuff
+2014-05-22 14:27:58	jazoff	"%(hostname)s-%(data)s" % report  would have worekd too
+2014-05-22 14:28:11	jazoff	report is just the output from all the functions
+2014-05-22 14:28:28	soehlert	but what is report[]? a list and you're looking for the hostname or date output?
+2014-05-22 14:29:13	jazoff	    report = {}
+2014-05-22 14:29:27	soehlert	oh hell. didnt see that. so its a dict
+2014-05-22 14:29:36	soehlert	and youre calling the hostname and date keys
+2014-05-22 14:29:44	jazoff	accessing
+2014-05-22 14:29:55	soehlert	right accessing...calling is not the right word
+2014-05-22 14:30:49	soehlert	ok and i think last question. its gonna be a dumb one. 
+2014-05-22 14:31:27	soehlert	i dont fully understand how to know where to indent the returns to in my functions. obviously outside of loops because otherwise it would change everytime. but how do i know where to indent it to?
+2014-05-22 14:31:50	jazoff	return ends the function
+2014-05-22 14:31:55	jazoff	so you return when you are done
+2014-05-22 14:32:31	soehlert	right i know that, but i mean as far as indentation. compare ipforwarding() to securit_access
+2014-05-22 14:32:52	soehlert	ipforwarding has it equally indented to with while seuciryt_access has it indented equal to the for
+2014-05-22 14:33:53	jazoff	ok, so take a function like this (stupid function)
+2014-05-22 14:34:26	jazoff	def is_in_list(lst, item):
+2014-05-22 14:34:27	jazoff	    for x in lst:
+2014-05-22 14:34:27	jazoff	        if x == item:
+2014-05-22 14:34:27	jazoff	            return True
+2014-05-22 14:34:27	jazoff	    return False
+2014-05-22 14:35:04	soehlert	ok
+2014-05-22 14:35:34	soehlert	isnt that going to always return false after it runs through the whole lst?
+2014-05-22 14:35:45	jazoff	how so?
+2014-05-22 14:36:37	soehlert	idk. so its going to look at each item in the list and compare that to item...return true if its equal.
+2014-05-22 14:36:37	soehlert	i guess i dont see when the return false would come up
+2014-05-22 14:37:02	jazoff	if it's not found
+2014-05-22 14:37:50	soehlert	so why not...
+2014-05-22 14:37:50	soehlert	if x == item: return true
+2014-05-22 14:37:50	soehlert	else: return false
+2014-05-22 14:38:04	jazoff	what would it do on the first item?
+2014-05-22 14:39:01	soehlert	im assuming it wont work, but i dont see why not. does the function end if you return false or something?
+2014-05-22 14:39:18	jazoff	yes
+2014-05-22 14:39:38	soehlert	ahhh
+2014-05-22 14:39:38	soehlert	so it finds all the true ones first then goes to the return false after?
+2014-05-22 14:39:41	soehlert	doing it your way
+2014-05-22 14:39:53	jazoff	no, it would find ANY true one
+2014-05-22 14:40:35	soehlert	oh right. return ends the function so it would also stop on the first return true right?
+2014-05-22 14:40:46	jazoff	yes
+2014-05-22 14:41:16	soehlert	so the first might not be true, but we can't have the else otherwise it wouldnt keep checking. then it keeps checking and if it finds nothing it returns false
+2014-05-22 14:41:46	jazoff	yep
+2014-05-22 14:42:52	soehlert	so theoretically then, looking at security_access, could you move it over one tab and it would still work the same?
+2014-05-22 14:43:48	soehlert	one tab to the left that is
+2014-05-22 14:44:09	soehlert	and ipforwarding could be moved one tab to the right and it would still work?
+2014-05-22 14:45:09	jazoff	hmm
+2014-05-22 14:45:26	jazoff	yeah, in security access it doesn't matter
+2014-05-22 14:45:59	jazoff	but that's mostly due to it not mattering because of the with
+2014-05-22 14:46:12	jazoff	last statement inside the with block vs last statement in the function.. same thing
+2014-05-22 14:46:18	soehlert	ya thats basically what i was seeing
+2014-05-22 14:46:35	soehlert	which is why you can move it over one to the right in the ipforwarding fucntion as well
+2014-05-22 14:46:48	soehlert	and why i was getting confused, since it doesnt' totally matter
+2014-05-22 14:47:35	jazoff	a for loop is completely different though
+2014-05-22 14:47:52	soehlert	absolutely. i get that part
+2014-05-22 14:47:52	soehlert	it was mostly how many outside of the for loop do i need it
+2014-05-22 14:48:03	soehlert	how many tabs*
+2014-05-22 14:48:09	jazoff	it depeneds if you are trying to do an early return or not
+2014-05-22 14:48:21	jazoff	if it's something you can return true/false ASAP, you have it inside the loop
+2014-05-22 14:48:31	jazoff	if you have to wait until the end of the loop, well then it has to go after it ends
+2014-05-22 14:48:38	soehlert	right. 
+2014-05-22 14:48:49	jazoff	for that is_in_list you can return True as soon as you find it once
+2014-05-22 14:48:56	jazoff	but you need to go all the way through before you can return False
+2014-05-22 14:49:07	soehlert	exactly what i was just typing out. cool i think im getting it
+2014-05-22 14:51:38	soehlert	thanks for the help. ill get to work on the sh script
+2014-05-22 14:57:40	jazoff	:)
+2014-05-23 02:41:56	--	irc: disconnected from server
+2014-06-06 01:54:50	--	irc: disconnected from server
+2014-06-13 01:54:48	--	irc: disconnected from server
+2014-06-13 11:59:34	soehlert	quicky python question for you..
+2014-06-13 12:00:24	soehlert	trying to compare a variable in a for loop against the last element of a list and make sure the merged variable is false
+2014-06-13 12:00:30	soehlert	does this work? elif tile == result[-1] and not merged
+2014-06-13 12:00:42	jazoff	yeah
+2014-06-13 12:00:55	jazoff	as long as result is not empty
+2014-06-13 12:01:09	soehlert	ooo it might be the first run..hmm
+2014-06-13 12:01:49	jazoff	just add a
+2014-06-13 12:01:51	jazoff	results and ...
+2014-06-13 12:02:18	soehlert	elif results and tile == result[-1] and not merged:
+2014-06-13 12:04:26	jazoff	yeah
+2014-06-13 12:04:33	jazoff	er, result though
+2014-06-13 12:05:16	soehlert	right
+2014-06-13 12:06:54	soehlert	actually i think i don't need that as i can initialize the list like so: result = [0 for dummy_i in range(len(line))]
+2014-06-13 12:07:22	soehlert	basically for this class we're building a copy of the game 2048. so we get an input line and i'm working on taking that line and merging it 
+2014-06-13 12:11:28	jazoff	[0 for _ in line]
+2014-06-13 12:11:46	jazoff	or [0] * len(line)
+2014-06-13 12:28:34	jazoff	walk, brb
+2014-06-13 13:04:15	soehlert	hey how do you return two things in python?
+2014-06-13 13:04:22	jazoff	return thing1, thing2
+2014-06-13 13:04:22	soehlert	def __init__(self, grid_height, grid_width):
+2014-06-13 13:04:22	soehlert	        # replace with your code
+2014-06-13 13:04:22	soehlert	        self.grid_height = grid_height
+2014-06-13 13:04:22	soehlert	        self.grid_width = grid_width
+2014-06-13 13:04:22	soehlert	        reset
+2014-06-13 13:04:22	soehlert	        return self.grid_height, self.grid_width
+2014-06-13 13:04:41	jazoff	__init__ does not return anything
+2014-06-13 13:04:41	soehlert	i imagine i want to return a tuple?
+2014-06-13 13:04:48	jazoff	and that reset doesn't do anything either
+2014-06-13 13:04:59	soehlert	well ya sorry reset is actually another function they gave us
+2014-06-13 13:05:14	soehlert	but how do i access grid_height and grid_width from other methods if i dont return them?
+2014-06-13 13:05:22	soehlert	this is all inside the same class btw
+2014-06-13 13:06:15	jazoff	just like you do there
+2014-06-13 13:06:17	jazoff	self.grid_width
+2014-06-13 13:06:39	soehlert	oh ok i don't have to return them there. got it
+2014-06-13 13:06:46	jazoff	you can't return them there
+2014-06-13 13:07:20	soehlert	so you never return anything in init then?
+2014-06-13 13:09:27	jazoff	no
+2014-06-13 13:10:19	soehlert	fair enough. classes are still a bit confusing to me, but that should help a little actually
+2014-06-13 13:13:59	jazoff	they are just containers for self
+2014-06-13 13:14:08	jazoff	where you stick the stuff you want to work on
+2014-06-13 13:47:37	soehlert	ok im trying to print out a string representation of my board.
+2014-06-13 13:47:40	soehlert	    def __str__(self):
+2014-06-13 13:47:40	soehlert	        """
+2014-06-13 13:47:40	soehlert	        Return a string representation of the grid for debugging.
+2014-06-13 13:47:40	soehlert	        """
+2014-06-13 13:47:40	soehlert	        # replace with your code
+2014-06-13 13:47:40	soehlert	        grid_str = ""
+2014-06-13 13:47:40	soehlert	        for i in range(self.grid_height):
+2014-06-13 13:47:40	soehlert	            for j in range(self.grid_width):
+2014-06-13 13:47:40	soehlert	                grid_str = ', '.join(map(str, self.grid[i][j]))
+2014-06-13 13:47:40	soehlert	        return grid_str
+2014-06-13 13:48:00	soehlert	so basically i should be getting a 4x4 grid of 0's
+2014-06-13 13:48:46	soehlert	if i do: grid_str = ', '.join(map(str, self.grid[i])), then i get one row of 4 0's, but if i do it as the way i have with the j in there, i get an error: "TypeError: 'int' object is not iterable"
+2014-06-13 13:55:21	jazoff	well yeah, you are calling like
+2014-06-13 13:55:29	jazoff	', '.join(map(str, 1024))
+2014-06-13 13:56:39	jazoff	you want to join the columns together with , to get the rows
+2014-06-13 13:56:46	jazoff	then join the rows together with \n to get the full grid
+2014-06-13 14:06:34	jazoff	just figure out how to get a list of the row strings first
+2014-06-13 14:09:45	soehlert	so it seems i'm sorta on the right track at first glance, but it would seem these are treated as individual strings still..
+2014-06-13 14:09:48	soehlert	        for row in range(self.grid_height):
+2014-06-13 14:09:48	soehlert	            for col in range(self.grid_width):
+2014-06-13 14:09:48	soehlert	                col_str = ', '.join(map(str, self.grid[col]))
+2014-06-13 14:09:48	soehlert	            return col_str
+2014-06-13 14:10:31	soehlert	col_str prints out as 0, 0, 0, 0 but it seems they aren't one long string..
+2014-06-13 14:11:21	jazoff	ook.. start over
+2014-06-13 14:11:27	jazoff	self.grid[0] is what?
+2014-06-13 14:12:05	jazoff	if you do
+2014-06-13 14:12:08	jazoff	for x in self.grid:
+2014-06-13 14:12:09	jazoff	   print x
+2014-06-13 14:12:10	jazoff	what do you get
+2014-06-13 14:13:19	soehlert	self.grid[0] is the first row of 0s
+2014-06-13 14:14:04	soehlert	so if you did your for loop it would be all of the 0s
+2014-06-13 14:14:11	soehlert	or all of the rows i should say
+2014-06-13 14:14:25	jazoff	so in that for loop, x is what?
+2014-06-13 14:14:41	soehlert	the index number of the row from the self.grid list
+2014-06-13 14:14:51	jazoff	did you run that code ?
+2014-06-13 14:15:03	soehlert	no ill go try it
+2014-06-13 14:15:48	soehlert	x isnt the index number, it's the actual row.
+2014-06-13 14:15:54	soehlert	in list form
+2014-06-13 14:16:41	jazoff	so
+2014-06-13 14:16:45	jazoff	for row in self.grid:
+2014-06-13 14:16:46	jazoff	   print row
+2014-06-13 14:16:51	jazoff	makes more sense
+2014-06-13 14:16:55	soehlert	yes
+2014-06-13 14:17:02	jazoff	ok, now, what is row?
+2014-06-13 14:17:12	soehlert	as in what type?
+2014-06-13 14:17:14	jazoff	yeah
+2014-06-13 14:17:19	soehlert	a list
+2014-06-13 14:18:02	soehlert	print type(row) says so, so now im confident in that
+2014-06-13 14:18:11	jazoff	so how do you get from row, to a string representing that row
+2014-06-13 14:18:33	soehlert	iterate over that row and join the pieces into a string?
+2014-06-13 14:18:46	jazoff	row = [0, 0, 0]
+2014-06-13 14:18:50	jazoff	row_str = ???
+2014-06-13 14:18:59	jazoff	what's the exact line you need?
+2014-06-13 14:19:10	soehlert	row_str = "row"
+2014-06-13 14:19:18	jazoff	lol no
+2014-06-13 14:19:19	soehlert	no thats not right..
+2014-06-13 14:19:26	jazoff	you kind of have it above
+2014-06-13 14:19:49	soehlert	row_str = str(row)
+2014-06-13 14:20:01	jazoff	no.. that doesn't give you the format you want
+2014-06-13 14:26:42	soehlert	do i want to iterate over the row and str each entry? then join them together to form the row in string form?
+2014-06-13 14:27:11	jazoff	yes.. you have that above
+2014-06-13 14:27:18	jazoff	just calling it with the wrong thing
+2014-06-13 14:30:09	soehlert	        for row in self.grid:
+2014-06-13 14:30:09	soehlert	            for entry in row:
+2014-06-13 14:30:09	soehlert	                entry_str = str(entry)
+2014-06-13 14:30:35	jazoff	... but you had what you needed above
+2014-06-13 14:30:40	jazoff	where did you get the join and map thing?
+2014-06-13 14:30:53	soehlert	oh ya i was going to do that on the next line..
+2014-06-13 14:30:59	soehlert	row_str = ', '.join(map(str, entry_str))
+2014-06-13 14:31:33	soehlert	so i guess in total i have: 
+2014-06-13 14:31:35	soehlert	        for row in self.grid:
+2014-06-13 14:31:35	soehlert	            for entry in row:
+2014-06-13 14:31:35	soehlert	                entry_str = str(entry)
+2014-06-13 14:31:35	soehlert	                row_str = ', '.join(map(str, entry_str))
+2014-06-13 14:31:47	jazoff	noooo
+2014-06-13 14:31:50	jazoff	what does map do?
+2014-06-13 14:31:52	soehlert	crap.
+2014-06-13 14:32:16	jazoff	making it way too complicated
+2014-06-13 14:32:28	soehlert	Finally, you may use map() to convert each item in the list to a string, and then join them:
+2014-06-13 14:32:28	soehlert	>>> print ', '.join(map(str, list_of_ints))
+2014-06-13 14:32:28	soehlert	i know i am. theres no way its this tough.
+2014-06-13 14:32:41	jazoff	what kind of variable is row?
+2014-06-13 14:32:58	soehlert	row is a list of int. so i dont need to do the entry stuff.
+2014-06-13 14:33:18	jazoff	.. :)
+2014-06-13 14:33:39	soehlert	        for row in self.grid:
+2014-06-13 14:33:39	soehlert	            row_str = ', '.join(map(str, row))
+2014-06-13 14:34:02	soehlert	so now i have a string of one row
+2014-06-13 14:35:07	jazoff	right
+2014-06-13 14:35:18	jazoff	so you just need to get a list of strings of rows
+2014-06-13 14:44:11	soehlert	        row_lst = []
+2014-06-13 14:44:11	soehlert	        for row in self.grid:
+2014-06-13 14:44:11	soehlert	            row_str = ', '.join(map(str, row)) 
+2014-06-13 14:44:11	soehlert	            row_lst.append(row_str)
+2014-06-13 14:44:11	soehlert	        print row_lst
+2014-06-13 14:45:38	jazoff	almost there
+2014-06-13 14:45:58	jazoff	now you just need to merge the row_lst together
+2014-06-13 14:46:27	soehlert	i dont follow what you mean.
+2014-06-13 14:46:44	jazoff	what does row_lst contain
+2014-06-13 14:46:49	jazoff	what do you want instead as an end result
+2014-06-13 14:47:05	soehlert	it starts empty. each time i append a row, it gets a string of that row
+2014-06-13 14:47:23	soehlert	i get this: ['0, 0, 0, 0', '0, 0, 0, 0', '0, 0, 0, 0', '0, 0, 0, 0']
+2014-06-13 14:47:33	soehlert	which looks right, but i can tell its not
+2014-06-13 14:49:26	jazoff	so row_lst is what kind of varible?
+2014-06-13 14:50:36	soehlert	its a list.
+2014-06-13 14:51:01	soehlert	so now i have a list of strings or rows
+2014-06-13 14:51:13	soehlert	strings OF rows
+2014-06-13 14:52:28	jazoff	so how do you get that into one big string?
+2014-06-13 14:53:26	soehlert	oooo right. so i iterate over that list and join each string
+2014-06-13 14:54:18	soehlert	        for item in row_lst:
+2014-06-13 14:54:18	soehlert	            grid_str = ', '.join(map(str, item))
+2014-06-13 14:54:18	soehlert	        return grid_str
+2014-06-13 14:54:52	soehlert	except that doesn't work out at all like i'd expect
+2014-06-13 14:56:45	jazoff	nooo
+2014-06-13 14:57:40	jazoff	howw does row_str = ', '.join(map(str, row)) work
+2014-06-13 14:58:31	soehlert	joins each row (the element from self.grid) as a str separated by a ,
+2014-06-13 14:59:30	jazoff	and which part does the joining
+2014-06-13 15:00:05	soehlert	.join()
+2014-06-13 15:02:59	jazoff	so that joins one row together
+2014-06-13 15:03:07	jazoff	how do you think you should join row_lst together
+2014-06-13 15:05:47	soehlert	im not sure i think thats the only way i know how.
+2014-06-13 15:08:28	jazoff	if you had
+2014-06-13 15:08:35	jazoff	row = [ "0", "0", "0"]
+2014-06-13 15:08:45	jazoff	how would you make row_str from that
+2014-06-13 15:11:54	soehlert	row_str = ",".join(map(str, row))
+2014-06-13 15:12:01	jazoff	what does the map do?
+2014-06-13 15:13:02	soehlert	map runs the str function on ever element of row
+2014-06-13 15:13:15	jazoff	what's the purpose of that?
+2014-06-13 15:13:24	soehlert	so i guess its not necessary in your case since row already was a list of strings
+2014-06-13 15:13:34	jazoff	ok, so how can you simplify it
+2014-06-13 15:14:01	soehlert	row_str = ', '.join(row)
+2014-06-13 15:14:28	jazoff	what if you wanted it joined by newlines instead of commas
+2014-06-13 15:14:49	soehlert	row_str = '\n '.join(row)
+2014-06-13 15:14:54	jazoff	there you go
+2014-06-13 15:15:02	soehlert	err
+2014-06-13 15:15:02	soehlert	row_str = '\n'.join(row)
+2014-06-13 15:15:17	soehlert	so i tried that and its not working at all
+2014-06-13 15:15:20	soehlert	        row_lst = []
+2014-06-13 15:15:20	soehlert	        for row in self.grid:
+2014-06-13 15:15:20	soehlert	            row_str = ', '.join(map(str, row)) 
+2014-06-13 15:15:20	soehlert	            row_lst.append(row_str)
+2014-06-13 15:15:20	soehlert	    
+2014-06-13 15:15:20	soehlert	        for item in row_lst:
+2014-06-13 15:15:20	soehlert	            grid_str = '\n '.join(item)
+2014-06-13 15:15:20	soehlert	        return grid_str
+2014-06-13 15:15:35	jazoff	nooooooooooo
+2014-06-13 15:15:41	jazoff	what is row_lst?
+2014-06-13 15:15:51	soehlert	a list of strings
+2014-06-13 15:15:57	soehlert	each string being a row
+2014-06-13 15:16:05	jazoff	and what are you wanting to join together?
+2014-06-13 15:16:59	jazoff	vs. wht are you actually joining together
+2014-06-13 15:17:57	soehlert	i want to join together the list of strings
+2014-06-13 15:18:23	jazoff	which is row_lst
+2014-06-13 15:19:00	soehlert	right. so now i have a list of every row in string form. so that's what i want to return. except that list needs to be a string
+2014-06-13 15:21:08	soehlert	        grid_str = '\n'.join(row_lst)
+2014-06-13 15:21:08	soehlert	        return grid_str
+2014-06-13 15:21:12	jazoff	YAY
+2014-06-13 15:21:19	soehlert	god damn i make this way too hard
+2014-06-13 15:21:20	jazoff	notice how simple? :)
+2014-06-13 15:21:40	soehlert	yes incredibly. "except that list needs to be a string" that part took me so long to realize
+2014-06-13 15:21:42	jazoff	i think you get confused because you rightly think "i need to loop over each row"
+2014-06-13 15:21:53	jazoff	which is true, but join does the loopign for you
+2014-06-13 15:22:07	soehlert	ah i hadnt thought of it like that
+2014-06-13 15:25:42	soehlert	thanks for all the help with this. this class is MUCH harder than they suggested it would be..i think i'm gonna learn a ton though if i can get through it
+2014-06-13 15:25:58	jazoff	sure
+2014-06-13 15:26:07	jazoff	not sure  if you noticed, i'm flying in sunday for next week
+2014-06-13 15:26:14	jazoff	so we can work on stuff together if you want
+2014-06-13 15:27:08	soehlert	ah i knew it was soon. i may take you up on that this is all due monday, but then its on to the next week. the HW isn't too bad (so far) but these "mini" projects are wayyyy bigger than anything i've ever written
+2014-06-13 15:29:39	jazoff	just split things up into pieces 
+2014-06-13 15:31:14	soehlert	i am. that was just for one method haha. i've got a 100% on all the methods so far including the merge function! unfortunately, the move function and the random new tile ones are left.
+2014-06-13 15:32:28	soehlert	this class is big on testing too, so were working on setting up tests for each method. that really helps me break it up individually.
+2014-06-13 15:34:56	jazoff	yep
+2014-06-13 16:18:14	soehlert	you still there?
+2014-06-13 16:22:48	jazoff	yeah
+2014-06-13 16:24:38	soehlert	list(tuple([0, dummy_x]) for dummy_x in range(grid_width)
+2014-06-13 16:24:38	soehlert	does that create a list of tuples that are (0,X) where x is every possible x inside the range of 0-board width?
+2014-06-13 16:24:59	jazoff	you don't need to call tuple to make a tuple
+2014-06-13 16:25:03	jazoff	(0,1) makes a tuple
+2014-06-13 16:25:29	soehlert	so i can do: list((0, dummy_x) for dummy_x in range(grid_width)
+2014-06-13 16:25:44	soehlert	i dont need list either do i?
+2014-06-13 16:25:45	jazoff	[(0,x) for x in range(grid_width)]
+2014-06-13 16:26:06	soehlert	ya the dummy_x thing is just to keep pylint happy, but ok that makes sense then
+2014-06-17 10:40:41	soehlert	quick bro question: if i run bro against a pcap, are the timestamps in conn.log the actual network timestamps
+2014-06-17 10:47:24	jazoff	yeah
+2014-06-17 10:52:21	soehlert	ok one other question actually..."what I want is the list on concurrent connections at any given time.   That's easy, it's in the connection state table.   But say I want the number of conconcurrent connections for each second of real time… I'm not sure how to do that other that print out the conn.log and parse it after the fact."
+2014-06-17 10:52:26	soehlert	any idea how to pull that off?
+2014-06-17 11:04:26	jazoff	that's kind of tricky
+2014-06-17 11:04:46	jazoff	you can kinda do it by keeping track of the current count
+2014-06-17 11:05:01	jazoff	every time there is a new connection increment it and any time a connection is closed decrement it
+2014-06-17 11:05:15	jazoff	then just use schedule to log that count once per second
+2014-06-17 11:21:45	soehlert	ok thanks
+2014-06-23 11:57:14	soehlert	so I got a question for you on my project.
+2014-06-23 11:57:24	soehlert	    cost_list = [(build_info.get_cost(item),item) for item in build_info.build_items()]
+2014-06-23 11:57:24	soehlert	    print cost_list
+2014-06-23 11:57:24	soehlert	    filtered_cost_list = [(cost,item) for (cost,item) in cost_list if cost <= cookies] 
+2014-06-23 11:57:24	soehlert	    print filtered_cost_list
+2014-06-23 11:57:39	soehlert	cost list returns "[(15.0, 'Cursor'), (100.0, 'Grandma'), (500.0, 'Farm'), (3000.0, 'Factory'), (10000.0, 'Mine'), (40000.0, 'Shipment'), (200000.0, 'Alchemy Lab'), (1666666.0, 'Portal'), (123456789.0, 'Time Machine'), (3999999999.0, 'Antimatter Condenser')]"
+2014-06-23 11:57:50	soehlert	filtered_cost_list returns: []
+2014-06-23 12:11:21	jazoff	print cookies
+2014-06-23 12:14:15	soehlert	cookies= <bound method ClickerState.get_cookies of <__main__.ClickerState object>>
+2014-06-23 12:14:21	soehlert	i was expecting a number there..
+2014-06-23 12:14:42	jazoff	where is cookies coming from?
+2014-06-23 12:14:54	soehlert	def strategy_cheap(cookies, cps, time_left, build_info):
+2014-06-23 12:18:59	jazoff	what is cookies in the other strategies?
+2014-06-23 12:32:27	soehlert	gives me the same thing
+2014-06-23 12:37:46	jazoff	well, i guess they are expecting you to call it
+2014-06-23 12:38:07	jazoff	at least, that's what you'll need to do
+2014-06-23 13:24:55	soehlert	that's what i figured, but that just returns" <function get_cookies>"
+2014-06-23 13:28:31	jazoff	huh?
+2014-06-23 13:29:47	soehlert	ya i dont know. i printed ClickerState.get_cookies() and that's what it printed out..
+2014-06-23 13:44:02	jazoff	weird
+2014-06-23 13:44:24	jazoff	oh wait
+2014-06-23 13:44:25	jazoff	no
+2014-06-23 13:44:27	jazoff	just print cookies()
+2014-06-23 13:50:45	soehlert	aha it is a function. that returns 0.0
+2014-06-23 13:50:45	soehlert	gotta figure out where that is coming from. obviously i can never buy anything if i have no cookies..
+2014-06-23 13:51:32	jazoff	well, the first time through at least
+2014-06-23 13:51:37	jazoff	doesn't it grow over time?
+2014-06-23 13:52:08	soehlert	current cookies does, but that cookies parameter(?) always prints out 0.0
+2014-06-23 13:54:29	jazoff	oh, seems like their thing is buggy
+2014-06-23 13:55:01	soehlert	eh whatever. i think im gonna give up on this week. i still have a passing grade on this assingment anyways. 
+2014-06-23 13:55:25	jazoff	that works too
+2014-06-23 13:55:44	soehlert	this damn job getting int he way expecting me to not just do class work :)
+2014-06-23 13:59:23	jazoff	:)
+2014-06-30 11:37:29	jazoff	how's the python going?
+2014-06-30 11:42:33	soehlert	i kinda gave up on that. it was causing too much stress and taking too much time. 
+2014-06-30 11:42:43	soehlert	sucks but it wasnt worth my sanity
+2014-06-30 11:49:40	jazoff	ah
+2014-06-30 11:50:26	soehlert	I was really under the impression it was python class not math class that used python. didn't have time to teach myself math on top of python..plus i was killing both mine and your productivity here at work..
+2014-06-30 11:54:02	jazoff	yeah, i don't know of a good "python for sysadmins" class
+2014-06-30 11:55:06	soehlert	ya that really would be what i was looking for. focusing on python scritps instead of big giant programs.
+2014-06-30 11:55:24	soehlert	oh well. i'll keep picking up a little here and a little there. one day i'll get it
+2014-07-15 10:15:03	jazoff	echo 'echo "Warning: Container lifetime limit reached. Destroying container..."' | docker attach $ID
+2014-07-17 15:44:56	soehlert	you around?
+2014-07-24 08:10:28	jazoff	return max($seconds, $duration/$return_to_base_factor);
+2015-01-09 15:53:54	jazoff	sure
+2015-01-09 15:54:27	soehlert	need a recommendation for hosting and also possibly best language to write it in
+2015-01-09 15:54:51	soehlert	so i play fantasy soccer with some people and theres really no good websites for it so a few people and i are thinking of maybe trying to write our own.
+2015-01-09 15:54:51	jazoff	hosting what?
+2015-01-09 15:54:58	jazoff	ah
+2015-01-09 15:55:08	jazoff	heroku is pretty good but can get expensive
+2015-01-09 15:55:21	jazoff	otherwise a cheap VPS on amazon or digital ocean is nice
+2015-01-09 15:55:25	soehlert	obviously involving a big db
+2015-01-09 15:55:25	soehlert	so idk if that changes things
+2015-01-09 15:55:42	jazoff	yeah
+2015-01-09 15:56:02	soehlert	are any of the VPS players better about DBs than others?
+2015-01-09 15:57:05	jazoff	amazon has RDS but that gets expensive too
+2015-01-09 15:57:53	soehlert	so is it just going to be down to price? or is amazon better with db performance or something?
+2015-01-09 15:59:03	jazoff	well how big of a db are we talking?
+2015-01-09 15:59:13	jazoff	it depends if you want a hosted db service or not
+2015-01-09 15:59:43	soehlert	well its going to have be pretty huge. stats on players and every game in the english premier league, plus im assuming each fantasy league would need its own db 
+2015-01-09 15:59:52	jazoff	heroku is nice because you run one command and you have a database
+2015-01-09 15:59:59	soehlert	keeping track of lots of stats basically
+2015-01-09 16:00:31	jazoff	but it gets expensive.. the one I used for the nike thing was the cheapest premium database and it costs $200/mo
+2015-01-09 16:01:04	soehlert	gotcha.
+2015-01-09 16:01:30	jazoff	there's nothing stopping you from just installing a database on a vps though, but then you have to do backups and stuff yourself
+2015-01-09 16:01:46	jazoff	and replication and HA and all that fun stuff
+2015-01-09 16:02:02	soehlert	right, though in the beginning at least that might be worth the cost savings until we have proof it would be worthwhile 
+2015-01-09 16:02:25	soehlert	i get spoiled by work where i could just throw this up on any old machine and go haha. 
+2015-01-09 16:02:34	jazoff	yeah
+2015-01-09 16:02:47	jazoff	well on heroku the kinda 'dev' plans are pretty cheap
+2015-01-09 16:03:14	soehlert	ok maybe that's where i'll look for the proof of concept stages
+2015-01-09 16:03:33	soehlert	do you think a specific language would lend itself better to this sort of thing over others?
+2015-01-09 16:03:36	jazoff	Hobby Basic  is 10/mo and you can have 10 million rows
+2015-01-09 16:03:46	soehlert	oh that sounds doable for sure.
+2015-01-09 16:04:29	jazoff	https://addons.heroku.com/heroku-postgresql
+2015-01-09 16:05:02	jazoff	but yeah, it gets expensive fast 
+2015-01-09 16:05:18	soehlert	sure does
+2015-01-09 16:05:18	soehlert	wowza
+2015-01-09 16:05:40	jazoff	but still cheaper than paying a DBA 100k/yr
+2015-01-09 16:05:46	soehlert	haha thats very true.
+2015-01-09 16:06:36	soehlert	as far as language goes, do you think this would be best done in a specific one?
+2015-01-09 16:06:52	jazoff	python is good :)
+2015-01-09 16:06:54	soehlert	got a few devs possibly interested, but if a language is better served we'll try to go with that
+2015-01-09 16:07:06	soehlert	hahah figured youd say that. didnt know if itd be able to handle it all or what
+2015-01-09 16:07:18	soehlert	any that wouldnt work very well at all for this?
+2015-01-09 16:07:37	jazoff	not really
+2015-01-09 16:07:46	soehlert	alright cool
+2015-01-09 16:08:10	soehlert	thanks man
+2015-01-09 16:10:20	jazoff	yeah, amazon and stuff gets expensive, but it's hard to factor in tco
+2015-01-09 16:10:42	jazoff	http://aws.amazon.com/tco-calculator/ is fun to play with
+2015-01-09 16:10:45	soehlert	ya for sure. luckily a couple of the guys here are project managers so that helps
+2015-01-09 18:16:10	soehlert	one other question for you. do you just write all your python in vim or do you use IDLE or some other IDE
+2015-01-26 13:49:50	--	irc: disconnected from server
+2015-02-03 09:44:02	--	irc: disconnected from server

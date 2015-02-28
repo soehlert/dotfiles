@@ -1,0 +1,668 @@
+2014-04-14 23:18:28		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-14 23:18:49		Option changed: irc.server.freenode.username = "soehlert"  (default: (undefined))
+2014-04-14 23:23:50		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-14 23:24:05		Option changed: weechat.network.gnutls_ca_file = "/etc/ssl/certs/ca-bundle.crt"  (default: "/etc/ssl/certs/ca-certificates.crt")
+2014-04-14 23:24:31		Option changed: irc.server.freenode.addresses = "chat.freenode.net/7000"  (default: (undefined))
+2014-04-14 23:24:38		Option changed: irc.server.freenode.ssl = on  (default: (undefined))
+2014-04-14 23:24:49		Option changed: irc.server.freenode.ssl_dhkey_size = 1024  (default: (undefined))
+2014-04-14 23:26:45		Option changed: irc.server_default.sasl_mechanism = dh-blowfish  (default: plain)
+2014-04-14 23:27:01		Option changed: irc.server.freenode.nicks = "soehlert_"  (default: (undefined))
+2014-04-14 23:27:13		Option changed: irc.server.freenode.sasl_username = "soehlert_"  (default: (undefined))
+2014-04-14 23:39:25		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-14 23:40:32	=!=	Error: option "irc.server.freenode.autoconect" not found
+2014-04-14 23:40:43		Option changed: irc.server.freenode.autoconnect = on  (default: (undefined))
+2014-04-14 23:41:22		Option changed: irc.server.freenode.command = "/msg nickserv identify 43110W0rld!"  (default: (undefined))
+2014-04-14 23:41:44		Option changed: irc.server.freenode.autojoin = "#sadpacket"  (default: (undefined))
+2014-04-14 23:44:31		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-14 23:46:51		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-14 23:47:59		script: downloading list of scripts...
+2014-04-14 23:48:00		script: 276 scripts for WeeChat 0.4.2
+2014-04-14 23:48:01		perl: loading script "/home/sam/.weechat/perl/beep.pl"
+2014-04-14 23:48:01		perl: registered script "beep", version 1.1 (Beep (terminal bell) and/or run command on highlight/private message or new DCC)
+2014-04-14 23:48:22		script: autoload enabled for script "beep.pl"
+2014-04-14 23:48:29		python: loading script "/home/sam/.weechat/python/allquery.py"
+2014-04-14 23:48:29		python: registered script "allquery", version 0.2 (Executes command on all irc query buffer)
+2014-04-14 23:48:38		script: script "allquery" not found
+2014-04-14 23:48:42		script: autoload enabled for script "allquery.py"
+2014-04-14 23:49:41		python: loading script "/home/sam/.weechat/python/apply_corrections.py"
+2014-04-14 23:49:42		python: registered script "apply_corrections", version 1.1 (When a correction (ex: s/typo/replacement) is sent, print the user's previous message(s) with the corrected text instead.)
+2014-04-14 23:49:54		script: autoload enabled for script "apply_corrections.py"
+2014-04-14 23:53:12		python: loading script "/home/sam/.weechat/python/grep.py"
+2014-04-14 23:53:12		python: registered script "grep", version 0.7.3 (Search in buffers and logs)
+2014-04-14 23:53:22		script: autoload enabled for script "grep.py"
+2014-04-14 23:56:52		perl: loading script "/home/sam/.weechat/perl/multiline.pl"
+2014-04-14 23:56:52		perl: registered script "multiline", version 0.6 (Multi-line edit box)
+2014-04-14 23:57:02		script: autoload enabled for script "multiline.pl"
+2014-04-14 23:58:13		lua: loading script "/home/sam/.weechat/lua/oldswarner.lua"
+2014-04-14 23:58:13		lua: registered script "oldswarner", version 2 (Warn user if about to paste URL already existing in buffer)
+2014-04-14 23:58:21		script: autoload enabled for script "oldswarner.lua"
+2014-04-15 00:00:20		python: loading script "/home/sam/.weechat/python/screen_away.py"
+2014-04-15 00:00:20		python: registered script "screen_away", version 0.12 (Set away status on screen detach)
+2014-04-15 00:00:27		script: autoload enabled for script "screen_away.py"
+2014-04-15 00:01:48		perl: loading script "/home/sam/.weechat/perl/stats_bar.pl"
+2014-04-15 00:01:48		perl: registered script "stats_bar", version 1.0 (statistics bar)
+2014-04-15 00:01:54		script: autoload enabled for script "stats_bar.pl"
+2014-04-15 00:03:02		python: loading script "/home/sam/.weechat/python/title.py"
+2014-04-15 00:03:02		python: registered script "title", version 0.5 (Set screen title to current buffer name + hotlist items with configurable priority level)
+2014-04-15 00:03:06		script: autoload enabled for script "title.py"
+2014-04-15 00:05:16		python: loading script "/home/sam/.weechat/python/weetweet.py"
+2014-04-15 00:05:16		You need the have pkg_resources installed for version checking
+2014-04-15 00:05:16		python: registered script "weetweet", version 1.2.1 (Weechat twitter client)
+2014-04-15 00:05:16		Can't load twitter python lib >= 1.14.1
+2014-04-15 00:05:16		Install it via your package manager or go to http://mike.verdone.ca/twitter/
+2014-04-15 00:06:03		script: script "weetweet.py" is already installed and up-to-date
+2014-04-15 00:06:12		script: autoload enabled for script "weetweet.py"
+2014-04-15 00:06:42		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-15 11:38:30		script: downloading list of scripts...
+2014-04-15 11:38:31		script: 276 scripts for WeeChat 0.4.2
+2014-04-15 11:39:05		perl: loading script "/home/sam/.weechat/perl/buffers.pl"
+2014-04-15 11:39:05		perl: registered script "buffers", version 4.6 (Sidebar with list of buffers)
+2014-04-15 11:39:05		New key binding (context "mouse"): @item(buffers):button2* => hsignal:buffers_mouse
+2014-04-15 11:39:05		New key binding (context "mouse"): @item(buffers):button1* => hsignal:buffers_mouse
+2014-04-15 11:39:12		script: autoload enabled for script "buffers.pl"
+2014-04-15 11:40:35		python: unloading script "screen_away"
+2014-04-15 11:40:35		python: script removed: /home/sam/.weechat/python/autoload/screen_away.py
+2014-04-15 11:40:35		python: script removed: /home/sam/.weechat/python/screen_away.py
+2014-04-15 11:40:46	=!=	irc: too few arguments for "query" command
+2014-04-15 11:40:50	=!=	Error: unknown option for "window" command
+2014-04-15 11:41:03	=!=	Error: unknown option for "window" command
+2014-04-15 11:44:03	=!=	Error: unknown command "buffers" (type /help for help)
+2014-04-15 11:44:07		Buffers list:
+2014-04-15 11:44:07		  [1] (core) weechat (notify: all)
+2014-04-15 11:44:07		  [1] (irc) server.freenode (notify: all)
+2014-04-15 11:44:07		  [2] (python) twitter (notify: all)
+2014-04-15 11:44:07		  [3] (irc) freenode.#sadpacket (notify: all)
+2014-04-15 11:44:19	=!=	Error: unknown option for "buffer" command
+2014-04-15 11:44:53		Option changed: weechat.bar.buffers.position = top  (default: left)
+2014-04-15 11:45:47		stderr: Error with command 'python3 /home/sam/.weechat/python/autoload/weetweet.py   t '&quot;:auth&quot;' "['']"'
+2014-04-15 11:46:05	=!=	Error: unknown command "clear" (type /help for help)
+2014-04-15 16:18:47		irc: server blizzard.ncsa.illinois.edu created (temporary server, NOT SAVED!)
+2014-04-15 16:23:24		Bar "activetitle" created
+2014-04-15 16:23:44	=!=	Error: unknown option for "bar" command
+2014-04-15 16:23:58		Bar "activetitle" deleted
+2014-04-15 16:24:28		Option changed: weechat.bar.title.conditions = "${inactive}"  (default: "")
+2014-04-15 16:24:50		Option changed: weechat.bar.title.color_bg = black  (default: blue)
+2014-04-15 16:25:11		Option changed: weechat.bar.title.color_fg = 31  (default: default)
+2014-04-15 16:25:38		Option changed: weechat.bar.buffers.size_max = 12  (default: 0)
+2014-04-15 16:25:49		Option changed: buffers.color.current_bg = 31  (default: red)
+2014-04-15 16:25:59		Option changed: buffers.color.current_fg = *white  (default: lightcyan)
+2014-04-15 16:26:20		Option changed: buffers.color.hotlist_highlight_fg = 163  (default: magenta)
+2014-04-15 16:26:39		Option changed: buffers.color.hotlist_message_fg = 229  (default: yellow)
+2014-04-15 16:26:58		Option changed: buffers.color.hotlist_private_fg = 121  (default: lightgreen)
+2014-04-15 16:27:15		Option changed: buffers.color.number = 253  (default: lightgreen)
+2014-04-15 16:27:29		Option changed: buffers.color.number_char = 245  (default: lightgreen)
+2014-04-15 16:27:48		Option changed: buffers.look.core_to_front = on  (default: off)
+2014-04-15 16:27:55		Option changed: buffers.look.core_to_front = off
+2014-04-15 16:28:00		Option changed: buffers.look.core_to_front = on  (default: off)
+2014-04-15 16:28:14		Option changed: buffers.look.hide_merged_buffers = private  (default: none)
+2014-04-15 16:29:14		Option changed: buffers.look.short_names = on
+2014-04-15 16:34:38		relay: SSL certificate and key have been set
+2014-04-15 16:34:38		Option changed: relay.network.ssl_cert_key = "/home/sam/.weechat/ssl/relay.pem"  (default: "%h/ssl/relay.pem")
+2014-04-15 16:34:55		relay: listening on port 9001 (relay: ssl.weechat, IPv4+6, max 5 clients)
+2014-04-15 16:34:55		relay: relay "ssl.weechat" (port 9001) added
+2014-04-15 16:35:15		Option changed: relay.network.password = "43110W0rld!"  (default: "")
+2014-04-15 16:39:01		irc: server blizzard created
+2014-04-15 16:40:56		Option changed: irc.server.blizzard.ncsa.illinois.edu.password = "SecIRCP@$$"  (default: (undefined))
+2014-04-15 16:41:39		Option changed: irc.server.blizzard.ncsa.illinois.edu.ssl = on  (default: (undefined))
+2014-04-15 16:42:02		Option changed: irc.server.blizzard.ncsa.illinois.edu.ssl_verify = off  (default: (undefined))
+2014-04-15 16:42:30		Option changed: irc.server.blizzard.ncsa.illinois.edu.autoconnect = on  (default: (undefined))
+2014-04-15 16:44:06		Option changed: irc.server.blizzard.autojoin = "#security,#puppet,#netsec,#ncsabot,#jira,#nagios"  (default: (undefined))
+2014-04-15 16:45:01		irc: server blizzard.ncsa.illinois.edu has been deleted
+2014-04-15 16:45:08		irc: server blizzard has been deleted
+2014-04-15 16:45:33		irc: server blizzard created
+2014-04-15 16:45:55		Option changed: irc.server.blizzard.autoconnect = on  (default: (undefined))
+2014-04-15 16:46:40		Option changed: irc.server.blizzard.autojoin = "#security,#puppet,#netsec,#ncsabot,#jira,#nagios"  (default: (undefined))
+2014-04-15 16:47:14		Option changed: irc.server.blizzard.password = "SecIRCP@$$"  (default: (undefined))
+2014-04-15 16:47:36		Option changed: irc.server.blizzard.ssl = on  (default: (undefined))
+2014-04-15 16:47:52		Option changed: irc.server.blizzard.ssl_verify = off  (default: (undefined))
+2014-04-15 16:48:21		Option changed: irc.server.blizzard.username = "soehlert"  (default: (undefined))
+2014-04-15 16:48:36		Option changed: irc.server.blizzard.nicks = "soehlert"  (default: (undefined))
+2014-04-15 16:52:31		script: downloading list of scripts...
+2014-04-15 16:52:32		script: 276 scripts for WeeChat 0.4.2
+2014-04-15 16:52:33		python: loading script "/home/sam/.weechat/python/colorize_nicks.py"
+2014-04-15 16:52:33		python: registered script "colorize_nicks", version 14 (Use the weechat nick colors in the chat area)
+2014-04-15 16:52:44		script: autoload enabled for script "colorize_nicks.py"
+2014-04-15 16:53:43		Option changed: irc.look.smart_filter = on
+2014-04-15 16:53:57		Filter "irc_smart" added:
+2014-04-15 16:53:57		  [irc_smart] buffer: * / tags: irc_smart_filter / regex: * 
+2014-04-15 16:56:49		Option changed: buffers.color.hotlist_highlight_bg = red  (default: default)
+2014-04-15 16:59:24		Option changed: buffers.color.hotlist_message_fg = red  (default: yellow)
+2014-04-15 18:29:49		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-15 18:29:50		script: 276 scripts for WeeChat 0.4.2
+2014-04-15 18:50:10		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-04-16 08:39:59		Option changed: buffers.color.current_fg = blue  (default: lightcyan)
+2014-04-16 08:40:51		Option changed: buffers.color.current_fg = gray  (default: lightcyan)
+2014-04-16 08:41:00		Option changed: buffers.color.current_fg = darkgray  (default: lightcyan)
+2014-04-16 08:43:28		Option changed: buffers.color.current_fg = lightblue  (default: lightcyan)
+2014-04-16 09:26:10		Option changed: weechat.color.chat_nick_colors = "22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201"  (default: "cyan,magenta,green,brown,lightblue,default,lightcyan,lightmagenta,lightgreen,blue")
+2014-04-16 09:26:32		Option changed: irc.look.color_nicks_in_nicklist = on  (default: off)
+2014-04-16 09:26:52		script: downloading list of scripts...
+2014-04-16 09:26:53		script: 276 scripts for WeeChat 0.4.2
+2014-04-16 09:26:53		script: script "colorize_nicks.py" is already installed and up-to-date
+2014-04-16 09:26:59		Options saved to sec.conf
+2014-04-16 09:26:59		Options saved to weechat.conf
+2014-04-16 09:26:59		Options saved to plugins.conf
+2014-04-16 09:26:59		Options saved to xfer.conf
+2014-04-16 09:26:59		Options saved to rmodifier.conf
+2014-04-16 09:26:59		Options saved to alias.conf
+2014-04-16 09:26:59		Options saved to script.conf
+2014-04-16 09:26:59		Options saved to buffers.conf
+2014-04-16 09:26:59		Options saved to charset.conf
+2014-04-16 09:26:59		Options saved to irc.conf
+2014-04-16 09:26:59		Options saved to relay.conf
+2014-04-16 09:26:59		Options saved to aspell.conf
+2014-04-16 09:26:59		Options saved to logger.conf
+2014-04-16 09:29:10		Option changed: relay.network.password = "43110W0rld!"  (default: "")
+2014-04-16 09:29:19		Option changed: relay.network.password = "43110W0rld!"  (default: "")
+2014-04-16 09:29:28	=!=	relay: error: port "9001" is already used
+2014-04-16 09:36:05		python: unloading script "weetweet"
+2014-04-16 09:36:05		python: script removed: /home/sam/.weechat/python/autoload/weetweet.py
+2014-04-16 09:36:05		python: script removed: /home/sam/.weechat/python/weetweet.py
+2014-04-16 13:03:42		Option changed: buffers.color.whitelist_private_fg = lightred  (default: default)
+2014-04-16 13:04:03		Option changed: buffers.color.hotlist_private_fg = lightred  (default: lightgreen)
+2014-04-16 14:58:28		Option changed: irc.color.nick_prefixes = "q:lightred;a:lightcyan;o:lightgreen;h:lightmagenta;v:yellow;*:lightblue"
+2014-04-16 14:58:44		Option changed: irc.color.notice = blue  (default: green)
+2014-04-16 14:59:09		Option changed: irc.color.input_nick = lightcyan
+2014-04-16 18:35:03		relay: new client on port 9001: 1/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:35:03	=!=	relay: TLS handshake failed for client 1/ssl.weechat/::ffff:192.168.1.1: error -12 A TLS fatal alert has been received.
+2014-04-16 18:35:03		relay: disconnected from client 1/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:35:25		relay: new client on port 9001: 2/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:35:25	=!=	relay: TLS handshake failed for client 2/ssl.weechat/::ffff:192.168.1.1: error -12 A TLS fatal alert has been received.
+2014-04-16 18:35:25		relay: disconnected from client 2/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:35:34		relay: new client on port 9001: 3/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:35:34	=!=	relay: TLS handshake failed for client 3/ssl.weechat/::ffff:192.168.1.1: error -12 A TLS fatal alert has been received.
+2014-04-16 18:35:34		relay: disconnected from client 3/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:36:29		relay: new client on port 9001: 4/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:36:29	=!=	relay: TLS handshake failed for client 4/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-04-16 18:36:29		relay: disconnected from client 4/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:39:46		relay: new client on port 9001: 5/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:39:46	=!=	relay: TLS handshake failed for client 5/ssl.weechat/::ffff:141.142.148.104: error -8 A record packet with illegal version was received.
+2014-04-16 18:39:46		relay: disconnected from client 5/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:40:17		relay: new client on port 9001: 6/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:40:17	=!=	relay: TLS handshake failed for client 6/ssl.weechat/::ffff:141.142.148.104: error -8 A record packet with illegal version was received.
+2014-04-16 18:40:17		relay: disconnected from client 6/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:40:28		relay: new client on port 9001: 7/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:40:28	=!=	relay: TLS handshake failed for client 7/ssl.weechat/::ffff:141.142.148.104: error -8 A record packet with illegal version was received.
+2014-04-16 18:40:28		relay: disconnected from client 7/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:40:55		relay: new client on port 9001: 8/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:41:01	=!=	relay: TLS handshake failed for client 8/ssl.weechat/::ffff:141.142.148.104: error -8 A record packet with illegal version was received.
+2014-04-16 18:41:01		relay: disconnected from client 8/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:41:36		relay: new client on port 9001: 9/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:41:37	=!=	relay: TLS handshake failed for client 9/ssl.weechat/::ffff:141.142.148.104: error -8 A record packet with illegal version was received.
+2014-04-16 18:41:37		relay: disconnected from client 9/ssl.weechat/::ffff:141.142.148.104
+2014-04-16 18:43:18		relay: new client on port 9001: 10/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:43:18	=!=	relay: reading data on socket for client 10/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-04-16 18:43:18		relay: disconnected from client 10/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:43:21		relay: new client on port 9001: 11/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:44:41		relay: new client on port 9001: 12/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:44:41	=!=	relay: TLS handshake failed for client 12/ssl.weechat/::ffff:192.168.1.1: error -8 A record packet with illegal version was received.
+2014-04-16 18:44:41		relay: disconnected from client 12/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:45:24		relay: new client on port 9001: 13/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:45:24	=!=	relay: TLS handshake failed for client 13/ssl.weechat/::ffff:192.168.1.1: error -8 A record packet with illegal version was received.
+2014-04-16 18:45:24		relay: disconnected from client 13/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:45:35		relay: new client on port 9001: 14/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:45:35	=!=	relay: TLS handshake failed for client 14/ssl.weechat/::ffff:192.168.1.1: error -8 A record packet with illegal version was received.
+2014-04-16 18:45:35		relay: disconnected from client 14/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 18:45:50		relay: disconnected from client 11/ssl.weechat/::ffff:192.168.1.1
+2014-04-16 19:05:30		relay: new client on port 9001: 15/ssl.weechat/::ffff:24.13.90.71
+2014-04-16 19:06:23		relay: disconnected from client 15/ssl.weechat/::ffff:24.13.90.71
+2014-04-16 19:06:39		relay: new client on port 9001: 16/ssl.weechat/::ffff:24.13.90.71
+2014-04-16 19:06:44		relay: disconnected from client 16/ssl.weechat/::ffff:24.13.90.71
+2014-04-16 19:06:45		relay: new client on port 9001: 17/ssl.weechat/::ffff:24.13.90.71
+2014-04-16 19:21:15		relay: disconnected from client 17/ssl.weechat/::ffff:24.13.90.71
+2014-04-17 10:43:02		relay: new client on port 9001: 18/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 10:43:19		relay: disconnected from client 18/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 13:57:19		relay: new client on port 9001: 19/ssl.weechat/::ffff:192.168.1.1
+2014-04-17 13:57:20	=!=	relay: reading data on socket for client 19/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-04-17 13:57:20		relay: disconnected from client 19/ssl.weechat/::ffff:192.168.1.1
+2014-04-17 13:57:28		relay: new client on port 9001: 20/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 13:57:29	=!=	relay: reading data on socket for client 20/ssl.weechat/::ffff:192.168.1.8: error -9 A TLS packet with unexpected length was received.
+2014-04-17 13:57:29		relay: disconnected from client 20/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 13:57:48		relay: new client on port 9001: 21/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 13:57:49	=!=	relay: reading data on socket for client 21/ssl.weechat/::ffff:192.168.1.8: error -9 A TLS packet with unexpected length was received.
+2014-04-17 13:57:49		relay: disconnected from client 21/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 13:58:26		No connected client for relay
+2014-04-17 13:59:22		Option changed: relay.network.password = "43110W0rld!relay2112$"  (default: "")
+2014-04-17 13:59:34		relay: new client on port 9001: 22/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 13:59:35	=!=	relay: reading data on socket for client 22/ssl.weechat/::ffff:192.168.1.8: error -9 A TLS packet with unexpected length was received.
+2014-04-17 13:59:35		relay: disconnected from client 22/ssl.weechat/::ffff:192.168.1.8
+2014-04-17 14:04:11		relay: new client on port 9001: 23/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:11		relay: disconnected from client 23/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:11		relay: new client on port 9001: 24/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:12		relay: disconnected from client 24/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:16		relay: new client on port 9001: 25/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:17		relay: disconnected from client 25/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:31		relay: new client on port 9001: 26/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 14:04:40		relay: disconnected from client 26/ssl.weechat/::ffff:130.126.255.157
+2014-04-17 15:11:13		Option changed: weechat.color.chat_highlight_bg = lightred  (default: magenta)
+2014-04-18 14:50:24		relay: new client on port 9001: 27/ssl.weechat/::ffff:130.126.255.117
+2014-04-18 15:21:10		relay: disconnected from client 27/ssl.weechat/::ffff:130.126.255.117
+2014-04-18 18:03:43		relay: new client on port 9001: 28/ssl.weechat/::ffff:130.126.255.117
+2014-04-18 18:03:45		relay: disconnected from client 28/ssl.weechat/::ffff:130.126.255.117
+2014-04-23 00:32:50		relay: new client on port 9001: 29/ssl.weechat/::ffff:192.168.1.1
+2014-04-23 00:33:03		relay: disconnected from client 29/ssl.weechat/::ffff:192.168.1.1
+2014-04-23 08:58:01		relay: new client on port 9001: 30/ssl.weechat/::ffff:192.168.1.1
+2014-04-23 08:58:25		relay: disconnected from client 30/ssl.weechat/::ffff:192.168.1.1
+2014-04-25 10:02:03		relay: new client on port 9001: 31/ssl.weechat/::ffff:172.56.12.79
+2014-04-25 10:03:18		relay: disconnected from client 31/ssl.weechat/::ffff:172.56.12.79
+2014-04-25 11:53:05		relay: new client on port 9001: 32/ssl.weechat/::ffff:172.56.12.79
+2014-04-25 11:53:26		relay: disconnected from client 32/ssl.weechat/::ffff:172.56.12.79
+2014-04-27 15:55:55		relay: new client on port 9001: 33/ssl.weechat/::ffff:208.54.36.188
+2014-04-27 15:56:32		relay: disconnected from client 33/ssl.weechat/::ffff:208.54.36.188
+2014-04-29 08:59:29		relay: new client on port 9001: 34/ssl.weechat/::ffff:192.168.1.1
+2014-04-29 09:00:41		relay: disconnected from client 34/ssl.weechat/::ffff:192.168.1.1
+2014-04-29 17:35:21		relay: new client on port 9001: 35/ssl.weechat/::ffff:192.168.1.1
+2014-04-29 17:35:40		relay: disconnected from client 35/ssl.weechat/::ffff:192.168.1.1
+2014-05-01 10:38:03		relay: new client on port 9001: 36/ssl.weechat/::ffff:192.168.1.1
+2014-05-01 10:39:44		relay: disconnected from client 36/ssl.weechat/::ffff:192.168.1.1
+2014-05-02 13:30:48		relay: new client on port 9001: 37/ssl.weechat/::ffff:130.126.255.143
+2014-05-02 13:30:57		relay: disconnected from client 37/ssl.weechat/::ffff:130.126.255.143
+2014-05-02 13:32:09		relay: new client on port 9001: 38/ssl.weechat/::ffff:130.126.255.143
+2014-05-02 13:32:11		relay: disconnected from client 38/ssl.weechat/::ffff:130.126.255.143
+2014-05-06 09:00:49		relay: new client on port 9001: 39/ssl.weechat/::ffff:192.168.1.1
+2014-05-06 09:03:12		relay: disconnected from client 39/ssl.weechat/::ffff:192.168.1.1
+2014-05-06 12:25:40		relay: new client on port 9001: 40/ssl.weechat/::ffff:192.168.1.1
+2014-05-06 12:46:23		relay: disconnected from client 40/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:36:43		relay: new client on port 9001: 41/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:37:57		relay: disconnected from client 41/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:39:54		relay: new client on port 9001: 42/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:39:59	=!=	relay: sending data to client 42/ssl.weechat/::ffff:192.168.1.1: error -10 The specified session has been invalidated for some reason.
+2014-05-07 13:39:59		relay: disconnected from client 42/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:39:59	=!=	relay: reading data on socket for client 42/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-05-07 13:39:59		relay: disconnected from client 42/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:40:00		relay: new client on port 9001: 43/ssl.weechat/::ffff:192.168.1.1
+2014-05-07 13:55:49		relay: disconnected from client 43/ssl.weechat/::ffff:192.168.1.1
+2014-05-15 09:05:44		relay: new client on port 9001: 44/ssl.weechat/::ffff:192.168.1.1
+2014-05-15 09:07:29		relay: disconnected from client 44/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 08:59:25		relay: new client on port 9001: 45/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 10:36:38	=!=	relay: sending data to client 45/ssl.weechat/::ffff:192.168.1.1: error -10 The specified session has been invalidated for some reason.
+2014-05-16 10:36:38		relay: disconnected from client 45/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 10:36:38	=!=	relay: reading data on socket for client 45/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-05-16 10:36:38		relay: disconnected from client 45/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 10:36:38		relay: new client on port 9001: 46/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 11:22:42	=!=	relay: sending data to client 46/ssl.weechat/::ffff:192.168.1.1: error -10 The specified session has been invalidated for some reason.
+2014-05-16 11:22:42		relay: disconnected from client 46/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 11:22:42	=!=	relay: reading data on socket for client 46/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-05-16 11:22:42		relay: disconnected from client 46/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 11:25:51		relay: new client on port 9001: 47/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 11:34:19		relay: disconnected from client 47/ssl.weechat/::ffff:192.168.1.1
+2014-05-16 18:26:09		relay: new client on port 9001: 48/ssl.weechat/::ffff:98.228.224.131
+2014-05-16 18:38:39		relay: disconnected from client 48/ssl.weechat/::ffff:98.228.224.131
+2014-05-16 18:52:33		relay: new client on port 9001: 49/ssl.weechat/::ffff:98.228.224.131
+2014-05-16 18:52:52		relay: disconnected from client 49/ssl.weechat/::ffff:98.228.224.131
+2014-05-16 19:38:14		relay: new client on port 9001: 50/ssl.weechat/::ffff:98.228.224.131
+2014-05-16 19:38:19		relay: disconnected from client 50/ssl.weechat/::ffff:98.228.224.131
+2014-05-19 09:50:08		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-05-19 09:50:09		script: 279 scripts for WeeChat 0.4.3
+2014-05-19 10:02:06	=!=	Error: unknown option for "window" command
+2014-05-21 15:42:43		relay: new client on port 9001: 1/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:43		relay: disconnected from client 1/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:46		relay: new client on port 9001: 2/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:46		relay: disconnected from client 2/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:46		relay: new client on port 9001: 3/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:47		relay: disconnected from client 3/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:49		relay: new client on port 9001: 4/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:49		relay: disconnected from client 4/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:53		relay: new client on port 9001: 5/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:42:53		relay: disconnected from client 5/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:43:00		relay: new client on port 9001: 6/ssl.weechat/::ffff:192.168.1.1
+2014-05-21 15:43:00		relay: disconnected from client 6/ssl.weechat/::ffff:192.168.1.1
+2014-05-22 13:42:36		script: downloading list of scripts...
+2014-05-22 13:42:37		script: 279 scripts for WeeChat 0.4.3
+2014-05-22 13:42:37		script: script "iset" not found
+2014-05-22 13:42:57		script: script "iset.py" not found
+2014-05-22 13:43:00		perl: loading script "/home/sam/.weechat/perl/iset.pl"
+2014-05-22 13:43:00		perl: registered script "iset", version 3.4 (Interactive Set for configuration options)
+2014-05-22 13:43:00		New key binding (context "mouse"): @chat(perl.iset):button1 => hsignal:iset_mouse
+2014-05-22 13:43:00		New key binding (context "mouse"): @chat(perl.iset):button2* => hsignal:iset_mouse
+2014-05-22 13:43:00		New key binding (context "mouse"): @chat(perl.iset):wheeldown => /repeat 5 /iset **down
+2014-05-22 13:43:00		New key binding (context "mouse"): @chat(perl.iset):wheelup => /repeat 5 /iset **up
+2014-05-22 13:45:14		python: loading script "/home/sam/.weechat/python/urlserver.py"
+2014-05-22 13:45:14		python: registered script "urlserver", version 1.7 (Shorten URLs with own HTTP server)
+2014-05-22 13:45:14		URL server listening on ('192.168.1.7', 44604)
+2014-05-28 19:58:49		relay: new client on port 9001: 7/ssl.weechat/::ffff:192.168.1.1
+2014-05-28 19:58:49		relay: disconnected from client 7/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:48		relay: new client on port 9001: 8/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:48		relay: disconnected from client 8/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:48		relay: new client on port 9001: 9/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:49		relay: disconnected from client 9/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:51		relay: new client on port 9001: 10/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:52		relay: disconnected from client 10/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:52		relay: new client on port 9001: 11/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:52		relay: disconnected from client 11/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:57		relay: new client on port 9001: 12/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:19:57		relay: disconnected from client 12/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:20:11		relay: new client on port 9001: 13/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:20:12		relay: disconnected from client 13/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:20:12		relay: new client on port 9001: 14/ssl.weechat/::ffff:192.168.1.1
+2014-06-03 09:20:12		relay: disconnected from client 14/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:15:57		relay: new client on port 9001: 15/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:15:57		relay: disconnected from client 15/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:15:59		relay: new client on port 9001: 16/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:15:59		relay: disconnected from client 16/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:05		relay: new client on port 9001: 17/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:05		relay: disconnected from client 17/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:05		relay: new client on port 9001: 18/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:05		relay: disconnected from client 18/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:38		relay: new client on port 9001: 19/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:16:38		relay: disconnected from client 19/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:21:40		relay: new client on port 9001: 20/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:21:41		relay: disconnected from client 20/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:21:41		relay: new client on port 9001: 21/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:21:42	=!=	relay: TLS handshake failed for client 21/ssl.weechat/::ffff:192.168.1.1: error -9 A TLS packet with unexpected length was received.
+2014-06-25 09:21:42		relay: disconnected from client 21/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:23:15		relay: new client on port 9001: 22/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:23:16		relay: disconnected from client 22/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:32:50		relay: new client on port 9001: 23/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:32:50		relay: disconnected from client 23/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:32:50		relay: new client on port 9001: 24/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:32:50		relay: disconnected from client 24/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:32:59		relay: new client on port 9001: 25/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:33:00		relay: disconnected from client 25/ssl.weechat/::ffff:192.168.1.1
+2014-06-25 09:51:27		relay: new client on port 9001: 26/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:28		relay: disconnected from client 26/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:28		relay: new client on port 9001: 27/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:29		relay: disconnected from client 27/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:33		relay: new client on port 9001: 28/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:34		relay: disconnected from client 28/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:55		relay: new client on port 9001: 29/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:51:56		relay: disconnected from client 29/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:52:58		relay: new client on port 9001: 30/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:52:58		relay: disconnected from client 30/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:54:46		relay: new client on port 9001: 31/ssl.weechat/::ffff:130.126.255.240
+2014-06-25 09:54:46		relay: disconnected from client 31/ssl.weechat/::ffff:130.126.255.240
+2014-06-27 09:49:04		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-06-27 09:49:05		script: 279 scripts for WeeChat 0.4.3
+2014-06-27 09:50:39		[irc]  /join  [-noswitch] [-server <server>] [<channel1>[,<channel2>...]] [<key1>[,<key2>...]]
+2014-06-27 09:50:39		join a channel
+2014-06-27 09:50:39		-noswitch: do not switch to new buffer
+2014-06-27 09:50:39		   server: send to this server (internal name)
+2014-06-27 09:50:39		  channel: channel name to join
+2014-06-27 09:50:39		      key: key to join the channel (channels with a key must be the first in list)
+2014-06-27 09:50:39		Examples:
+2014-06-27 09:50:39		  /join #weechat
+2014-06-27 09:50:39		  /join #protectedchan,#weechat key
+2014-06-27 09:50:39		  /join -server freenode #weechat
+2014-06-27 09:50:39		  /join -noswitch #weechat
+2014-06-30 11:25:42		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-06-30 11:25:42		script: 279 scripts for WeeChat 0.4.3
+2014-07-01 09:58:54		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2014-07-01 09:58:55		script: 279 scripts for WeeChat 0.4.3
+2014-08-05 08:38:16		relay: new client on port 9001: 1/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:16		relay: disconnected from client 1/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:18		relay: new client on port 9001: 2/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:18		relay: disconnected from client 2/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:19		relay: new client on port 9001: 3/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:19		relay: disconnected from client 3/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:24		relay: new client on port 9001: 4/ssl.weechat/::ffff:192.168.1.1
+2014-08-05 08:38:25		relay: disconnected from client 4/ssl.weechat/::ffff:192.168.1.1
+2014-08-19 16:30:18	=!=	Error: unknown option for "window" command
+2014-08-23 08:21:48		relay: new client on port 9001: 5/ssl.weechat/::ffff:93.174.93.51
+2014-08-23 08:21:48	=!=	relay: TLS handshake failed for client 5/ssl.weechat/::ffff:93.174.93.51: error -8 A record packet with illegal version was received.
+2014-08-23 08:21:48		relay: disconnected from client 5/ssl.weechat/::ffff:93.174.93.51
+2014-12-18 09:42:03	=!=	Error: unknown option for "window" command
+2015-01-09 11:15:41	=!=	Error: unknown option for "window" command
+2015-02-03 12:50:31	=!=	Error: unknown option for "window" command
+2015-02-24 23:40:02		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2015-02-24 23:40:03		script: 277 scripts for WeeChat 0.4.3
+2015-02-25 10:47:30		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2015-02-25 10:47:31		script: 277 scripts for WeeChat 0.4.3
+2015-02-25 12:09:24		Option changed: weechat.color.chat_channel = gray  (default: white)
+2015-02-25 12:09:55		Option changed: weechat.color.chat_highlight_bg = darkgray  (default: magenta)
+2015-02-25 12:28:23		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2015-02-25 12:28:23		script: 277 scripts for WeeChat 0.4.3
+2015-02-25 13:48:47		script: downloading list of scripts...
+2015-02-25 13:48:48		script: 277 scripts for WeeChat 0.4.3
+2015-02-25 13:48:48		perl: unloading script "buffers"
+2015-02-25 13:48:48		perl: script removed: /home/sam/.weechat/perl/autoload/buffers.pl
+2015-02-25 13:48:48		perl: script removed: /home/sam/.weechat/perl/buffers.pl
+2015-02-25 13:48:48		perl: loading script "/home/sam/.weechat/perl/buffers.pl"
+2015-02-25 13:48:48		perl: registered script "buffers", version 5.0 (Sidebar with list of buffers)
+2015-02-25 13:48:48	=!=	Warning: /home/sam/.weechat/buffers.conf, line 69: unknown option for section "look": toogle_bar = on
+2015-02-25 13:48:48		New key binding (context "mouse"): @bar(buffers):ctrl-wheeldown => hsignal:buffers_mouse
+2015-02-25 13:48:48		New key binding (context "mouse"): @bar(buffers):ctrl-wheelup => hsignal:buffers_mouse
+2015-02-25 13:48:49		python: loading script "/home/sam/.weechat/python/buffer_autoclose.py"
+2015-02-25 13:48:49		python: registered script "buffer_autoclose", version 0.3 (Automatically close inactive private message buffers)
+2015-02-25 13:48:49		perl: unloading script "iset"
+2015-02-25 13:48:49		perl: script removed: /home/sam/.weechat/perl/autoload/iset.pl
+2015-02-25 13:48:49		perl: script removed: /home/sam/.weechat/perl/iset.pl
+2015-02-25 13:48:49		perl: loading script "/home/sam/.weechat/perl/iset.pl"
+2015-02-25 13:48:49		perl: registered script "iset", version 3.6 (Interactive Set for configuration options)
+2015-02-25 13:48:50		python: loading script "/home/sam/.weechat/python/go.py"
+2015-02-25 13:48:50		python: registered script "go", version 2.0 (Quick jump to buffers)
+2015-02-25 13:48:50		python: unloading script "colorize_nicks"
+2015-02-25 13:48:50		python: script removed: /home/sam/.weechat/python/autoload/colorize_nicks.py
+2015-02-25 13:48:50		python: script removed: /home/sam/.weechat/python/colorize_nicks.py
+2015-02-25 13:48:50		python: loading script "/home/sam/.weechat/python/colorize_nicks.py"
+2015-02-25 13:48:50		python: registered script "colorize_nicks", version 16 (Use the weechat nick colors in the chat area)
+2015-02-28 02:45:35	=!=	Option "weechat.color.chat_channel=darkgray" not found (tip: you can use "*" at beginning and/or end of option to see a sublist)
+2015-02-28 02:45:48		Option changed: weechat.color.chat_channel = darkgray  (default: white)
+2015-02-28 02:46:07		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2015-02-28 02:46:08		script: 277 scripts for WeeChat 0.4.3
+2015-02-28 02:50:57		Option changed: weechat.color.chat_highlight_bg = lightblue  (default: magenta)
+2015-02-28 02:51:15	=!=	Error: failed to set option "weechat.color.chat_highlight_bg"
+2015-02-28 02:53:22		Option changed: weechat.bar.title.color_bg = 60  (default: black)
+2015-02-28 02:53:41		Options reloaded from sec.conf
+2015-02-28 02:53:41		Options reloaded from weechat.conf
+2015-02-28 02:53:41	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:53:41		URL server stopped
+2015-02-28 02:53:41		URL server listening on ('192.168.1.7', 41281)
+2015-02-28 02:53:41		URL server stopped
+2015-02-28 02:53:41		URL server listening on ('192.168.1.7', 55250)
+2015-02-28 02:53:41		Options reloaded from plugins.conf
+2015-02-28 02:53:41		Options reloaded from xfer.conf
+2015-02-28 02:53:41		Options reloaded from rmodifier.conf
+2015-02-28 02:53:41		Options reloaded from alias.conf
+2015-02-28 02:53:41		Options reloaded from script.conf
+2015-02-28 02:53:41		Options reloaded from iset.conf
+2015-02-28 02:53:41		Options reloaded from buffers.conf
+2015-02-28 02:53:41	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:53:41	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:53:41		Options reloaded from charset.conf
+2015-02-28 02:53:41		Options reloaded from irc.conf
+2015-02-28 02:53:41	=!=	relay: error: port "9001" is already used
+2015-02-28 02:53:41	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:53:41		Options reloaded from relay.conf
+2015-02-28 02:53:41		Options reloaded from aspell.conf
+2015-02-28 02:53:41		Options reloaded from logger.conf
+2015-02-28 02:55:21		Option changed: weechat.bar.buffers.position = bottom  (default: top)
+2015-02-28 02:55:24		Options reloaded from sec.conf
+2015-02-28 02:55:24		Options reloaded from weechat.conf
+2015-02-28 02:55:24	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:55:24		URL server stopped
+2015-02-28 02:55:24		URL server listening on ('192.168.1.7', 38692)
+2015-02-28 02:55:24		URL server stopped
+2015-02-28 02:55:24		URL server listening on ('192.168.1.7', 38895)
+2015-02-28 02:55:24		Options reloaded from plugins.conf
+2015-02-28 02:55:24		Options reloaded from xfer.conf
+2015-02-28 02:55:24		Options reloaded from rmodifier.conf
+2015-02-28 02:55:24		Options reloaded from alias.conf
+2015-02-28 02:55:24		Options reloaded from script.conf
+2015-02-28 02:55:24		Options reloaded from iset.conf
+2015-02-28 02:55:24		Options reloaded from buffers.conf
+2015-02-28 02:55:24	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:55:24	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:55:24		Options reloaded from charset.conf
+2015-02-28 02:55:24		Options reloaded from irc.conf
+2015-02-28 02:55:24	=!=	relay: error: port "9001" is already used
+2015-02-28 02:55:24	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:55:24		Options reloaded from relay.conf
+2015-02-28 02:55:24		Options reloaded from aspell.conf
+2015-02-28 02:55:24		Options reloaded from logger.conf
+2015-02-28 02:55:32		Option changed: weechat.bar.buffers.position = top
+2015-02-28 02:55:35		Options reloaded from sec.conf
+2015-02-28 02:55:35		Options reloaded from weechat.conf
+2015-02-28 02:55:35	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:55:35		URL server stopped
+2015-02-28 02:55:35		URL server listening on ('192.168.1.7', 42292)
+2015-02-28 02:55:35		URL server stopped
+2015-02-28 02:55:35		URL server listening on ('192.168.1.7', 50055)
+2015-02-28 02:55:35		Options reloaded from plugins.conf
+2015-02-28 02:55:35		Options reloaded from xfer.conf
+2015-02-28 02:55:35		Options reloaded from rmodifier.conf
+2015-02-28 02:55:35		Options reloaded from alias.conf
+2015-02-28 02:55:35		Options reloaded from script.conf
+2015-02-28 02:55:35		Options reloaded from iset.conf
+2015-02-28 02:55:35		Options reloaded from buffers.conf
+2015-02-28 02:55:35	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:55:35	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:55:35		Options reloaded from charset.conf
+2015-02-28 02:55:35		Options reloaded from irc.conf
+2015-02-28 02:55:35	=!=	relay: error: port "9001" is already used
+2015-02-28 02:55:35	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:55:35		Options reloaded from relay.conf
+2015-02-28 02:55:35		Options reloaded from aspell.conf
+2015-02-28 02:55:35		Options reloaded from logger.conf
+2015-02-28 02:55:44		Option changed: weechat.bar.buffers.position = left  (default: top)
+2015-02-28 02:55:49		Options reloaded from sec.conf
+2015-02-28 02:55:49		Options reloaded from weechat.conf
+2015-02-28 02:55:49	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:55:49		URL server stopped
+2015-02-28 02:55:49		URL server listening on ('192.168.1.7', 49811)
+2015-02-28 02:55:49		URL server stopped
+2015-02-28 02:55:49		URL server listening on ('192.168.1.7', 58807)
+2015-02-28 02:55:49		Options reloaded from plugins.conf
+2015-02-28 02:55:49		Options reloaded from xfer.conf
+2015-02-28 02:55:49		Options reloaded from rmodifier.conf
+2015-02-28 02:55:49		Options reloaded from alias.conf
+2015-02-28 02:55:49		Options reloaded from script.conf
+2015-02-28 02:55:49		Options reloaded from iset.conf
+2015-02-28 02:55:49		Options reloaded from buffers.conf
+2015-02-28 02:55:49	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:55:49	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:55:49		Options reloaded from charset.conf
+2015-02-28 02:55:49		Options reloaded from irc.conf
+2015-02-28 02:55:49	=!=	relay: error: port "9001" is already used
+2015-02-28 02:55:49	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:55:49		Options reloaded from relay.conf
+2015-02-28 02:55:49		Options reloaded from aspell.conf
+2015-02-28 02:55:49		Options reloaded from logger.conf
+2015-02-28 02:56:01		Option changed: weechat.bar.buffers.position = top
+2015-02-28 02:56:05		Options reloaded from sec.conf
+2015-02-28 02:56:05		Options reloaded from weechat.conf
+2015-02-28 02:56:05		python: stdout/stderr: Traceback (most recent call last):
+2015-02-28 02:56:05		python: stdout/stderr:   File "/home/sam/.weechat/python/autoload/title.py", line 68, in update_title
+2015-02-28 02:56:05		python: stdout/stderr:     if priority >= int(w.config_get_plugin('title_priority')):
+2015-02-28 02:56:05		python: stdout/stderr: ValueError: invalid literal for int() with base 10: ''
+2015-02-28 02:56:05	=!=	python: error in function "update_title"
+2015-02-28 02:56:05	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:56:05		URL server stopped
+2015-02-28 02:56:05		URL server listening on ('192.168.1.7', 49844)
+2015-02-28 02:56:05		URL server stopped
+2015-02-28 02:56:05		URL server listening on ('192.168.1.7', 35845)
+2015-02-28 02:56:05		Options reloaded from plugins.conf
+2015-02-28 02:56:05		Options reloaded from xfer.conf
+2015-02-28 02:56:05		Options reloaded from rmodifier.conf
+2015-02-28 02:56:05		Options reloaded from alias.conf
+2015-02-28 02:56:05		Options reloaded from script.conf
+2015-02-28 02:56:05		Options reloaded from iset.conf
+2015-02-28 02:56:05		Options reloaded from buffers.conf
+2015-02-28 02:56:05	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:56:05	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:56:05		Options reloaded from charset.conf
+2015-02-28 02:56:05		Options reloaded from irc.conf
+2015-02-28 02:56:05	=!=	relay: error: port "9001" is already used
+2015-02-28 02:56:05	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:56:05		Options reloaded from relay.conf
+2015-02-28 02:56:05		Options reloaded from aspell.conf
+2015-02-28 02:56:05		Options reloaded from logger.conf
+2015-02-28 02:59:11		Option changed: weechat.bar.title.hidden = off
+2015-02-28 02:59:16		Options reloaded from sec.conf
+2015-02-28 02:59:16		Options reloaded from weechat.conf
+2015-02-28 02:59:16	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:59:16		URL server stopped
+2015-02-28 02:59:16		URL server listening on ('192.168.1.7', 38939)
+2015-02-28 02:59:16		URL server stopped
+2015-02-28 02:59:16		URL server listening on ('192.168.1.7', 50271)
+2015-02-28 02:59:16		Options reloaded from plugins.conf
+2015-02-28 02:59:16		Options reloaded from xfer.conf
+2015-02-28 02:59:16		Options reloaded from rmodifier.conf
+2015-02-28 02:59:16		Options reloaded from alias.conf
+2015-02-28 02:59:16		Options reloaded from script.conf
+2015-02-28 02:59:16		Options reloaded from iset.conf
+2015-02-28 02:59:16		Options reloaded from buffers.conf
+2015-02-28 02:59:16	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:59:16	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:59:16		Options reloaded from charset.conf
+2015-02-28 02:59:16		Options reloaded from irc.conf
+2015-02-28 02:59:16	=!=	relay: error: port "9001" is already used
+2015-02-28 02:59:16	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:59:16		Options reloaded from relay.conf
+2015-02-28 02:59:16		Options reloaded from aspell.conf
+2015-02-28 02:59:16		Options reloaded from logger.conf
+2015-02-28 02:59:21		Option changed: weechat.bar.title.hidden = on  (default: off)
+2015-02-28 02:59:24		Options reloaded from sec.conf
+2015-02-28 02:59:24		Options reloaded from weechat.conf
+2015-02-28 02:59:24	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:59:24		URL server stopped
+2015-02-28 02:59:24		URL server listening on ('192.168.1.7', 40584)
+2015-02-28 02:59:24		URL server stopped
+2015-02-28 02:59:24		URL server listening on ('192.168.1.7', 35637)
+2015-02-28 02:59:24		Options reloaded from plugins.conf
+2015-02-28 02:59:24		Options reloaded from xfer.conf
+2015-02-28 02:59:24		Options reloaded from rmodifier.conf
+2015-02-28 02:59:24		Options reloaded from alias.conf
+2015-02-28 02:59:24		Options reloaded from script.conf
+2015-02-28 02:59:24		Options reloaded from iset.conf
+2015-02-28 02:59:24		Options reloaded from buffers.conf
+2015-02-28 02:59:24	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:59:24	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:59:24		Options reloaded from charset.conf
+2015-02-28 02:59:24		Options reloaded from irc.conf
+2015-02-28 02:59:24	=!=	relay: error: port "9001" is already used
+2015-02-28 02:59:24	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:59:24		Options reloaded from relay.conf
+2015-02-28 02:59:24		Options reloaded from aspell.conf
+2015-02-28 02:59:24		Options reloaded from logger.conf
+2015-02-28 02:59:38	=!=	Unable to change bar type: you must delete bar and create another to do that
+2015-02-28 02:59:38	=!=	Error: failed to set option "weechat.bar.title.type"
+2015-02-28 02:59:51	=!=	Error: failed to set option "weechat.bar.title.color_bg"
+2015-02-28 02:59:55		Options reloaded from sec.conf
+2015-02-28 02:59:55		Options reloaded from weechat.conf
+2015-02-28 02:59:55	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 02:59:55		URL server stopped
+2015-02-28 02:59:55		URL server listening on ('192.168.1.7', 56281)
+2015-02-28 02:59:55		URL server stopped
+2015-02-28 02:59:55		URL server listening on ('192.168.1.7', 35574)
+2015-02-28 02:59:55		Options reloaded from plugins.conf
+2015-02-28 02:59:55		Options reloaded from xfer.conf
+2015-02-28 02:59:55		Options reloaded from rmodifier.conf
+2015-02-28 02:59:55		Options reloaded from alias.conf
+2015-02-28 02:59:55		Options reloaded from script.conf
+2015-02-28 02:59:55		Options reloaded from iset.conf
+2015-02-28 02:59:55		Options reloaded from buffers.conf
+2015-02-28 02:59:55	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 02:59:55	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 02:59:55		Options reloaded from charset.conf
+2015-02-28 02:59:55		Options reloaded from irc.conf
+2015-02-28 02:59:55	=!=	relay: error: port "9001" is already used
+2015-02-28 02:59:55	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 02:59:55		Options reloaded from relay.conf
+2015-02-28 02:59:55		Options reloaded from aspell.conf
+2015-02-28 02:59:55		Options reloaded from logger.conf
+2015-02-28 03:00:54		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer
+2015-02-28 03:01:30		Option changed: weechat.bar.title.color_bg = blue  (default: black)
+2015-02-28 03:01:33		Options reloaded from sec.conf
+2015-02-28 03:01:33		Options reloaded from weechat.conf
+2015-02-28 03:01:33	perl	warning: Argument "" isn't numeric in numeric lt (<) at /home/sam/.weechat/perl/autoload/stats_bar.pl line 137.
+2015-02-28 03:01:33		URL server stopped
+2015-02-28 03:01:33		URL server listening on ('192.168.1.7', 42761)
+2015-02-28 03:01:33		URL server stopped
+2015-02-28 03:01:33		URL server listening on ('192.168.1.7', 32860)
+2015-02-28 03:01:34		Options reloaded from plugins.conf
+2015-02-28 03:01:34		Options reloaded from xfer.conf
+2015-02-28 03:01:34		Options reloaded from rmodifier.conf
+2015-02-28 03:01:34		Options reloaded from alias.conf
+2015-02-28 03:01:34		Options reloaded from script.conf
+2015-02-28 03:01:34		Options reloaded from iset.conf
+2015-02-28 03:01:34		Options reloaded from buffers.conf
+2015-02-28 03:01:34	=!=	python: unable to run function "colorize_config_reload_cb"
+2015-02-28 03:01:34	=!=	Error: failed to reload options from colorize_nicks.conf
+2015-02-28 03:01:34		Options reloaded from charset.conf
+2015-02-28 03:01:34		Options reloaded from irc.conf
+2015-02-28 03:01:34	=!=	relay: error: port "9001" is already used
+2015-02-28 03:01:34	=!=	Warning: /home/sam/.weechat/relay.conf, line 38: invalid value for option: ssl.weechat = 9001
+2015-02-28 03:01:34		Options reloaded from relay.conf
+2015-02-28 03:01:34		Options reloaded from aspell.conf
+2015-02-28 03:01:34		Options reloaded from logger.conf
+2015-02-28 03:02:01		Plugins loaded: alias, aspell, charset, fifo, irc, logger, lua, perl, python, relay, rmodifier, ruby, script, tcl, xfer

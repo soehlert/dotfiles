@@ -1,0 +1,1821 @@
+2014-04-15 16:49:25	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-15 16:49:25	--	Nicks #puppet: [hypnotoad jazoff keist soehlert wardog]
+2014-04-15 16:49:25	--	Channel #puppet: 5 nicks (0 ops, 0 halfops, 0 voices, 5 normals)
+2014-04-15 16:49:29	--	Mode #puppet [+]
+2014-04-15 16:49:29	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-15 16:50:26	<--	hypnotoad (soehlert@hidden-E95C13A8.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-04-15 18:29:49	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-15 18:29:49	--	Nicks #puppet: [jazoff keist soehlert wardog]
+2014-04-15 18:29:49	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-04-15 18:29:53	--	Mode #puppet [+]
+2014-04-15 18:29:53	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-15 18:50:12	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-15 18:50:12	--	Nicks #puppet: [jazoff keist soehlert wardog]
+2014-04-15 18:50:12	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-04-15 18:50:16	--	Mode #puppet [+]
+2014-04-15 18:50:16	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-15 19:20:15	--	irc: disconnected from server
+2014-04-15 19:20:28	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-15 19:20:28	--	Nicks #puppet: [jazoff keist soehlert wardog]
+2014-04-15 19:20:28	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-04-15 19:20:40	--	Mode #puppet [+]
+2014-04-15 19:20:40	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-17 09:50:14	--	You are now known as hypnotoad
+2014-04-21 11:23:24	hypnotoad	jazoff: do you know if you can use the same if statement twice in the same erb template?
+2014-04-21 11:23:49	hypnotoad	sshd_config.erb is what im looking at
+2014-04-21 11:31:23	jazoff	yeah
+2014-04-21 11:31:32	jazoff	.erb is really just ruby
+2014-04-21 12:20:35	hypnotoad	ok cool.
+2014-04-21 13:22:46	keist	jazoff: drought: "Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Duplicate declaration: File[/bro] is already declared in file /etc/puppetlabs/puppet/environments/development/modules/bro/manifests/init.pp:185; cannot redeclare at /etc/puppetlabs/puppet/environments/development/modules/bro/manifests/init.pp:75 on node drought.ncsa.illinois.edu"
+2014-04-21 13:23:02	keist	it hasn't received my nrpe config in a while :)
+2014-04-21 13:23:33	jazoff	hmm
+2014-04-21 13:27:24	jazoff	grr
+2014-04-21 13:36:08	jazoff	keist: try now
+2014-04-21 13:40:24	keist	nope, "Error: Failed to apply catalog: Duplicate declaration: File[/bro] is already declared in file /etc/puppetlabs/puppet/environments/development/modules/bro/manifests/init.pp:186; cannot redeclare at /etc/puppetlabs/puppet/environments/development/modules/bro/manifests/init.pp:75
+2014-04-21 13:40:29	keist	"
+2014-04-21 13:41:40	jazoff	fuck yoooouuuu puppet
+2014-04-21 13:41:50	jazoff	it's my fault too but I wish it would just be nice to me and work :(
+2014-04-21 13:53:24	keist	let me know when you get it resolved, nagios wants to check shit 
+2014-04-21 13:53:27	keist	:)
+2014-04-21 14:28:40	jazoff	keist: it work now?
+2014-04-21 14:32:08	jazoff	grrr
+2014-04-21 14:33:06	jazoff	oh, different error
+2014-04-21 14:36:07	jazoff	keist: ok, i think i fixed it
+2014-04-21 14:39:25	keist	yay!, ty
+2014-04-21 16:06:08	hypnotoad	anyone know if i can make a package depend on an array of packages
+2014-04-21 16:06:16	hypnotoad	for example: $isshd_packages = [ "zlib-devel", "openssl-devel", "tcp_wrappers-devel", "pam-devel" ]
+2014-04-21 16:06:36	hypnotoad	and then have isshd require => Packages[${isshd_packages}]
+2014-04-21 16:10:20	jazoff	why does isshd depend on all of those?
+2014-04-21 16:11:06	jazoff	(it shouldn't depend on any -devel packages)
+2014-04-21 16:11:20	hypnotoad	its configured with tcp-wrappers and pam (requiring the headers only available in the devel packages) and the im not sure why on the other two, but it required headers only available in those
+2014-04-21 16:11:22	jazoff	and any packages it depends on should be specified in fpm, then yum will just install them
+2014-04-21 16:11:51	jazoff	requires headers to BUILD or to RUN?
+2014-04-21 16:12:04	hypnotoad	ooo good point.i was basing this off building..
+2014-04-21 16:12:07	hypnotoad	so nevermind
+2014-04-21 16:12:23	jazoff	:)
+2014-04-24 10:59:01	keist	anyone now how to do something like this in ruby? if [ "$IP_$NIC" =~ /141\.142\.148/
+2014-04-24 10:59:10	keist	thinking something like : <% if @ipaddress_@int =~ /141\.142\.148/ %>
+2014-04-24 10:59:44	keist	but I don't know if you can combine to variables liek that as you can in bash
+2014-04-29 13:52:56	<--	wardog (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-04-29 14:30:19	-->	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has joined #puppet
+2014-04-30 09:47:52	hypnotoad	If i want a package removed everywhere I would put it in common.yaml. However, what would happen if I then installed it in profile's yaml file? Would it do first match (ie the profile's yaml) and stop? Or would it do some weird install then remove thing?
+2014-04-30 09:51:07	jazoff	you'll likely get a puppet error
+2014-04-30 09:51:21	jazoff	duplicate resource defintion
+2014-04-30 09:51:51	hypnotoad	thats what i was afraid of. it seems really dumb to have to add the remove package in every roles common file except one, but that's the only other idea i have
+2014-04-30 09:52:22	jazoff	oh, you don't have to do that...
+2014-04-30 09:52:30	hypnotoad	oh?
+2014-04-30 09:52:31	jazoff	just OVERRIDE the remove list in the one hosts file
+2014-04-30 09:52:35	jazoff	to not that have one package
+2014-04-30 09:52:39	jazoff	still sucky, but less so
+2014-04-30 09:53:01	jazoff	oooh wait, i dont think that works
+2014-04-30 09:53:07	jazoff	heira merges lists
+2014-04-30 09:53:07	hypnotoad	thats what i originally asked
+2014-04-30 09:53:24	jazoff	noo you said install in one
+2014-04-30 09:53:33	jazoff	which would be remove+install which definitely won't work
+2014-04-30 09:53:37	jazoff	but I think if we have
+2014-04-30 09:53:42	jazoff	common: remove = foo, bar,baz
+2014-04-30 09:53:47	jazoff	host1: remove = foo, bar
+2014-04-30 09:53:55	hypnotoad	ya thats basically what i actually meant to say
+2014-04-30 09:53:57	jazoff	it will still remove baz because it does a union
+2014-04-30 09:54:05	hypnotoad	but ya that wont help..
+2014-04-30 09:54:10	hypnotoad	damn
+2014-04-30 09:54:35	hypnotoad	this is why i dont like having other peoples' shit in our puppet. they find ways to make it not work..
+2014-04-30 09:54:42	jazoff	thoughhh
+2014-04-30 09:54:55	jazoff	you are doing packages::remove: [ "logwatch", "cups"
+2014-04-30 09:55:03	jazoff	not sure if that parses the same as
+2014-04-30 09:55:04	jazoff	packages::remove:
+2014-04-30 09:55:07	jazoff	 - logwatch
+2014-04-30 09:55:08	jazoff	 - cups
+2014-04-30 09:55:21	hypnotoad	they're both arrays arent they?
+2014-04-30 09:56:20	jazoff	might be
+2014-04-30 09:57:32	jazoff	yeah, different synta, same result
+2014-04-30 09:57:59	hypnotoad	meeting time. ill just dig into hiera overrides when were done, hopefully theres an easier way
+2014-04-30 10:52:42	hypnotoad	jazoff: had an epiphany, just remove logwatch and cups in the kickstart so that any machine that wants it can install it and puppet wont fight them
+2014-04-30 10:54:40	jazoff	that works
+2014-04-30 10:55:10	hypnotoad	should work for anything that needs to be removed everywhere but a host or two
+2014-04-30 12:01:30	--	irc: disconnected from server
+2014-04-30 12:01:43	-->	hypnotoad (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-30 12:01:43	--	Nicks #puppet: [hypnotoad jazoff keist wraquel]
+2014-04-30 12:01:43	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-04-30 12:01:55	--	Mode #puppet [+]
+2014-04-30 12:01:55	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-30 12:19:06	--	irc: disconnected from server
+2014-04-30 12:19:20	-->	hypnotoad (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-04-30 12:19:20	--	Nicks #puppet: [hypnotoad jazoff keist wraquel]
+2014-04-30 12:19:20	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-04-30 12:19:32	--	Mode #puppet [+]
+2014-04-30 12:19:32	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-04-30 13:31:41	keist	fyi: Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Must pass remove to Class[Packages] at /etc/puppetlabs/puppet/environments/development/manifests/site.pp:52 on node nagios2-sec.internal.ncsa.edu
+2014-04-30 13:31:45	keist	Warning: Not using cache on failed catalog
+2014-04-30 13:31:47	keist	Error: Could not retrieve catalog; skipping run
+2014-04-30 13:34:13	keist	woo dun it?
+2014-04-30 13:34:51	hypnotoad	hmmm i removed packages::remove: in common didnt think it would break it though
+2014-04-30 13:35:18	jazoff	ah, no default?
+2014-04-30 13:35:29	jazoff	class packages ($add, $epel_add, $remove){
+2014-04-30 13:35:30	jazoff	make that
+2014-04-30 13:35:37	jazoff	class packages ($add=[], $epel_add=[], $remove=[]){
+2014-05-12 15:20:28	hypnotoad	ok so vmware tools install puppet module should be turned on here right? 
+2014-05-12 15:20:34	hypnotoad	hieradata/development/virtual/vmware.yaml
+2014-05-12 15:36:48	jazoff	yeah
+2014-05-12 15:37:19	jazoff	its based on   - "%{::environment}/virtual/%{::virtual}"
+2014-05-12 15:37:36	jazoff	so if the 'virtual' fact is 'vmware' it will include that file
+2014-05-12 15:38:46	hypnotoad	ahhh gotcha
+2014-05-12 15:49:37	hypnotoad	does anyone know if you can negate an onlyif?
+2014-05-12 15:50:58	hypnotoad	nevermind ill just use unless. didnt know that existed
+2014-05-12 16:10:31	jazoff	unless is basically 'if not'
+2014-05-12 16:14:18	hypnotoad	yup realized that once i found it. need to be more thorough when reading docs
+2014-05-13 12:04:19	hypnotoad	i need another brain on this vmware_tools module real quick.
+2014-05-13 13:13:06	jazoff	er
+2014-05-13 13:13:15	jazoff	just noticed the little '4' in irssi :)
+2014-05-13 13:13:19	jazoff	you still working on it?
+2014-05-13 13:13:57	hypnotoad	i think i just figured out the logic. about to test
+2014-05-13 13:14:17	hypnotoad	removing them takes forever to test again..
+2014-05-13 13:17:22	jazoff	looks mostly good
+2014-05-13 13:17:30	hypnotoad	haha mostly?
+2014-05-13 13:17:32	jazoff	the package items should require the repo
+2014-05-13 13:17:44	jazoff	it's not guaranteed to run top to bottom
+2014-05-13 13:17:47	hypnotoad	they do..
+2014-05-13 13:17:56	hypnotoad	  package{"vmware-tools-esx-kmods":
+2014-05-13 13:17:56	hypnotoad	    ensure  => present,
+2014-05-13 13:17:56	hypnotoad	    require => File["/etc/yum.repos.d/vmware-tools.repo"],
+2014-05-13 13:17:56	hypnotoad	  }
+2014-05-13 13:17:56	hypnotoad	  package{"vmware-tools-esx-nox":
+2014-05-13 13:17:56	hypnotoad	    ensure  => present,
+2014-05-13 13:17:56	hypnotoad	    require => Package["vmware-tools-esx-kmods"],
+2014-05-13 13:17:56	hypnotoad	  }
+2014-05-13 13:18:29	hypnotoad	if the repo isnt there then kmods doesn't get installed. if kmods doesn't get installed then nox doesn't either
+2014-05-13 13:18:30	jazoff	oh, i'm blind
+2014-05-13 13:18:48	hypnotoad	and it kills 2 birds with 1 stone since you need to install kmods first anyways
+2014-05-13 13:19:16	jazoff	might be able to do the whole thing with those -> arrows
+2014-05-13 13:19:50	hypnotoad	but then id have to learn how to use those :)
+2014-05-13 13:19:55	jazoff	yeah :)
+2014-05-13 13:20:00	jazoff	somtiems it ends up being easier
+2014-05-13 13:20:06	jazoff	-> is basically depends and ~> is notifies
+2014-05-13 13:20:21	hypnotoad	by depends do you mean requires or is depends its own thing
+2014-05-13 13:20:43	jazoff	see modules/samplicate/manifests/init.pp
+2014-05-13 13:21:00	jazoff	or how we did modules/fw/manifests/init.pp
+2014-05-13 13:21:29	hypnotoad	right i get that part. just curious if depends was another type or whatever
+2014-05-13 13:21:46	hypnotoad	which i suppose logic says it shouldn't be
+2014-05-13 13:22:16	jazoff	ooh i mean depends as in 'requires' or 'before'
+2014-05-13 13:22:29	hypnotoad	ok same page now
+2014-05-13 13:22:30	jazoff	foo {...} -> bar { ... } is like
+2014-05-13 13:22:44	jazoff	foo { before=> Bar[..]} 
+2014-05-13 13:22:45	jazoff	or
+2014-05-13 13:22:54	jazoff	bar { requires => Foo[..]}
+2014-05-13 13:41:12	hypnotoad	dang. it still tries to install the rsa_key every time..
+2014-05-13 13:55:31	hypnotoad	jazoff: any ideas on the install_rsa_key thing?
+2014-05-13 14:03:20	jazoff	can you use unless for that too?
+2014-05-13 14:03:55	hypnotoad	the problem is they both only install the one gpg-pubkey package
+2014-05-13 14:04:19	hypnotoad	so the second key would never get intsalled
+2014-05-13 14:05:14	jazoff	that seems odd.. not hard to fix though
+2014-05-13 14:06:37	hypnotoad	wait maybe not..
+2014-05-13 14:06:56	jazoff	yeah, i'd epxect them to be different
+2014-05-13 14:07:11	hypnotoad	i did too but i somehow messed it up...i think this will work
+2014-05-13 14:07:50	hypnotoad	still not sure why the other way failed, but this is cleaner anyways
+2014-05-13 14:08:16	jazoff	rsa is gpg-pubkey-66fd4949-4803fe57
+2014-05-13 14:08:26	jazoff	dsa is gpg-pubkey-04bbaa7b-4c881cbf
+2014-05-13 14:08:41	hypnotoad	yup figured that out
+2014-05-13 14:08:41	hypnotoad	givingi it a shot
+2014-05-13 14:09:15	hypnotoad	thats the one.
+2014-05-13 14:09:33	hypnotoad	woah...big heartbleed dump in /var/log/messages right after that...
+2014-05-13 14:10:18	jazoff	oh, you on tornado? :)
+2014-05-13 14:10:32	hypnotoad	hah ya
+2014-05-15 11:53:10	ncsabot	[puppet] smokeping-2.6.9 installed successfully on smokeping!
+2014-05-19 09:50:09	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-05-19 09:50:09	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-05-19 09:50:13	--	Mode #puppet [+]
+2014-05-19 09:50:13	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-05-19 11:19:29	soehlert	can someone take a peek at the moinmoin module? its failing saying it's expecting a } on line 14 (which it also thinks is the end of the file) and i cant figure out why
+2014-05-19 11:28:46	jazoff	hmm
+2014-05-19 11:29:12	jazoff	you're missing a }
+2014-05-19 11:29:23	jazoff	the apache vhost is not closed
+2014-05-19 11:30:12	soehlert	ugh i fixed that right AFTER i pushed it. and forgot to push...
+2014-05-19 11:30:35	soehlert	so i was going crazy looking at the fixed one :)
+2014-05-19 12:24:05	soehlert	jazoff: you think I could pass on the moin stuff to you? it seems to work (installs moin/fw/httpd is running and all that). not sure how configuration or anything else works from here on though.
+2014-05-19 12:26:44	jazoff	hmm
+2014-05-19 12:26:49	jazoff	I last set it up ages ago :)
+2014-05-19 12:27:01	jazoff	I think one just edits the config.py or whatever and changes some values
+2014-05-19 12:28:35	soehlert	ya i figured that much. now what to change and to what...
+2014-05-19 12:29:16	soehlert	aha! http://moinmo.in/HelpOnConfiguration
+2014-05-19 14:22:01	jazoff	looks like bcarswel-win8.ncsa.illinois.edu installed themselves some malware
+2014-05-19 14:22:40	jazoff	https://portal-sec.internal.ncsa.edu/static/ninfo/index.html#/single/141.142.223.79
+2014-05-19 14:31:54	wraquel	Looks like adware
+2014-05-19 14:32:19	wraquel	OpenCandy... that sounds familiar.
+2014-05-19 14:32:39	wraquel	I think the latest Foxit upgrades include OpenCandy as an 'optional' download.
+2014-05-19 14:41:02	wraquel	This isn't the OrbitDownloaderSetup.exe guy is it?
+2014-05-19 14:55:19	jazoff	well the original download was PowerISO5-x64.exe
+2014-05-22 09:49:05	--	irc: disconnected from server
+2014-05-22 09:49:17	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-05-22 09:49:17	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-05-22 09:49:29	--	Mode #puppet [+]
+2014-05-22 09:49:29	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-05-23 02:41:56	--	irc: disconnected from server
+2014-05-23 02:42:09	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-05-23 02:42:09	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-05-23 02:42:21	--	Mode #puppet [+]
+2014-05-23 02:42:21	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-05-28 13:35:21	soehlert	can someone take a peek at the kickstart module. getting this error: "Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Syntax error at ','; expected '}' at /etc/puppetlabs/puppet/environments/development/modules/kickstart/manifests/init.pp:27 on node kickstart-sec.ncsa.illinois.edu'
+2014-05-28 15:25:13	jazoff	sure
+2014-05-28 15:25:38	jazoff	you need []'s
+2014-05-28 15:26:12	jazoff	also, do you mean /tftpboot/linux-install/${os}-${version}/pxelinux.cfg
+2014-05-28 15:27:21	jazoff	ah, that was from a whiel ago
+2014-05-28 15:27:22	jazoff	sigh
+2014-05-29 11:04:02	soehlert	jazoff: good call on the array...too obvious sigh and good catch on the pxelinux.cfg
+2014-05-29 14:56:32	soehlert	ok more puppet help. not sure why my variables are not being passed to the template in my kickstart module
+2014-05-29 14:56:32	soehlert	im comparing it to how you do it in ntp jazoff, and it looks mostly the same. the only difference is i have empty string defaults and i'm trying to use two variables in one <%>
+2014-05-29 15:32:21	jazoff	ah, that's a nono
+2014-05-29 15:33:31	jazoff	try <%= @os %>-<%= @version %>
+2014-05-29 15:34:11	jazoff	<%= @os + "-" + @version %> might work too
+2014-05-29 15:36:59	jazoff	but the first would be good
+2014-05-30 15:33:06	soehlert	anyone ever seen an error like this before? Invalid relationship: File[/etc/xinetd.d/tftp] { notify => Service[xinted] }, because Service[xinted] doesn't seem to be in the catalog
+2014-05-30 15:39:10	soehlert	daaamn typo.
+2014-05-30 15:41:46	wraquel	you mean xinted?
+2014-05-30 15:41:52	wraquel	:D
+2014-05-30 15:42:09	wraquel	You need a rubber ducky.
+2014-05-30 15:42:19	wraquel	https://en.wikipedia.org/wiki/Rubber_duck_debugging
+2014-05-30 15:42:59	soehlert	haha ya ive thought about that
+2014-05-30 15:42:59	soehlert	almost all my fixes take me forever to figure out...right until i ask for help
+2014-06-03 11:45:36	soehlert	trying to think how best to deal with tcpwrappers module. kickstart needs a slightly edited one. most everyone gets the same thing. should i template it with if statements? i cant pass out a default and then overwrite that in specific modules can i?
+2014-06-03 11:50:26	jazoff	can you just do two different files?
+2014-06-03 11:50:42	jazoff	you can do something like this:
+2014-06-03 11:50:43	soehlert	what do you mean?
+2014-06-03 11:50:43	jazoff	  file { "/usr/local/bro-$version/etc/node.cfg":
+2014-06-03 11:50:43	jazoff	    source => [
+2014-06-03 11:50:43	jazoff	      "puppet:///modules/bro/node.cfg.$hostname",
+2014-06-03 11:50:43	jazoff	      "puppet:///modules/bro/node.cfg",
+2014-06-03 11:50:45	jazoff	    ],
+2014-06-03 11:50:53	jazoff	puppet will use the first source the matches
+2014-06-03 11:51:18	jazoff	or possibly use hiera to switch out the source
+2014-06-03 11:51:38	soehlert	so then basically every host that needs a specialized one gets a .hostname one and everyone else gets the other?
+2014-06-03 11:51:45	jazoff	yep
+2014-06-03 11:51:47	soehlert	"switch out the source"?
+2014-06-03 11:51:54	jazoff	using a variable from hiera
+2014-06-03 11:51:59	jazoff	but just doing .$hostname is really easy
+2014-06-03 11:52:06	soehlert	ah i see
+2014-06-03 12:24:03	soehlert	jazoff: I just realized i havent needed a kerberos token in a few days. puppet is getting there..
+2014-06-03 12:33:15	jazoff	oh, you mean nto having to log into machines?
+2014-06-03 12:34:03	soehlert	ya
+2014-06-03 12:35:08	jazoff	cool :)
+2014-06-04 15:09:48	--	wraquel is now known as wardog
+2014-06-06 01:54:50	--	irc: disconnected from server
+2014-06-06 01:55:02	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-06-06 01:55:02	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-06-06 01:55:14	--	Mode #puppet [+]
+2014-06-06 01:55:14	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-06-11 13:27:19	<--	wardog (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has quit (Ping timeout)
+2014-06-11 15:47:58	-->	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has joined #puppet
+2014-06-12 09:33:15	<--	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has quit (Quit: oops wrong, button.)
+2014-06-12 09:34:04	-->	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has joined #puppet
+2014-06-12 14:17:40	soehlert	jazoff keist: im having issues getting the new kickstart server into puppet. scenario as follows:
+2014-06-12 14:18:49	soehlert	puppetized kickstart, but finished before I knew we were going to centos. So I have to recreate that machine with centos using that machine. i puppet clean cert kickstart-sec on squall after kickstarting a new centos host. then i named that new host kickstart-sec, turned off the old one, and tried to install puppet agent
+2014-06-12 14:19:03	soehlert	agent install script seemingly works, but the WUI shows 0 node requests
+2014-06-12 14:19:13	soehlert	i see the traffic coming into squall via tcpdump.
+2014-06-12 14:43:48	jazoff	hmm
+2014-06-12 14:48:10	jazoff	can you sudo pkill -USR1 puppet
+2014-06-12 14:48:25	soehlert	on the new kickstart machine?
+2014-06-12 14:48:35	jazoff	yeah
+2014-06-12 14:49:20	soehlert	well ya, but it doesn't help
+2014-06-12 14:49:20	soehlert	ive tried uninstalling puppet and doing it over and still nothing
+2014-06-12 14:49:39	soehlert	im thinking something is wrong with the cert process
+2014-06-12 14:50:00	soehlert	i'm seeing puppet-agent errors in messages talking about key values mismatch
+2014-06-12 14:50:00	soehlert	but squall doesn't have a cert so idk
+2014-06-12 14:50:06	soehlert	cert for kickstart-sec that is
+2014-06-12 14:51:17	jazoff	hmm
+2014-06-12 14:51:33	jazoff	can yo stop puppet agent on the box and do the 
+2014-06-12 14:51:38	jazoff	puppet agent --debug
+2014-06-12 14:51:40	jazoff	i think it is
+2014-06-12 14:52:29	jazoff	puppet agent --onetime --debug maybe
+2014-06-12 14:53:18	soehlert	no errors
+2014-06-12 14:53:23	jazoff	but what did it say?
+2014-06-12 14:53:24	soehlert	still no node request
+2014-06-12 14:53:44	soehlert	just autrequiring a TON of files
+2014-06-12 14:53:55	soehlert	private_keys certs and state files
+2014-06-12 14:53:59	jazoff	what's the ip of this box?
+2014-06-12 14:54:17	soehlert	currently its still on its dhcpd ip of 10.142.148.95
+2014-06-12 14:54:34	soehlert	i wonder if that's an issue...that hostname exists so maybe puppet is reversing it and its failing?
+2014-06-12 14:54:44	jazoff	could be
+2014-06-12 14:55:21	soehlert	i'll try that
+2014-06-12 15:14:26	soehlert	nope
+2014-06-12 15:19:45	jazoff	does secops exist on it?
+2014-06-12 15:51:17	wraquel	is ncsabot alive?
+2014-06-12 15:51:25	wraquel	aaaaand wrong channel
+2014-06-12 16:05:40	soehlert	any other ideas for the kickstart-sec issues?
+2014-06-12 16:09:17	soehlert	aha i got it. used kickstart-sec for the cert name instead of the fqdn
+2014-06-12 16:43:28	jazoff	ah
+2014-06-12 16:43:41	jazoff	I was going to see about diffing the agent output from that box and from a working one
+2014-06-13 01:54:48	--	irc: disconnected from server
+2014-06-13 01:55:00	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-06-13 01:55:00	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-06-13 01:55:12	--	Mode #puppet [+]
+2014-06-13 01:55:12	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-06-17 10:56:11	keist	I'd like to install this puppet module https://github.com/example42/puppet-perl to handle perl dependencies, to install it do I just drop it in /etc/puppetlabs/puppet/environment/{development,production}? 
+2014-06-17 11:00:21	soehlert	ya just put it wherever you would normally make one
+2014-06-17 11:13:56	keist	kk,thx
+2014-06-24 13:03:12	ncsabot	[puppet] smokeping-2.6.9 installed successfully on smokeping!
+2014-06-27 09:49:05	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-06-27 09:49:05	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-06-27 09:49:09	--	Mode #puppet [+]
+2014-06-27 09:49:09	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-06-30 11:25:43	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-06-30 11:25:43	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-06-30 11:25:47	--	Mode #puppet [+]
+2014-06-30 11:25:47	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-07-01 09:58:55	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-07-01 09:58:55	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-07-01 09:58:59	--	Mode #puppet [+]
+2014-07-01 09:58:59	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-07-07 10:30:02	--	wraquel is now known as wardog
+2014-07-16 12:56:41	soehlert	jazoff: puppet is so different it looks like uninstalling puppet and then reinstalling on the clients is going to be the best way to handle it
+2014-07-16 12:57:08	soehlert	puppet now includes its own repo for pe packages so thats nice. one curl command piped to bash and its installed
+2014-07-16 12:57:30	soehlert	in other news, stll not sure how to get the autopull stuff on puppet-sec. i cant puppetize it from squall.
+2014-07-16 12:59:47	jazoff	well we need to first ensure that the directory structure is the same
+2014-07-16 12:59:53	soehlert	i did that
+2014-07-16 12:59:59	jazoff	and if so, just adding the autopull module to puppet-sec should do it
+2014-07-16 13:00:13	jazoff	or just look at what that module does, it's just a file copy or two 
+2014-07-16 13:00:19	soehlert	but what i mean is the modules dont exist on puppet-sec
+2014-07-16 13:00:26	jazoff	oh
+2014-07-16 13:00:31	jazoff	so you need to checkout all the git repos
+2014-07-16 13:01:19	soehlert	ah ok
+2014-07-16 13:38:26	soehlert	how do i checkout the configs branch without screwing things up? 
+2014-07-16 13:49:33	jazoff	git checkout configs
+2014-07-16 13:49:34	jazoff	that work?
+2014-07-16 13:49:49	soehlert	well i just am concerned about overwriting the whole configs directory
+2014-07-16 13:50:01	jazoff	overwrting what directory?
+2014-07-16 13:50:12	soehlert	/etc/puppetlabs/puppet
+2014-07-16 13:50:36	soehlert	though i guess it'll only do individual files no thte whole directory right?
+2014-07-16 13:51:22	jazoff	clone it to /etc/puppetlabs/puppet_from_git
+2014-07-16 13:51:29	jazoff	then see what if anything is different in puppet
+2014-07-16 13:51:35	soehlert	ah good idea
+2014-07-16 13:51:36	jazoff	then mv puppet puppet.orig; mv puppet_from_git puppet
+2014-07-16 13:51:54	soehlert	well its not all the files i dont think so that wont quite work, but i can do that with individual files
+2014-07-16 13:52:56	soehlert	actually the git repo won't be initialized in the right spot then will it?
+2014-07-16 13:53:16	jazoff	doesn't matter.. there's nothing in the git dir that says where it is
+2014-07-16 13:53:44	soehlert	but i mean if i initialize it to puppet_from_git, then move those files into /etc/puppetlabs/puppet, they'll be outside of the repo
+2014-07-16 13:54:44	jazoff	don't move the files, make puppet_from_git the puppet dir
+2014-07-16 13:54:51	jazoff	anything missing move it from the puppet dir
+2014-07-16 13:55:08	soehlert	but puppet relies on that directory structure so i cant do that
+2014-07-16 13:55:15	jazoff	stop puppet
+2014-07-16 13:55:50	soehlert	how does that help? when i start it up the files still wont be where puppet expects. 
+2014-07-16 13:56:53	jazoff	they will, because you will put them there
+2014-07-16 13:57:16	jazoff	you're just thinking about it backwards
+2014-07-16 13:57:29	jazoff	don't move what is in git to puppet/ make git the puppet/ and move anything that was missing back in there
+2014-07-16 13:58:45	soehlert	so stop puppet. mv puppet{,.old}, git clone to puppet. copy individual files from puppet.old to puppet as needed?
+2014-07-16 13:58:53	jazoff	yep
+2014-07-16 13:59:11	soehlert	ok
+2014-07-16 13:59:21	jazoff	did you copy over the .ssh key from the old server?
+2014-07-16 13:59:25	jazoff	since that is in gitlab as a deploy key
+2014-07-16 13:59:28	soehlert	ya
+2014-07-16 14:01:22	jazoff	crap, forgot to eat
+2014-07-16 14:01:26	jazoff	late lunchtime :)
+2014-07-16 14:18:45	soehlert	looks like someone pushed weird xcode stuff into puppet configs
+2014-07-16 14:18:45	 *	soehlert hopes it wasn't me
+2014-07-16 14:19:03	 *	soehlert is very disappointed..
+2014-07-16 14:27:55	soehlert	ok i think everything is as it's supposed to be now.
+2014-07-16 14:33:48	soehlert	arghhh it says pe-httpd can't start because the pem file isn't there or empty and both of those are false
+2014-07-16 14:36:50	jazoff	permnissions?
+2014-07-16 14:37:11	jazoff	yeah.. I just noticed the xcode thing like 20 minutes ago and deleted it
+2014-07-16 14:37:33	jazoff	apparently it was you :)
+2014-07-16 14:42:56	soehlert	indeed it was. do i need to add the autopull to site.pp? or just a hiera file somewhere?
+2014-07-16 14:44:44	jazoff	hieradata/production/secapps/puppetmaster.yaml:    - puppetstuff::autopull
+2014-07-16 14:44:49	jazoff	should be there
+2014-07-16 14:45:00	soehlert	i never realized we had a puppetmaster file ugh alright.
+2014-07-16 14:45:17	soehlert	in other news were going to have problems because Connection Error: No classes found on the puppet master. 
+2014-07-16 14:45:29	jazoff	ah
+2014-07-16 14:45:38	jazoff	puppet enterpise is so complicated 
+2014-07-16 14:45:38	soehlert	not sure how to deal with that.
+2014-07-16 14:45:45	soehlert	details "There was an error performing resource type search: 500 "Internal Server Error" "
+2014-07-16 14:46:21	jazoff	check puppet logs
+2014-07-16 14:46:27	soehlert	yup
+2014-07-16 15:24:52	jazoff	doh, i removed the xcode stuff but didnt push
+2014-07-16 15:24:56	jazoff	which explains why you still saw it
+2014-07-17 10:55:22	soehlert	so it would seem that this is the error causing us to not have access to modules../var/log/pe-httpd/error.log:App 26923 stderr: CertAPI::ApiFailureException - Error retrieving certificates from puppet API (it returned a 500 error):
+2014-07-17 10:55:28	soehlert	not sure how to fix it though. ideas?
+2014-07-17 11:14:33	jazoff	hmm
+2014-07-17 11:14:48	soehlert	i checked perms and they seem ok
+2014-07-17 11:15:41	jazoff	lots of errors in the logs
+2014-07-17 11:15:47	soehlert	ya
+2014-07-17 11:16:18	jazoff	looks like everything is giving 500 errors
+2014-07-17 11:18:16	jazoff	hmm was the dashboard loading before?
+2014-07-17 11:18:23	soehlert	dashboard loads fine
+2014-07-17 11:18:41	soehlert	and has since i installed it
+2014-07-17 11:18:43	jazoff	ah
+2014-07-17 11:19:02	jazoff	i think this is the root of the issues
+2014-07-17 11:19:03	jazoff	[ 2014-07-17 11:19:08.2226 17119/7f7499679700 Pool2/Implementation.cpp:883 ]: Could not spawn process for group /var/opt/lib/pe-puppetmaster#default: An error occured while starting up the preloader.
+2014-07-17 11:19:22	soehlert	ah i missed tha tone.
+2014-07-17 11:20:44	jazoff	ahh
+2014-07-17 11:20:49	jazoff	it logs stuff to /var/log/messages too
+2014-07-17 11:20:53	jazoff	https://tickets.puppetlabs.com/browse/PUP-545
+2014-07-17 11:21:06	soehlert	hah i just found that link to
+2014-07-17 11:21:09	jazoff	see /var/log/messages, it is telling you to change some things
+2014-07-17 11:25:00	soehlert	ahh crap
+2014-07-17 11:25:15	soehlert	git overwrote my puppet.conf so master thought it was squall
+2014-07-17 12:26:37	soehlert	ughhh almost there. just gotta find out where this self signed cert from squall is at..
+2014-07-17 12:29:01	jazoff	on squall...
+2014-07-17 12:29:08	jazoff	probably
+2014-07-17 12:29:15	jazoff	it's the client cert it is complaining about i bet
+2014-07-17 12:29:34	soehlert	no puppet-sec is the one failing saying its trying to use a self signed cert from squall
+2014-07-17 12:29:46	jazoff	oh
+2014-07-17 12:47:29	jazoff	looks like it's almost working
+2014-07-17 12:47:46	soehlert	yup once i get this ca thing i think it'll be all good
+2014-07-17 13:41:08	soehlert	i could use some other brain power on this if anyones got some free time
+2014-07-21 13:17:29	soehlert	hey jazoff can you give me some help with puppet-sec? i am just totally running out of ideas
+2014-07-21 13:23:59	jazoff	sure
+2014-07-21 13:24:37	jazoff	more cert issues?
+2014-07-21 13:24:40	soehlert	ya
+2014-07-21 13:24:46	soehlert	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Failed to submit 'replace facts' command for puppet-sec.ncsa.illinois.edu to PuppetDB at puppet-sec.ncsa.illinois.edu:8081: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [unable to get local issuer certificate for /CN=puppet-sec.ncsa.illinois.edu]
+2014-07-21 13:24:55	jazoff	yeah.. i also see
+2014-07-21 13:25:00	jazoff	Jul 21 13:24:13 puppet-sec puppet-agent[22717]: Could not back up /var/lib/peadmin/.mcollective.d/peadmin-cacert.pem: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on squall.ncsa.illinois.edu at 2013-10-28 12:59:06 -0500]
+2014-07-21 13:25:12	jazoff	so there is some old certs still in there somewhere
+2014-07-21 13:25:14	soehlert	ya that one seems to have been taken over by this one
+2014-07-21 13:25:26	soehlert	wait you see that one recently. weird..
+2014-07-21 13:25:37	jazoff	yeah
+2014-07-21 13:29:04	jazoff	where's it pulling that from?
+2014-07-21 13:29:28	soehlert	all puppet ssl things are in /etc/puppetlabs/puppet/ssl
+2014-07-21 13:37:46	jazoff	are there any new machines that are poitned at the new puppet server?
+2014-07-21 13:38:03	soehlert	i had repo-sec, but now thats in a weird limbo state
+2014-07-21 13:38:04	jazoff	ah, repo-sec?
+2014-07-21 13:38:19	jazoff	it's hard to tell somethings when you are running locally
+2014-07-21 13:38:25	jazoff	testing from repo-sec will make it more clear what is going on...
+2014-07-21 13:38:46	soehlert	it was suggested i try to remove it and readd it to get the certs to sync up but it failed and now repo-sec is messed up as far as that goes
+2014-07-21 14:02:16	jazoff	so if I do
+2014-07-21 14:02:17	jazoff	[root@repo-sec ~]# openssl s_client  -CAfile /etc/puppetlabs/puppet/ssl/certs/ca.pem  -host puppet-sec.ncsa.illinois.edu -port 8140
+2014-07-21 14:02:27	jazoff	that says it is fine
+2014-07-21 14:10:10	jazoff	well
+2014-07-21 14:10:10	jazoff	https://ask.puppetlabs.com/question/1547/puppet-enterprise-inventory-ssl-error/
+2014-07-21 14:10:15	jazoff	that didn't work either
+2014-07-21 14:26:40	jazoff	ah, somewhat fixed it
+2014-07-21 14:26:43	jazoff	 /sbin/service puppetdb restart
+2014-07-21 14:26:44	jazoff	er
+2014-07-21 14:26:47	jazoff	http://blogs.ubc.ca/compass/2013/06/12/failed-to-submit-replace-facts-to-puppetdb-certificate-verify-failed/
+2014-07-21 14:26:51	jazoff	had to recreate the puppetdb certs
+2014-07-21 14:28:48	jazoff	was funny because I was thinking to myself
+2014-07-21 14:28:54	jazoff	I've never had ANY of these problems when using just puppet
+2014-07-21 14:28:58	jazoff	just puppet does not include puppetdb :)
+2014-07-21 14:29:22	jazoff	ok, so now the only error I am getting is the
+2014-07-21 14:29:27	jazoff	Error: Could not back up /etc/puppetlabs/mcollective/ssl/clients/puppet-dashboard-public.pem: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on squall.ncsa.illinois.edu at 2013-10-28 12:59
+2014-07-21 14:30:32	jazoff	moving /etc/puppetlabs/mcollective/ssl to ssl.old seems to have fixed that
+2014-07-21 14:31:38	jazoff	just getting some regular puppet errors now
+2014-07-21 14:31:45	jazoff	seems /etc/puppetlabs/facter/facts.d/ does not exist by default
+2014-07-21 14:34:32	jazoff	oh, still getting a
+2014-07-21 14:34:33	jazoff	Error: Could not back up /usr/local/nagios/etc/nrpe.cfg: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on squall.ncsa.illinois.edu at 2013-10-28 12:59:06 -0500]
+2014-07-21 14:35:43	soehlert	ya that's back where iw as last week with this :)
+2014-07-21 14:35:43	soehlert	ive tried the stuff on the two links you sent (i actually had already been to those exact links)
+2014-07-21 14:36:54	jazoff	so where the hell is the squall still coming from
+2014-07-21 14:37:23	jazoff	ah.. ok, brute force..
+2014-07-21 14:37:49	jazoff	oh, found it in an .old dir
+2014-07-21 14:37:50	jazoff	grrr
+2014-07-21 14:38:09	soehlert	why is puppet still using the .old dir?
+2014-07-21 14:38:21	jazoff	i don't think it is
+2014-07-21 14:38:27	jazoff	but that was the only place I found a squall cert
+2014-07-21 14:38:42	soehlert	ah ya. i already looked through all of the ssl/ dir for squall anything
+2014-07-21 14:39:04	jazoff	i ran
+2014-07-21 14:39:04	jazoff	find /etc/puppetlabs/ -type f|grep -i ssl | while read f;do echo $f;openssl x509 -in $f -text 2>/dev/null | grep squall ;done|less
+2014-07-21 14:39:21	soehlert	thats basically what i did too
+2014-07-21 14:41:41	jazoff	so i grabbed a pcap
+2014-07-21 14:42:43	jazoff	and the ssl log definitely contains a 141.142.148.26141.142.148.178140squall.ncsa.illinois.edu-
+2014-07-21 14:42:55	jazoff	but initially it IS puppet-sec.ncsa.illinois.edu
+2014-07-21 14:43:00	soehlert	ughhh weird
+2014-07-21 14:43:06	jazoff	ooh wow
+2014-07-21 14:43:08	jazoff	look at the IP
+2014-07-21 14:43:12	jazoff	it's the fileserver conf I bet
+2014-07-21 14:43:36	soehlert	holy crap. what the hell is that IP{
+2014-07-21 14:43:49	soehlert	filserver.conf is empty
+2014-07-21 14:43:58	jazoff	squall
+2014-07-21 14:44:00	jazoff	hmm
+2014-07-21 14:44:04	jazoff	something is telling it to use squall
+2014-07-21 14:44:18	jazoff	oooooh
+2014-07-21 14:44:18	jazoff	manifests/site.pp:  server => 'squall.ncsa.illinois.edu',
+2014-07-21 14:44:28	jazoff	filebucket { 'main':
+2014-07-21 14:44:28	jazoff	  server => 'squall.ncsa.illinois.edu',
+2014-07-21 14:44:28	jazoff	  path   => false,
+2014-07-21 14:44:28	jazoff	}
+2014-07-21 14:44:34	jazoff	...
+2014-07-21 14:44:34	soehlert	ahhhh damn
+2014-07-21 14:44:44	jazoff	why is that there? :)
+2014-07-21 14:45:11	soehlert	i have no idea
+2014-07-21 14:45:14	soehlert	i dont even know what that is
+2014-07-21 14:45:23	soehlert	i mean why it exists there instead of the filebucket
+2014-07-21 14:45:46	soehlert	wait that file doesnt exist
+2014-07-21 14:46:27	jazoff	/etc/puppetlabs//puppet/environments/production/manifests/site.pp
+2014-07-21 14:46:39	soehlert	ahh in environment
+2014-07-21 14:47:41	soehlert	ok updated
+2014-07-21 14:48:21	soehlert	Jul 21 14:40:53 repo-sec puppet-agent[28260]: (/Stage[main]/Nagios::Nrpe_install/File[/usr/local/nagios/etc/nrpe.cfg]/content) change from {md5}104de6492d87d44f9dc28349d5948896 to {md5}9303db9722774c884d5d17b7ffa00ac5 failed: Could not back up /usr/local/
+2014-07-21 14:48:21	soehlert	nagios/etc/nrpe.cfg: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on squall.ncsa.illinois.edu at 2013-10-28 12:59:06 -0500]
+2014-07-21 14:48:24	soehlert	damn
+2014-07-21 14:48:41	jazoff	where did you change that?
+2014-07-21 14:49:04	soehlert	in the git repo for that file. 
+2014-07-21 14:49:10	soehlert	wait its not autopulling yet...
+2014-07-21 14:49:18	jazoff	:)
+2014-07-21 14:50:43	soehlert	ahh still failing
+2014-07-21 14:51:38	jazoff	where did you change it now?
+2014-07-21 14:51:46	jazoff	./development/manifests/site.pp:  server => 'squall.ncsa.illinois.edu',
+2014-07-21 14:51:51	jazoff	it's still there
+2014-07-21 14:51:54	soehlert	ahh only production
+2014-07-21 14:54:15	jazoff	better?
+2014-07-21 14:54:33	soehlert	MUUUCH
+2014-07-21 14:54:41	jazoff	:)
+2014-07-21 14:54:42	soehlert	thank you very much this was driving me up a wall
+2014-07-21 14:54:47	jazoff	me too :)
+2014-07-21 14:54:54	jazoff	I should have resorted to pcap earlier
+2014-07-21 14:55:06	soehlert	it never even ocurred to me whoops
+2014-07-21 14:55:09	jazoff	there WAS nothign wrong with the certs, it was just actually hitting squall
+2014-07-21 14:55:22	jazoff	i was mostly trying to figure out which service/port/whatever had the problem and when
+2014-07-21 14:56:04	soehlert	sweet and now it works on puppet-sec too so autopull should be working i think
+2014-07-21 15:02:50	jazoff	ok, walk time
+2014-07-21 15:23:21	soehlert	hmmm new problem...can't get to the dashboard
+2014-07-21 15:26:21	jazoff	oh?
+2014-07-21 15:26:29	soehlert	 (Error code: sec_error_reused_issuer_and_serial)
+2014-07-21 15:26:38	jazoff	oh, you need to delete teh exception in FF
+2014-07-21 15:27:00	soehlert	ah right. i was assuming it was server side thing doh
+2014-07-22 10:33:08	jazoff	so puppet all better?
+2014-07-22 10:33:55	soehlert	yes except i just realized autopull isn't working as i have to set the role::profile still
+2014-07-22 10:33:55	soehlert	only problem is removing the exception still didnt work. can you get to the dashboard?
+2014-07-22 10:36:16	jazoff	yeah
+2014-07-22 10:36:23	jazoff	are you still getting the reused serial error or whatever it is?
+2014-07-22 10:45:41	soehlert	ya
+2014-07-22 10:45:52	soehlert	but at least i know for sure its on my end now
+2014-07-22 10:50:31	soehlert	well thats weird. its working today..ughhhh
+2014-07-22 10:56:15	soehlert	apparently we had a puppetmaster and puppet-manager profile though. so i had to deal with that, but autopull now should be working
+2014-07-22 11:02:24	jazoff	[root@puppet-sec ~]# status autopull
+2014-07-22 11:02:25	jazoff	autopull stop/waiting
+2014-07-22 11:02:25	jazoff	hmm
+2014-07-22 11:02:52	jazoff	well, starting it worked
+2014-07-22 11:02:55	jazoff	nto sure why puppet didnt start it
+2014-07-22 11:03:09	jazoff	oh, because the module doesnt tell it to
+2014-07-22 11:03:11	jazoff	i'll fix
+2014-07-22 11:03:16	soehlert	ya i was just gonna say
+2014-07-22 11:06:22	jazoff	oh, git-sec needs to be updated to point to the new puppet server
+2014-07-22 11:06:53	soehlert	?
+2014-07-22 11:07:08	soehlert	as in the puppet agent? because they all need that except repo-sec
+2014-07-22 11:07:12	jazoff	that's how autopull works
+2014-07-22 11:07:19	jazoff	it's a webhook from git-sec
+2014-07-22 11:07:25	soehlert	oooo so yes, but it's more important for git-sec
+2014-07-22 11:07:32	jazoff	also realize the firewall rule isn't there.. not sure how that was working before
+2014-07-22 11:08:31	soehlert	just so everyone has it...here's the command to add an agent: curl -k https://puppet-sec.ncsa.illinois.edu:8140/packages/current/install.bash | sudo bash
+2014-07-22 11:08:41	soehlert	but ill go do git-sec now
+2014-07-22 11:08:57	jazoff	it's not a puppet thing, it's in the web interface
+2014-07-22 11:09:07	soehlert	oooo misunderstood.
+2014-07-22 11:09:21	soehlert	so where's that changed?
+2014-07-22 11:09:34	jazoff	webhook settings for the repo
+2014-07-22 11:09:41	soehlert	is that in puppet?
+2014-07-22 11:10:00	jazoff	no, it's in the git-sec web interface
+2014-07-22 11:10:09	soehlert	ahh
+2014-07-22 11:14:47	jazoff	squall is broken right?
+2014-07-22 11:14:53	soehlert	ya why?
+2014-07-22 11:14:54	jazoff	so I should just change it and not add puppet-sec?
+2014-07-22 11:15:05	soehlert	ya we're done with squall. 
+2014-07-22 11:18:40	jazoff	ok, i think i got the webhook setup
+2014-07-22 11:18:54	soehlert	sweet
+2014-07-23 11:02:58	keist	hmmm, am I forgetting something? I created a new module called netsniff_ng, created a yaml file in services/mousetooth.yaml that includes the netsniff_ng class, and then set role::profile in the WUI for mousetooth. Am getting:
+2014-07-23 11:03:02	keist	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Could not find class netsniff_ng for mousetooth.ncsa.illinois.edu on node mousetooth.ncsa.illinois.edu
+2014-07-23 11:03:05	keist	Warning: Not using cache on failed catalog
+2014-07-23 11:03:07	keist	Error: Could not retrieve catalog; skipping run
+2014-07-23 11:03:30	keist	so it knows to load the netsniff_ng class but can't find it :/
+2014-07-23 11:03:53	jazoff	what does /etc/motd contain?
+2014-07-23 11:10:35	keist	aha! that's it, looks like it had it right on my second run but changed :/
+2014-07-23 11:10:38	keist	 This is a development server with:
+2014-07-23 11:10:38	keist	-    * role services_scanner
+2014-07-23 11:10:38	keist	-    * profile mousetooth-server
+2014-07-23 11:10:38	keist	+    * role
+2014-07-23 11:10:39	keist	+    * profile
+2014-07-23 11:11:02	jazoff	oh, yes, it takes two runs
+2014-07-23 11:11:10	jazoff	the first run will deploy the role::profile fact
+2014-07-23 11:11:19	jazoff	and then the second run it will use it
+2014-07-23 11:11:34	jazoff	it's kinda complicated
+2014-07-23 11:13:15	keist	do you know if I can accept a certificate on the puppet server from the command-line? web interface is broken atm and I need to add a host
+2014-07-23 11:13:21	jazoff	yes
+2014-07-23 11:13:22	jazoff	puppet ca list
+2014-07-23 11:13:25	jazoff	puppet ca sign ...
+2014-07-23 11:13:33	keist	kk, thx
+2014-07-23 11:14:38	keist	one last question for now, can you assign the environment and role:profile from the cmd-line?
+2014-07-23 11:15:00	jazoff	dunno about that one
+2014-07-23 11:15:18	keist	kk, will look it up
+2014-07-23 11:45:59	soehlert	nope you cant
+2014-07-23 12:01:02	jazoff	that's one of the reasons I kinda like plain puppet better
+2014-07-23 12:01:12	jazoff	everything is files and you can keep everything in git
+2014-07-23 12:04:54	soehlert	i should say we might be able to, but then we'll end up mixing and matching and it'll get pretty ugly
+2014-07-23 12:08:08	jazoff	yeah
+2014-07-23 12:51:20	keist	eyrich added a few rule so puppet-sec and git-sec can communicate (pull should be working again)
+2014-07-23 12:55:21	jazoff	again? I thought it was already working
+2014-07-23 12:55:23	jazoff	seemed to be yesterday
+2014-07-23 12:57:13	keist	sam removed an interface yesterday
+2014-07-23 12:57:21	keist	err, today
+2014-07-23 12:57:30	keist	so another change :) working now 
+2014-07-23 12:58:49	jazoff	ohh
+2014-07-23 12:59:06	jazoff	i think that was the ip i pointed the webhook to
+2014-07-23 12:59:07	soehlert	two interfaces made adding internal only hosts fail
+2014-07-23 13:00:21	jazoff	ok, fixed
+2014-07-23 13:00:35	jazoff	pointed it to just http://puppet-sec:9000 which should work
+2014-07-23 13:00:57	soehlert	probably not. puppet-sec.internal.ncsa.edu is registered
+2014-07-23 13:01:04	soehlert	so internal hosts (like git-sec) will use that
+2014-07-23 13:01:50	jazoff	probably not?
+2014-07-23 13:02:09	jazoff	oh, i see
+2014-07-23 13:02:10	jazoff	grr
+2014-07-23 13:02:10	soehlert	which should just work...i could see that failing
+2014-07-23 13:03:12	jazoff	ok, changed to http://puppet-sec.ncsa.illinois.edu:9000
+2014-07-23 13:03:27	jazoff	which seems to fail
+2014-07-23 13:03:47	jazoff	oh, somehow I copied the text of the button
+2014-07-23 13:03:48	jazoff	grr
+2014-07-23 13:03:49	soehlert	why port 9000?
+2014-07-23 13:04:04	jazoff	because that's the port I used
+2014-07-23 13:04:07	soehlert	ah ok
+2014-07-23 13:04:19	soehlert	just making sure you didnt mix up a puppet port
+2014-07-23 13:04:34	jazoff	seems to work
+2014-07-23 13:04:50	soehlert	cool
+2014-07-23 13:07:18	jazoff	http://gizmodo.com/this-box-can-hold-an-entire-netflix-1592590450
+2014-07-23 13:09:33	soehlert	we should probably get one in the office
+2014-07-23 16:20:04	keist	:)
+2014-07-29 10:37:27	soehlert	hey just noticed this: "Puppet Enterprise is now using a new ordering setting in the Puppet core that allows you to configure how unrelated resources should be ordered when applying a catalog."
+2014-07-29 10:37:31	soehlert	kinda cool
+2014-07-29 12:03:02	jazoff	oh? is that like the stages?
+2014-07-29 12:03:08	jazoff	i had tried to get those to work but always got errors
+2014-07-29 12:34:44	soehlert	ya i think so. "Regardless of this setting’s value, Puppet will always obey explicit dependencies set with the before/require/notify/subscribe metaparameters and the ->/~> chaining arrows; this setting only affects the relative ordering of unrelated resources."
+2014-07-29 14:06:43	<--	keist (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-07-29 14:58:38	soehlert	fuuuuuuuuuck. more ssl errors now that git-sec has changed
+2014-07-29 15:09:42	jazoff	oh?
+2014-07-29 15:09:45	jazoff	where?
+2014-07-29 15:09:54	jazoff	oh, you mean firefox?
+2014-07-29 15:10:06	soehlert	no as in if you do a puppet run on a host it fails
+2014-07-29 15:10:10	jazoff	oooh
+2014-07-29 15:10:13	jazoff	oooh, that's easy
+2014-07-29 15:10:40	soehlert	?
+2014-07-29 15:10:58	jazoff	try puppet node clean git-sec...
+2014-07-29 15:11:18	jazoff	then you should have to resign it with puppet ca sign
+2014-07-29 15:30:22	soehlert	i cant resign it as a request doesnt exist
+2014-07-29 15:30:22	soehlert	not sure how to make a new one..
+2014-07-29 15:36:20	jazoff	oh, just run puppet on the box
+2014-07-29 15:37:04	soehlert	on which box?
+2014-07-29 15:37:04	soehlert	tried on both and it fails for different ssl reasons on each
+2014-07-29 15:37:25	jazoff	on git sec
+2014-07-29 15:37:35	soehlert	ya that doesn't work at all
+2014-07-29 15:37:51	jazoff	that will request the cert
+2014-07-29 15:37:58	soehlert	but it cant complete a run
+2014-07-29 15:38:06	soehlert	and puppet-sec doesnt see a request
+2014-07-29 15:38:14	jazoff	oh?
+2014-07-29 15:38:16	jazoff	lemme see
+2014-07-29 15:38:50	soehlert	getting the self signed cert error when i try to run on git-sec. didnt you fix that by removing the ssl dir? really dont wanna dot hat..
+2014-07-29 15:40:34	jazoff	depends which error...
+2014-07-29 15:40:49	soehlert	self signed certificate in certificate chain for /CN=Puppet CA generated on puppet-sec.ncsa.illinois.edu at 2014-07-16 12:12:57 -0500
+2014-07-29 15:43:43	jazoff	yeah, that's to be expected if it's using the wrong one
+2014-07-29 15:45:49	jazoff	mostly fixedf
+2014-07-29 15:46:05	soehlert	whatd you do?
+2014-07-29 15:46:18	jazoff	moved the ssl dir out of the way on git-sec
+2014-07-29 15:46:21	jazoff	and then cleaned+signed
+2014-07-29 15:47:05	jazoff	still getting Jul 29 15:46:49 git-sec puppet-agent[14149]: Could not retrieve catalog from remote server: Error 400 on SERVER: Failed to submit 'replace facts' command for git-sec.internal.ncsa.edu to PuppetDB at puppet-sec.ncsa.illinois.edu:8081: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [unable to get local issuer certificate for /CN=puppet-sec.ncsa.illinois.edu]
+2014-07-29 15:47:42	soehlert	ya thats the one that puppet-sec gets too. 
+2014-07-29 15:47:42	soehlert	seemingly on the master side?
+2014-07-29 15:48:37	jazoff	yeah.. somethign with puppetdb again
+2014-07-29 15:49:01	jazoff	thought I fixed that though
+2014-07-29 15:50:54	soehlert	you had at one point.
+2014-07-29 15:56:00	jazoff	so if I do 
+2014-07-29 15:56:01	jazoff	openssl s_client -host `hostname -f` -port 8081 -CAfile /etc/puppetlabs/puppetdb/ssl/ca.pem
+2014-07-29 15:56:03	jazoff	it is fine
+2014-07-29 15:57:05	soehlert	ya i just did that same exact thing hah
+2014-07-29 15:59:06	soehlert	ahhh try this
+2014-07-29 15:59:13	soehlert	openssl s_client -host `hostname -f` -port 8081 -CAfile /etc/puppetlabs/puppet/ssl/certs/ca.pem
+2014-07-29 15:59:26	soehlert	"verify error:num=21:unable to verify the first certificate
+2014-07-29 15:59:26	soehlert	verify return:1
+2014-07-29 15:59:26	soehlert	140109378922312:error:140790E5:SSL routines:SSL23_WRITE:ssl handshake failure:s23_lib.c:177:
+2014-07-29 15:59:26	soehlert	CONNECTED(00000003)"
+2014-07-29 16:00:04	jazoff	yeah... is it supposed to be the same cert?
+2014-07-29 16:00:12	soehlert	i'm not sure. 
+2014-07-29 16:00:19	jazoff	or is one supposed to have signed the other
+2014-07-29 16:00:25	jazoff	well, we can try regenerating the puppetdb cert
+2014-07-29 16:00:27	jazoff	is easy enough
+2014-07-29 16:02:13	jazoff	yeah
+2014-07-29 16:02:13	jazoff	[root@puppet-sec ~]# /opt/puppet/sbin/puppetdb ssl-setup
+2014-07-29 16:02:13	jazoff	PEM files in /etc/puppetlabs/puppetdb/ssl already exists, checking integrity.
+2014-07-29 16:02:13	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/ca.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/certs/ca.pem)
+2014-07-29 16:02:16	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/private.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/private_keys/puppet-sec.ncsa.illinois.edu.pem)
+2014-07-29 16:02:19	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/public.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/certs/puppet-sec.ncsa.illinois.edu.pem)
+2014-07-29 16:02:22	jazoff	so.. move and re-run
+2014-07-29 16:03:23	jazoff	better?
+2014-07-29 16:03:24	jazoff	i think
+2014-07-29 16:03:37	jazoff	Warning: Error 400 on SERVER: Could not find terminus console for indirection node
+2014-07-29 16:03:39	jazoff	uh?
+2014-07-29 16:04:46	jazoff	that might be an issue with the puppet conf
+2014-07-29 16:04:54	soehlert	ya looking at that now
+2014-07-29 16:06:58	jazoff	we moved over the old puppet.conf file right?
+2014-07-29 16:07:10	soehlert	ya
+2014-07-29 16:08:18	jazoff	cause we have this
+2014-07-29 16:08:19	jazoff	    node_terminus = console
+2014-07-29 16:08:35	soehlert	that seemingly is what we need..
+2014-07-29 16:08:41	jazoff	or maybe don't need?
+2014-07-29 16:08:55	soehlert	well google suggests we need to verify we have that set like it is
+2014-07-29 16:09:07	soehlert	https://ask.puppetlabs.com/question/13024/pe-33-on-rhel-7-could-not-find-terminus-console-for-indirection-node/
+2014-07-29 16:10:09	jazoff	hmm
+2014-07-29 16:10:13	jazoff	it doesn't say what section that should be in
+2014-07-29 16:10:42	soehlert	that was already in there by default. i didnt add it fwiw
+2014-07-29 16:11:03	jazoff	hmm
+2014-07-29 16:22:00	jazoff	so the errro is from
+2014-07-29 16:22:01	jazoff	    unless Puppet::Indirector::Terminus.terminus_class(self.name, terminus_class)
+2014-07-29 16:22:03	jazoff	      raise ArgumentError, "Could not find terminus #{terminus_class} for indirection #{self.name}"
+2014-07-29 16:22:28	jazoff	or
+2014-07-29 16:22:28	jazoff	    unless klass = Puppet::Indirector::Terminus.terminus_class(self.name, terminus_class)
+2014-07-29 16:22:30	soehlert	what file is that?
+2014-07-29 16:22:30	jazoff	      raise ArgumentError, "Could not find terminus #{terminus_class} for indirection #{self.name}"
+2014-07-29 16:22:33	jazoff	which I guess is the same
+2014-07-29 16:22:38	soehlert	and surriously...klass? hahah
+2014-07-29 16:22:44	jazoff	./lib/ruby/site_ruby/1.9.1/puppet/indirector/indirection.rb
+2014-07-29 16:22:50	jazoff	yeah, that comes up often since class is a resrved word
+2014-07-29 16:24:06	soehlert	ah gotcha
+2014-07-29 16:24:39	jazoff	and in theory this is what it is lookign for
+2014-07-29 16:24:40	jazoff	./share/puppet/modules/puppet_enterprise/lib/puppet/indirector/node/console.rb
+2014-07-29 16:25:04	soehlert	ya i took a look at that file. and it exists. dunno if theres something in specific it's supposed to be passing along or something
+2014-07-29 16:25:19	jazoff	yeah, puppet errors are pretty much useless
+2014-07-29 16:25:28	soehlert	im noticing
+2014-07-29 16:27:39	soehlert	i gotta run. gotta be somewhere by 5.
+2014-07-29 16:27:45	jazoff	though, it is the only file in that dir
+2014-07-29 16:27:56	jazoff	all the other oens are in lib/ruby/site_ruby/1.9.1/puppet/indirector/node/
+2014-07-29 16:28:33	jazoff	ah, cause that is regular stuff, the enterprise stuff is split out
+2014-07-29 16:32:50	jazoff	might be a question for puppet support 
+2014-07-29 16:32:51	jazoff	https://ask.puppetlabs.com/question/13024/pe-33-on-rhel-7-could-not-find-terminus-console-for-indirection-node/
+2014-07-29 16:32:59	jazoff	oh, yeah, you had that link too
+2014-07-29 16:35:13	jazoff	it's like it's not loading /opt/puppet/share/puppet/modules/puppet_enterprise/lib/
+2014-07-29 16:36:32	jazoff	hmmm
+2014-07-29 16:37:18	jazoff	the erb template the installer uses has
+2014-07-29 16:37:19	jazoff	    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-29 16:37:25	jazoff	we have     basemodulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-29 16:38:07	jazoff	so I think I see how to fix
+2014-07-29 16:38:13	jazoff	oh, we have basemodulepath and then later
+2014-07-29 16:38:17	jazoff	modulepath = $confdir/environments/ncsa_production/modules
+2014-07-29 16:38:23	jazoff	but I wonder if it doesn't use the base one 
+2014-07-29 16:41:31	jazoff	yeah, the environments are the problem
+2014-07-29 16:41:41	jazoff	[root@puppet-sec ~]# puppet config print modulepath --section master --environment production
+2014-07-29 16:41:45	jazoff	Warning: Sections other than main, master, agent, user are deprecated in puppet.conf. Please use the directory environments feature to specify environments. (See http://docs.puppetlabs.com/puppet/latest/reference/environments.html)
+2014-07-29 16:41:49	jazoff	   (at /opt/puppet/lib/ruby/site_ruby/1.9.1/puppet/settings/config_file.rb:77:in `collect')
+2014-07-29 16:41:52	jazoff	/etc/puppetlabs/puppet/environments/production/modules
+2014-07-29 16:49:43	jazoff	so I think the fix is to just add +    environmentpath = $confdir/environments
+2014-07-29 16:49:49	jazoff	and comment out the environments at the end
+2014-07-29 16:49:59	jazoff	[root@puppet-sec puppet]# puppet config print modulepath --section master --environment production
+2014-07-29 16:50:02	jazoff	/etc/puppetlabs/puppet/environments/production/modules:/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-29 16:51:04	jazoff	oh, that's what was there and you changed it?
+2014-07-29 16:51:36	jazoff	well, if you undo it it seems to work
+2014-07-29 16:52:34	jazoff	grrrr, now it is back to doing Jul 29 16:52:10 git-sec puppet-agent[17438]: Error 400 on SERVER: SSL_connect returned=1 errno=0 state=SSLv3 read server session ticket A: tlsv1 alert unknown ca
+2014-07-29 17:00:01	jazoff	ah, error on server, hmm
+2014-07-29 17:02:48	jazoff	grabbed a pcap and looked at it in bro...
+2014-07-29 17:03:00	jazoff	looks like the error is from talking to localhost on 443
+2014-07-29 17:03:05	jazoff	so, the console?
+2014-07-29 17:06:00	jazoff	ok, re did this agian: https://ask.puppetlabs.com/question/1547/puppet-enterprise-inventory-ssl-error/
+2014-07-29 17:06:03	jazoff	which I think fixed it
+2014-07-29 17:06:30	jazoff	yay
+2014-07-29 17:06:46	jazoff	so, I guess what complicates puppet enterprise is that there are 3 certs
+2014-07-29 17:06:56	jazoff	puppet, puppetdb, puppet http console thing
+2014-07-29 17:07:02	jazoff	where with regular puppet there is just puppet ca cert
+2014-07-29 17:10:41	jazoff	ok, redid the cert on repo-sec too, that's working too
+2014-07-30 09:37:06	soehlert	jazoff: thanks for fixing it. my only concern now is we were unable to get the dynamic environments working. it was just ignoring anything besides production. that's why i was trying to use the old style (which should still work, just throw a warning because they want people to start moving away from it)
+2014-07-30 09:43:28	jazoff	oh
+2014-07-30 09:43:30	jazoff	is it not working?
+2014-07-30 09:45:08	soehlert	it wasn't as of yesterday before this all broke down
+2014-07-30 09:48:18	jazoff	ah, well how does it look now? :)
+2014-07-30 09:48:35	soehlert	one sec gotta get over to test it
+2014-07-30 09:49:54	soehlert	doesnt work
+2014-07-30 09:51:47	jazoff	ok, so back to http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+2014-07-30 09:51:54	jazoff	what are we doing different than that?
+2014-07-30 09:52:32	soehlert	we're not. trust me, jon and i spent hours pouring over the docs and all that already. i was going to try to make the old way work and if it didnt, go to support (who suck so i wanted to avoid that if possible)
+2014-07-30 09:52:49	jazoff	[root@puppet-sec ~]# puppet config print modulepath --section master --environment production
+2014-07-30 09:52:52	jazoff	/etc/puppetlabs/puppet/environments/production/modules:/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-30 09:52:56	jazoff	[root@puppet-sec ~]# puppet config print modulepath --section master --environment development
+2014-07-30 09:52:59	jazoff	/etc/puppetlabs/puppet/environments/development/modules:/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-30 09:53:03	jazoff	[root@puppet-sec ~]# puppet config print modulepath --section master --environment blah
+2014-07-30 09:53:06	jazoff	[root@puppet-sec ~]#
+2014-07-30 09:53:18	jazoff	so, i'm going to guess that it is more something with the consoles ENC thing not putting the node in the right environment in the first place
+2014-07-30 09:53:47	soehlert	welp here's the issue..
+2014-07-30 09:53:50	soehlert	[root@repo-sec ~]# puppet config print modulepath --section master --environment development
+2014-07-30 09:53:50	soehlert	/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+2014-07-30 09:54:11	soehlert	unless i misunderstand the command. thats a dev machine that and it's not seeing environments
+2014-07-30 09:54:31	jazoff	i don't think that is supposed to work
+2014-07-30 09:54:42	soehlert	ah ok
+2014-07-30 09:54:57	jazoff	repo-sec doesn't know anything about the environment configs
+2014-07-30 09:54:58	soehlert	do you know how i check what environment its in from repo-sec? i think theres supposed to be a way
+2014-07-30 09:56:54	jazoff	no
+2014-07-30 09:57:17	soehlert	k i'll poke around after the CA meeting to see if that's possible and start there
+2014-07-30 09:57:27	jazoff	oh, hmmm
+2014-07-30 09:58:24	soehlert	so this may be related, they word it strangely though, makes it seem like pe-puppet it should work as is, but idk
+2014-07-30 09:58:26	soehlert	http://docs.puppetlabs.com/puppet/3.6/reference/dirs_confdir.html#system-and-user-confdirs
+2014-07-30 09:59:32	jazoff	i mean, /etc/motd says production
+2014-07-30 10:12:26	jazoff	ah, and there is still one more ssl error
+2014-07-30 10:12:31	jazoff	/nodes/repo-sec.ncsa.illinois.edu
+2014-07-30 10:12:32	jazoff	er
+2014-07-30 10:12:35	jazoff	2014-07-30 10:12:28,686 | WARN  | Transport Connection to: tcp://141.142.148.96:57636 failed: javax.net.ssl.SSLHandshakeException: Received fatal alert: unknown_ca | org.apache.activemq.broker.TransportConnection.Transport | ActiveMQ Transport: ssl:///141.142.148.96:57636
+2014-07-30 10:21:15	jazoff	oh, i removed the certs and it recreated it, but i think that error is fine
+2014-07-30 10:21:24	jazoff	those are just boxes that aren't using the new puppetmaste ryet
+2014-07-30 10:33:54	soehlert	production is the default so you really have to test on a dev box (such as repo-sec)
+2014-07-30 10:34:17	soehlert	as in you make changes in dev and they don't propogate out to the dev hosts. thats the issue we have now
+2014-07-30 10:34:39	soehlert	the motd works still since we're explicitly setting the fact it's looking at
+2014-07-30 10:41:42	jazoff	no.. we set the role/profile not the environment
+2014-07-30 10:41:57	soehlert	we set the environment as well
+2014-07-30 10:42:05	soehlert	in the WUI
+2014-07-30 10:42:10	jazoff	yes.. that's the ONLY place it is set
+2014-07-30 10:42:13	jazoff	and that is what isn't working
+2014-07-30 10:42:36	soehlert	that part is working. repo-sec reports it's a development server
+2014-07-30 10:42:47	jazoff	oh? where?
+2014-07-30 10:42:50	jazoff	i didn't see it ever do that
+2014-07-30 10:43:03	jazoff	oohh, the motd says development
+2014-07-30 10:43:07	soehlert	ya
+2014-07-30 10:43:11	jazoff	could have sworn I just looked at that and it said production
+2014-07-30 10:43:14	soehlert	so clearly it's getting set right?
+2014-07-30 10:43:22	soehlert	maybe you were on puppet-sec still?
+2014-07-30 10:43:27	jazoff	oh maybe
+2014-07-30 10:43:59	jazoff	the first thing it does is
+2014-07-30 10:44:00	jazoff	141.142.148.26 - - [30/Jul/2014:10:43:49 -0500] "GET /production/node/repo-sec.ncsa.illinois.edu?transaction_uuid=96965f46-986d-4fbe-b3dc-3fa572d8f9dc&fail_
+2014-07-30 10:44:58	jazoff	run this on puppet-sec
+2014-07-30 10:44:59	jazoff	curl 'https://puppet-sec:8081/v3/nodes/repo-sec.ncsa.illinois.edu'/facts --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem --cert /etc/puppetlabs/puppet/ssl/certs/puppet-sec.ncsa.illinois.edu.pem --key /etc/puppetlabs/puppet/ssl/private_keys/puppet-sec.ncsa.illinois.edu.pem
+2014-07-30 10:45:16	jazoff	the role and profile facts show up, but not the environment
+2014-07-30 10:45:40	jazoff	though tht may be normal
+2014-07-30 10:46:40	jazoff	hmm
+2014-07-30 10:46:53	jazoff	does having environment = production in the puppet conf file mess that up?
+2014-07-30 10:46:59	jazoff	oh
+2014-07-30 10:47:03	jazoff	"If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file."
+2014-07-30 10:53:35	jazoff	https://tickets.puppetlabs.com/browse/ENTERPRISE-33
+2014-07-30 11:04:49	soehlert	so that's weird because in January this worked great for us, but now with the new release that supposedly fixed it, it's broken...
+2014-07-30 11:05:00	jazoff	yeah..
+2014-07-30 11:05:55	soehlert	sounds like you're resigned to go to support?
+2014-07-30 11:06:19	jazoff	yeah, that's not it...
+2014-07-30 11:06:25	jazoff	if I comment out the environment setting on the client
+2014-07-30 11:06:28	jazoff	it still uses production
+2014-07-30 11:07:04	jazoff	need to figure out how to curl the result of the ENC
+2014-07-30 11:07:09	jazoff	or at least verify that it is giving the wrong thing
+2014-07-30 11:07:19	soehlert	ya that would help. 
+2014-07-30 11:11:37	jazoff	ah, I see what you're supposed to wget
+2014-07-30 11:12:49	jazoff	ok, so it returns
+2014-07-30 11:12:50	jazoff	---
+2014-07-30 11:12:50	jazoff	name: repo-sec.ncsa.illinois.edu
+2014-07-30 11:12:50	jazoff	classes:
+2014-07-30 11:12:50	jazoff	  pe_mcollective: {}
+2014-07-30 11:12:51	jazoff	  role::profile:
+2014-07-30 11:12:54	jazoff	    profile: repo
+2014-07-30 11:12:56	jazoff	    role: secapps
+2014-07-30 11:12:59	jazoff	parameters:
+2014-07-30 11:13:01	jazoff	  environment: development
+2014-07-30 11:13:12	soehlert	whatd you wget?
+2014-07-30 11:14:41	jazoff	http://docs.puppetlabs.com/pe/latest/trouble_console-db.html#new-script-to-curl-the-pe-console-enc
+2014-07-30 11:14:47	jazoff	tweked it a little
+2014-07-30 11:14:55	jazoff	see /tmp/console_curl on puppet-sec
+2014-07-30 11:15:34	soehlert	thats a pretty cool little script there..
+2014-07-30 11:16:03	soehlert	theoretically should work for the most part from other machines right?
+2014-07-30 11:16:19	soehlert	changing the CONSOLE var obviously
+2014-07-30 11:16:20	jazoff	no.. i don't think you can talk to that from other machines
+2014-07-30 11:16:35	soehlert	well i mean i guess just the curl part
+2014-07-30 11:18:49	soehlert	or what was the wget command you used. i guess that's all we need for the other hosts
+2014-07-30 11:21:43	-->	keist (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-07-30 11:23:12	jazoff	see https://projects.puppetlabs.com/issues/21902
+2014-07-30 11:23:24	jazoff	they show the same thing, the environment shouldn't be under parameters
+2014-07-30 11:24:50	soehlert	weird that it worked before. so theoretically we should just remove it in the WUI and do it in the puppet.conf on the host?
+2014-07-30 11:29:47	soehlert	nope that doesnt work
+2014-07-30 11:29:48	jazoff	well, that seems like it would work
+2014-07-30 11:31:21	soehlert	seems like it would, but changes made to the repo module are not being made on repo-sec.
+2014-07-30 11:33:37	jazoff	is it still fetching the production modules?
+2014-07-30 11:34:29	jazoff	oh, hmmmm
+2014-07-30 11:34:49	soehlert	nope. changes are not seen in production module either
+2014-07-30 11:43:05	soehlert	oh hmmm?
+2014-07-30 11:44:30	jazoff	i'm confused
+2014-07-30 11:44:42	soehlert	that makes two of us. i was hoping the hmm meant you had an idea
+2014-07-30 11:44:52	jazoff	141.142.148.26 - - [30/Jul/2014:11:44:40 -0500] "GET /development/node/repo-sec.ncsa.illinois.edu
+2014-07-30 11:44:59	jazoff	141.142.148.26 - - [30/Jul/2014:11:44:42 -0500] "POST /development/catalog/repo-sec.ncsa.illinois.edu HTTP/1.1" 200 206255
+2014-07-30 11:45:02	jazoff	141.142.148.26 - - [30/Jul/2014:11:44:50 -0500] "GET /development/file_metadata/modules/repo/repo.cron?links=manage&source_permissions=use HTTP/1.1" 200 336
+2014-07-30 11:45:08	jazoff	looks like it is grabing the right files
+2014-07-30 11:48:33	keist	I noticed that typing environment under Key in the WUI doesn't show it as an option in the drop-down like it used to in the web interface, don't know if that has anything to do it with it but I think that it might because Role::Profile is presented as an option in the other input box so the drop-down functionality is still there
+2014-07-30 11:49:08	jazoff	role::profile  is a class but the environment is just a parameter
+2014-07-30 11:49:16	soehlert	the role::profile is just because it's loaded as a class. no option to do that with parameters
+2014-07-30 11:50:11	keist	I'm not talking about *what they are* but about the missing functionality
+2014-07-30 11:50:24	soehlert	right but you can't get that functionality for one because of what it is
+2014-07-30 11:50:46	jazoff	i didn't think that was missing.. i didn't think environment ever showed up there
+2014-07-30 11:50:54	keist	it always did, it was tehre
+2014-07-30 11:51:00	soehlert	no idea why it worked before for environment. i just assumed it was due to FF trying to autofill. I figure that because it had my mistypings as an option too for me.
+2014-07-30 11:51:19	keist	I remember because I liked it that I didn't have to type it out
+2014-07-30 11:51:24	jazoff	yeah, it is definitely this problem https://tickets.puppetlabs.com/browse/ENTERPRISE-33
+2014-07-30 11:51:49	soehlert	but shouldn't it still work if we don't use the ENC to set the env?
+2014-07-30 11:52:13	jazoff	yes, and the logs I pasted a few minutes ago shows that it IS working
+2014-07-30 11:52:31	soehlert	so then how come it's not making the changes?
+2014-07-30 11:52:44	jazoff	i dunno what you are expecting it to change
+2014-07-30 11:53:05	soehlert	i keep changing a port number just because it should change something then, but it's not working
+2014-07-30 11:54:50	jazoff	the port is already 80...
+2014-07-30 11:54:59	soehlert	and ive tried changing it to 81 and nothing happens
+2014-07-30 11:55:24	soehlert	unless git isnt working right...it says 81 in my copy of repo/manifests/init.pp
+2014-07-30 11:55:37	jazoff	it looks like you changed it to 81 and then back to 80
+2014-07-30 11:55:40	soehlert	ahh maybe it is a git issue..says 80 on puppet-sec
+2014-07-30 11:55:47	soehlert	nope still 81 on mine. i'll try again
+2014-07-30 11:56:23	jazoff	did you push?
+2014-07-30 11:56:31	jazoff	commit dd31adeb5f373c4d7892a6c55403f748924443eb
+2014-07-30 11:56:32	jazoff	Author: Sam Oehlert <soehlert@illinois.edu>
+2014-07-30 11:56:32	jazoff	Date:   Wed Jul 30 11:30:40 2014 -0500
+2014-07-30 11:56:32	jazoff	    test
+2014-07-30 11:56:35	soehlert	yes
+2014-07-30 11:56:35	soehlert	just tried again with 88...port ive never done
+2014-07-30 11:56:36	jazoff	is the latest one the puppet server has
+2014-07-30 11:56:41	jazoff	which is you changing it from 81 back to 80
+2014-07-30 11:56:57	soehlert	after it failed on 80
+2014-07-30 11:57:09	soehlert	errr after it failed changing it to 81. i just set it to 88 and its not updating the port
+2014-07-30 11:57:12	soehlert	on puppet-sec
+2014-07-30 11:57:21	jazoff	right, but I'm just saying the port is currently 80 and the config has 80 so ther is nothing to debug...
+2014-07-30 11:57:31	soehlert	except i pushed port 88 about 2 minutes ago
+2014-07-30 11:57:35	soehlert	so there should be a change
+2014-07-30 11:57:41	jazoff	is the webhook broken?
+2014-07-30 11:57:46	soehlert	11:56:18 ncsabot | Sam Oehlert pushed 1 commits to production in Puppet (http://g │
+2014-07-30 11:57:46	soehlert	                 | it-sec.internal.ncsa.edu/ncsa-security/puppet/compare/84de9de9 │
+2014-07-30 11:57:46	soehlert	                 | 0...9c91a5756)                                                 │
+2014-07-30 11:57:46	soehlert	11:56:18         | [ http://server.localdomain:35456/3z ]                         │
+2014-07-30 11:57:46	soehlert	11:56:19 ncsabot |  * test port change
+2014-07-30 11:57:57	soehlert	thats me setting it to 88
+2014-07-30 11:58:18	jazoff	looks like the other one isn't working though
+2014-07-30 11:58:20	jazoff	did the IP change?
+2014-07-30 11:58:25	soehlert	IP of what?
+2014-07-30 11:58:40	jazoff	git sec
+2014-07-30 11:59:05	jazoff	hmm, no
+2014-07-30 11:59:23	jazoff	[jazoff@git-sec ~]$ telnet portal-sec 9000
+2014-07-30 11:59:24	jazoff	Trying 10.142.148.68...
+2014-07-30 11:59:27	jazoff	no worky
+2014-07-30 11:59:29	jazoff	hmm
+2014-07-30 11:59:34	jazoff	oh, wrong host
+2014-07-30 11:59:41	jazoff	ok, right host works
+2014-07-30 12:00:33	jazoff	oooooh
+2014-07-30 12:00:37	jazoff	the ssh keys changed
+2014-07-30 12:00:40	jazoff	so git pull is probably broke
+2014-07-30 12:01:12	soehlert	i thought i fixed that..
+2014-07-30 12:01:30	soehlert	ya seems to be working on puppet-sec
+2014-07-30 12:03:56	jazoff	oh
+2014-07-30 12:04:11	soehlert	hmmm git-sec WUI shows that my push worked so it must be between puppet-sec and git-sec somehow
+2014-07-30 12:04:28	jazoff	oh, you pushed to production
+2014-07-30 12:04:32	soehlert	puppet-sec pulls say already up to date, but they're wrong. i wonder why
+2014-07-30 12:04:37	soehlert	ah adlk;ha;lskjf
+2014-07-30 12:06:01	soehlert	aaaand there we are. so basically we can't use the ENC for env and we're fine
+2014-07-31 11:21:53	keist	jazoff: I all my hosts are receiving this on a puppet agent run:
+2014-07-31 11:21:54	keist	Error: Could not retrieve catalog from remote server: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on puppet-sec.ncsa.illinois.edu at 2014-07-16 12:12:57 -0500]
+2014-07-31 11:21:59	keist	Warning: Not using cache on failed catalog
+2014-07-31 11:22:01	keist	Error: Could not retrieve catalog; skipping run
+2014-07-31 11:22:04	keist	Error: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on puppet-sec.ncsa.illinois.edu at 2014-07-16 12:12:57 -0500]
+2014-07-31 11:22:35	keist	Do you know how to fix? I moved the puppetlabs/puppet/ssl directory and then re-ran agent, it suggested running puppet clean cert <node> on puppet-sec so I did that
+2014-07-31 11:23:02	keist	followed this:
+2014-07-31 11:23:03	keist	On the master:
+2014-07-31 11:23:03	keist	  puppet cert clean nagios-sec.internal.ncsa.edu
+2014-07-31 11:23:03	keist	On the agent:
+2014-07-31 11:23:03	keist	  rm -f /etc/puppetlabs/puppet/ssl/certs/nagios-sec.internal.ncsa.edu.pem
+2014-07-31 11:23:04	keist	  puppet agent -t
+2014-07-31 11:23:23	keist	but now, i get: 
+2014-07-31 11:23:24	keist	[root@nagios-sec ~]# puppet agent -t
+2014-07-31 11:23:24	keist	Exiting; no certificate found and waitforcert is disabled
+2014-07-31 11:23:59	keist	not seeing any node requests in the WUI
+2014-07-31 11:32:41	jazoff	on nagios-sec
+2014-07-31 11:33:05	jazoff	cd /etc/puppetlabs/puppet
+2014-07-31 11:33:08	jazoff	mv ssl ssl.old
+2014-07-31 11:33:11	jazoff	restart puppet
+2014-07-31 11:33:13	jazoff	that should do it
+2014-07-31 11:33:22	jazoff	since it HAS a cert it doesn't re-submit it
+2014-07-31 11:33:30	jazoff	removing it will make it regenerate a new CSR
+2014-07-31 12:00:36	keist	I still get this: 
+2014-07-31 12:00:38	keist	07-31 11:23 < keist> On the master:
+2014-07-31 12:00:38	keist	07-31 11:23 < keist>   puppet cert clean nagios-sec.internal.ncsa.edu
+2014-07-31 12:00:38	keist	07-31 11:23 < keist> On the agent:
+2014-07-31 12:00:38	keist	07-31 11:23 < keist>   rm -f /etc/puppetlabs/puppet/ssl/certs/nagios-sec.internal.ncsa.edu.pem
+2014-07-31 12:00:40	keist	07-31 11:23 < keist>   puppet agent -t
+2014-07-31 12:00:57	keist	Could not request certificate: The certificate retrieved from the master does not match the agent's private key.
+2014-07-31 12:01:00	keist	Jul 31 11:58:52 nagios2-sec puppet-agent[11434]: Certificate fingerprint: D1:8B:86:1E:D7:9B:F3:7F:16:1C:2A:FD:E4:8E:68:27:E9:98:9B:D3:E6:09:45:B9:7B:08:B7:69:40:18:8C:FC
+2014-07-31 12:01:43	jazoff	did someone do the puppet cert clean?
+2014-07-31 12:02:26	keist	yeah, soehlert sent me this article so I tried what was in here: http://fvtool.wordpress.com/2013/04/15/exiting-no-certificate-found-and-waitforcert-is-disabled-installing-puppet/
+2014-07-31 12:02:36	keist	but I was receiving that before I even tried it
+2014-07-31 12:02:56	jazoff	lemme see
+2014-07-31 12:08:49	jazoff	the puppet.conf looks broken
+2014-07-31 12:09:24	jazoff	that might have worked..
+2014-07-31 12:09:48	jazoff	hmm
+2014-07-31 12:10:36	jazoff	ah
+2014-07-31 12:10:37	jazoff	141.142.148.8 - - [31/Jul/2014:12:10:27 -0500] "GET /production/certificate/nagios-sec.internal.ncsa.edu? HTTP/1.1" 404 66
+2014-07-31 12:18:25	jazoff	ok wtf...
+2014-07-31 12:18:31	jazoff	repo-sec was working yesteday now it's not
+2014-07-31 12:20:06	jazoff	oh, did I clean that my mistake? heh
+2014-07-31 12:20:14	jazoff	that explains why repo-sec is gone and nagios-sec is still tehre
+2014-07-31 12:20:17	soehlert	clean what?
+2014-07-31 12:20:27	soehlert	oh you accidentally did puppet cert clean repo-sec?
+2014-07-31 12:20:38	jazoff	maybe
+2014-07-31 12:21:41	jazoff	weird, it ends up in 
+2014-07-31 12:21:42	jazoff	/etc/puppetlabs/puppet/ssl/ca/requests/nagios-sec.internal.ncsa.edu.pem
+2014-07-31 12:21:50	jazoff	but the ca tool doesn't show it as needing to be signed
+2014-07-31 12:22:06	soehlert	isnt it puppet cert sign not puppet ca sign?
+2014-07-31 12:22:42	jazoff	hmm
+2014-07-31 12:22:52	jazoff	seem to do the same thing
+2014-07-31 12:22:56	soehlert	ah ok
+2014-07-31 12:23:02	jazoff	restarting puppet
+2014-07-31 12:23:05	jazoff	maybe it's just confused
+2014-07-31 12:27:19	jazoff	yeah, /etc/puppetlabs/puppet/ssl/ca/requests/nagios-sec.internal.ncsa.edu.pem comes back, but it's never getting signed
+2014-07-31 12:27:29	jazoff	[root@puppet-sec ~]# puppet ca  sign nagios-sec.ncsa.illinois.edu
+2014-07-31 12:27:30	jazoff	Could not find certificate request for nagios-sec.ncsa.illinois.edu
+2014-07-31 12:27:37	jazoff	but it shows up in list
+2014-07-31 12:27:40	jazoff	even though it's not signed
+2014-07-31 12:32:51	jazoff	grr, this was working yesterday
+2014-07-31 12:33:22	jazoff	regenerating and signing the cert on repo-sec ends up with
+2014-07-31 12:33:23	jazoff	Error: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server session ticket A: sslv3 alert certificate revoked
+2014-07-31 12:47:18	jazoff	ok, think I know what is causing that
+2014-07-31 13:22:11	soehlert	?
+2014-07-31 13:22:54	jazoff	meh
+2014-07-31 13:22:59	jazoff	nothing is workingto fix that
+2014-07-31 13:25:06	jazoff	i think it's reusing ssl cert serial numbers
+2014-07-31 13:25:26	jazoff	wonder if one can just clear out the puppet master CRL
+2014-07-31 13:28:35	jazoff	ah, maybe easier idea.. bump up the serial to 99
+2014-07-31 13:28:44	jazoff	so that new certs should definitely not be revoked
+2014-07-31 13:29:15	soehlert	wait so it's using a cert serial that was previously revoked?
+2014-07-31 13:29:22	jazoff	that's what it seems to be doing
+2014-07-31 13:29:45	soehlert	well thats dumb.
+2014-07-31 13:32:26	jazoff	hmm, that sorta helped
+2014-07-31 13:32:32	jazoff	now puppetdb is complaing that it is revoked
+2014-07-31 13:32:37	jazoff	maybe just need to restart that too
+2014-07-31 13:33:02	soehlert	probably
+2014-07-31 13:33:14	jazoff	oh, different error i see
+2014-07-31 13:33:24	soehlert	?
+2014-07-31 13:33:36	jazoff	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Failed to submit 'replace facts' command for repo-sec.ncsa.illinois.edu to PuppetDB at puppet-sec.ncsa.illinois.edu:8081: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [certificate revoked for /CN=puppet-sec.ncsa.illinois.edu]
+2014-07-31 13:34:03	soehlert	thats a different one? looks like its still a revoked cert
+2014-07-31 13:35:16	jazoff	yeah, but that's between puppet-sec and puppetdb
+2014-07-31 13:35:39	soehlert	which is on puppet-sec
+2014-07-31 13:36:08	jazoff	[root@puppet-sec log]# /opt/puppet/sbin/puppetdb ssl-setup
+2014-07-31 13:36:08	jazoff	PEM files in /etc/puppetlabs/puppetdb/ssl already exists, checking integrity.
+2014-07-31 13:36:08	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/private.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/private_keys/puppet-sec.ncsa.illinois.edu.pem)
+2014-07-31 13:36:12	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/public.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/certs/puppet-sec.ncsa.illinois.edu.pem)
+2014-07-31 13:36:14	jazoff	again!?
+2014-07-31 13:36:25	soehlert	oh for fucks sake
+2014-07-31 13:37:34	jazoff	FIXED
+2014-07-31 13:37:46	soehlert	how?
+2014-07-31 13:37:54	jazoff	re-ran that command with -f
+2014-07-31 13:38:02	jazoff	but the main thing that fixed it was bumping up that serial number for ssl
+2014-07-31 13:38:16	soehlert	ahhh well damn good catch there
+2014-07-31 13:38:54	jazoff	puppet ca output is still fucked
+2014-07-31 13:39:18	jazoff	but blinding running the sign command works
+2014-07-31 13:39:32	jazoff	nagios-sec working now
+2014-07-31 13:39:32	soehlert	still fucked how?
+2014-07-31 13:40:16	jazoff	hmm, maybe they changed it
+2014-07-31 13:40:20	jazoff	it used to have 2 lists
+2014-07-31 13:40:27	jazoff	signed certs and then "certs needing to be signed"
+2014-07-31 13:41:25	jazoff	oh, maybe you need --all for that now
+2014-07-31 13:41:47	jazoff	ok, i think it is fine, they just changed the output
+2014-07-31 13:42:47	jazoff	you want to try adding another node?
+2014-07-31 13:43:01	soehlert	ahhh ya i think that sounds familiar
+2014-07-31 13:43:01	soehlert	ive read too much about this that its all just blending together at this point
+2014-07-31 13:43:07	soehlert	umm sure i guess gimme a minute
+2014-07-31 14:11:03	soehlert	so it looks like the WUI is not seeing the requests but puppet cert sign --all works
+2014-07-31 14:11:20	jazoff	ah, maybe something screwy is going on
+2014-07-31 14:11:31	jazoff	i didnt know you could sign them through the website anyway
+2014-07-31 14:11:34	jazoff	where do they show up?
+2014-07-31 14:11:47	soehlert	top right next to the license when there is one it says 1 node request
+2014-07-31 14:11:53	jazoff	ah
+2014-07-31 14:19:55	soehlert	oh definite issues: "SSL_connect returned=1 errno=0 state=SSLv3 read server session ticket A: sslv3 alert certificate revoked"
+2014-07-31 14:19:55	soehlert	when I try to edit role::profile
+2014-07-31 14:20:08	jazoff	what box is that?
+2014-07-31 14:20:13	soehlert	from the WUI
+2014-07-31 14:20:19	jazoff	oh
+2014-07-31 14:21:36	jazoff	https://ask.puppetlabs.com/question/1547/puppet-enterprise-inventory-ssl-error/
+2014-07-31 14:21:37	jazoff	try that
+2014-07-31 14:33:35	soehlert	seems to have worked thanks
+2014-08-01 08:29:51	jazoff	something changed on the new puppet master that wants to make all files owned by pe-puppet if they aren't specified in the manifest
+2014-08-01 08:59:09	jazoff	oh, it's just the owners of the files in /etc/puppetlabs/puppet/environments/development/
+2014-08-01 08:59:22	jazoff	i think there is an option you can put that makes files default to root/root
+2014-08-01 09:58:45	soehlert	ok i'll look into it today
+2014-08-01 10:11:34	jazoff	i think it's something in one of the conf files for fileserver, or maybe you do like File { ... } in site.pp
+2014-08-01 10:11:38	jazoff	actually, I think i had this at UA..
+2014-08-01 10:12:00	jazoff	oh, have File { ignore => ['.svn', '.git', 'CVS' ] }
+2014-08-01 10:12:04	jazoff	i think you can do File { 
+2014-08-01 10:12:12	jazoff	  owner => root, group => root }
+2014-08-01 10:12:17	jazoff	and it will change the default for files
+2014-08-01 11:01:00	soehlert	jazoff: what's up with the modules thing in puppte_configs in git
+2014-08-01 11:09:06	jazoff	i dunno
+2014-08-01 11:09:25	jazoff	git log modules :)
+2014-08-01 11:09:33	soehlert	the only thing in it is a bro script
+2014-08-01 11:09:44	soehlert	the archival script
+2014-08-01 11:09:46	jazoff	yeah, git rm it
+2014-08-01 11:09:55	jazoff	something must have happened during a merge
+2014-08-01 11:10:06	soehlert	ok. that was a very long winded way of asking if modules needs to exist at that location.
+2014-08-01 11:11:26	jazoff	no 
+2014-08-01 11:11:27	jazoff	:)
+2014-08-01 11:34:43	soehlert	where does the site.pp file live?
+2014-08-01 11:34:53	jazoff	manifests
+2014-08-01 11:35:15	soehlert	so theres a different one for each environment?
+2014-08-01 11:36:06	soehlert	though i guess i just need to change the one for production.
+2014-08-01 11:38:55	jazoff	hmmm? both should be the same
+2014-08-01 11:39:02	jazoff	change the one in dev and then merge into production
+2014-08-01 11:43:10	soehlert	but there won't be a way to test the dev one right? since puppet-sec is production.
+2014-08-01 11:50:23	jazoff	oh, that doesn't matter
+2014-08-01 11:50:30	jazoff	just need to test it from a machine that IS development
+2014-08-01 11:50:39	jazoff	i noticed this on bro-dev after I added it
+2014-08-01 11:50:47	jazoff	fixed some things in the bro module and then reembered you could do it globally
+2014-08-01 11:51:15	soehlert	oooo i thought you were saying the files on puppet-sec in the /etc/puppetlabs/puppet dirs were owned pe-puppet that weren't supposed to
+2014-08-01 11:54:52	jazoff	they are.. 
+2014-08-01 11:55:08	jazoff	but rather than chown then i think it is even better to tell puppet to default to root/root
+2014-08-01 12:09:59	soehlert	hmm i think i did it wrong then. i'm presuming the development environment should be owned by root:root now right?
+2014-08-01 12:10:57	jazoff	lemme see
+2014-08-01 12:11:37	jazoff	you mean the files? no
+2014-08-01 12:11:44	jazoff	this will just control file resources
+2014-08-01 12:12:31	jazoff	Aug  1 12:07:34 bro-dev puppet-agent[38956]: (/Stage[main]/Smtp::Msp/File[/etc/cron.d/smtp]/owner) owner changed 'pe-puppet' to 'root'
+2014-08-01 12:12:34	jazoff	Aug  1 12:07:34 bro-dev puppet-agent[38956]: (/Stage[main]/Smtp::Msp/File[/etc/cron.d/smtp]/group) group changed 'pe-puppet' to 'root'
+2014-08-01 12:12:38	jazoff	looks like it worked
+2014-08-01 12:13:27	soehlert	ahh ok
+2014-08-01 12:13:34	soehlert	i was confused what you were going for clearly
+2014-08-01 13:28:26	soehlert	ughhh certificate revoked errors when i add a new host. 
+2014-08-01 13:31:35	jazoff	what host?
+2014-08-01 13:33:15	soehlert	polot
+2014-08-01 13:34:26	jazoff	ah, that's puppetdb again
+2014-08-01 13:35:21	jazoff	ok, something is fucking with the ssl certs
+2014-08-01 13:35:25	jazoff	[root@puppet-sec log]# /opt/puppet/sbin/puppetdb ssl-setup
+2014-08-01 13:35:26	jazoff	PEM files in /etc/puppetlabs/puppetdb/ssl already exists, checking integrity.
+2014-08-01 13:35:26	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/private.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/private_keys/puppet-sec.ncsa.illinois.edu.pem)
+2014-08-01 13:35:29	jazoff	Warning: /etc/puppetlabs/puppetdb/ssl/public.pem does not match the file used by Puppet (/etc/puppetlabs/puppet/ssl/certs/puppet-sec.ncsa.illinois.edu.pem)
+2014-08-01 13:36:33	soehlert	ugh this is really pissing me off. 
+2014-08-01 13:38:26	jazoff	i don't understand why it keeps breaking
+2014-08-01 13:38:35	soehlert	this is the part that keeps pissing me off
+2014-08-01 14:56:54	soehlert	i think i might have made it so we have to redo the certs on the other machines, buuuuuutt i think i permanently fixed our revoked certs issue 
+2014-08-01 14:56:54	 *	soehlert crosses fingers
+2014-08-01 15:27:12	jazoff	so I know what caused the revoked certs issue, no idea why things seem to be changing on their own though
+2014-08-01 15:27:23	jazoff	i thought stuff was fixed andthen it broke again
+2014-08-01 15:28:56	soehlert	well this seemed to work for the revoked certs thing:http://honglus.blogspot.be/2012/01/force-puppet-agent-to-regenerate.html
+2014-08-01 15:29:09	soehlert	and in fact, the node requests look like they'll show up in the WUI
+2014-08-11 14:20:04	soehlert	jazoff: im blanking here. made a new rsyslog type for the polo machines (don't ask, it's a PITA) but it keeps grabbing the rsyslog.conf from the rsyslog::forwarder class. how can i make it ignore that?
+2014-08-11 14:20:37	jazoff	what's polo again?
+2014-08-11 14:20:50	soehlert	some ca related crap for terry and jim basney
+2014-08-11 14:20:53	jazoff	ah
+2014-08-11 14:21:10	jazoff	is type set?
+2014-08-11 14:21:18	soehlert	?
+2014-08-11 14:21:36	soehlert	you mean role::profile?
+2014-08-11 14:21:43	jazoff	class rsyslog ( $type = "forwarder" ){
+2014-08-11 14:21:44	jazoff	··
+2014-08-11 14:21:44	jazoff	  case $type {
+2014-08-11 14:21:53	jazoff	if type isn't what you think it is, it will default to forwarder
+2014-08-11 14:22:08	soehlert	ah hell thats the issue..thanks
+2014-08-11 14:22:16	jazoff	:)
+2014-08-11 14:22:18	soehlert	forgot we had that part and just copied another class basically
+2014-08-12 17:23:39	<--	keist (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-08-12 17:37:34	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-08-12 17:38:17	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-08-12 17:38:39	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-08-13 14:34:39	soehlert	can someone take a peek at the ssh module? and the dev/services/scanner.yaml. I keep getting: "Invalid relationship: File[/etc/ssh/sshd_config] { require => Package[undef] }, because Package[undef] doesn't seem to be in the catalog"
+2014-08-13 14:38:32	jazoff	no, but     require    => Package[$ssh_packages], 
+2014-08-13 14:38:33	jazoff	is
+2014-08-13 14:38:36	jazoff	and $ssh_packages must be undef
+2014-08-13 14:39:17	soehlert	well right, but i don't see how
+2014-08-13 14:39:17	soehlert	i understand the error message it just doesn't make sense to me since i set that
+2014-08-13 14:39:32	jazoff	wellll i'm not saying you didn't mean to set it
+2014-08-13 14:39:36	jazoff	but clearly it is not set :)
+2014-08-13 14:40:01	soehlert	well right, and im asking why it's not getting set. i did it the same way we do other stuff that works
+2014-08-13 14:41:15	jazoff	hmm
+2014-08-13 14:42:00	jazoff	hmmm
+2014-08-13 14:42:12	jazoff	yeah, it should be set from hieradata/development/common.yaml
+2014-08-13 14:42:30	soehlert	well not there as im only testing it on the scanner. that's why i pointed you to the services/scanner.yaml
+2014-08-13 14:42:58	jazoff	that shouldn't matter
+2014-08-13 14:43:02	jazoff	  - "%{::environment}/common" 
+2014-08-13 14:43:05	jazoff	is in the hiera config
+2014-08-13 14:43:19	soehlert	well i guess that's true but the ssh module is only set in the scanner one
+2014-08-13 14:43:27	soehlert	is basically what im trying to point out
+2014-08-13 14:44:07	jazoff	oh
+2014-08-13 14:47:02	jazoff	i don't see anything obvious
+2014-08-13 14:48:03	soehlert	crap. i dont either.
+2014-08-13 14:48:46	jazoff	ok, as a test
+2014-08-13 14:48:51	jazoff	chanage
+2014-08-13 14:48:52	jazoff	class ssh::common ( $ssh_packages ) {
+2014-08-13 14:48:53	jazoff	to
+2014-08-13 14:49:04	jazoff	class ssh::common ( $ssh_packages = ['openssh-server','openssh-clients']) {
+2014-08-13 14:49:04	soehlert	i've explicitly set it there before if thats what youre doing
+2014-08-13 14:49:58	soehlert	but im tryin again
+2014-08-13 14:50:35	soehlert	hmm well it ran that time but didnt change anything
+2014-08-13 14:50:47	soehlert	oh wait it did. just didn't tell me..
+2014-08-13 14:56:19	soehlert	sweet that seemed to work
+2014-08-13 14:56:27	soehlert	tomorrow i'll work on pushing out the standard stuff to all dev hosts
+2014-08-13 14:57:12	jazoff	ok
+2014-08-13 14:57:17	soehlert	well and making it so i dont have to explicitly set the packages in the manifest
+2014-08-14 14:29:28	soehlert	jazoff: supercell is failing puppet runs
+2014-08-14 14:36:55	jazoff	oh?
+2014-08-14 14:36:56	jazoff	lemme see
+2014-08-14 14:37:31	jazoff	ah, my fauly
+2014-08-14 14:38:12	soehlert	so now that I got you in the puppet mood... :)
+2014-08-14 14:38:40	soehlert	trying to get the sshd stuff out in development, but for some reason it was passing out the template instead of the sshd_config-standard file i set up. i see no reason why it would do that do you?
+2014-08-14 14:39:56	jazoff	what template?
+2014-08-14 14:40:10	soehlert	well i ended up deleting it and its still pulling from the template..
+2014-08-14 14:40:18	soehlert	there was an sshd_conf.erb file
+2014-08-14 14:40:47	soehlert	but after deleting that i added a comment in sshd_conf on wiki-sec then ran puppet and it removed the comment, but set it to be how the template was set up and not the sshd_conf-standard file it should be
+2014-08-14 14:47:51	jazoff	are you in the wrong environment?
+2014-08-14 14:47:57	jazoff	there is no ssh template anymore
+2014-08-14 14:48:26	soehlert	crap i was looking at the environment on the WUI...
+2014-08-14 14:49:10	soehlert	ugh welp thanks for quickly finding my stupidity..looks like it works
+2014-08-15 13:55:33	soehlert	jazoff: supercell is still failing tying to set owner and group of /data/bro.
+2014-08-15 14:20:21	jazoff	oh? I thought I fixed that
+2014-08-15 14:21:53	jazoff	just going to reboot portal-sec, working on other things and don't have time to debug
+2014-08-15 14:21:59	jazoff	should come back up properly after reboot
+2014-08-15 14:27:17	soehlert	ok
+2014-08-15 14:43:21	jazoff	or or notor not
+2014-08-15 14:43:35	jazoff	wonder why it is having trouble all of a sudden
+2014-08-15 14:43:46	soehlert	ya i was wondering but hadnt dug to see if you made a change recently
+2014-08-15 15:39:05	jazoff	puppet on supercell fixed
+2014-08-15 15:53:45	soehlert	ssh standard profile seems to be working well
+2014-08-15 15:53:49	jazoff	:)
+2014-08-15 15:54:21	soehlert	thats nice. one less thing for me to do on new hosts. granted this latest is a test bastion so thats going to need to be ripped out and replaced in due time..
+2014-08-15 15:54:53	jazoff	what happened with the template? too complicated?
+2014-08-15 15:55:24	soehlert	ya basically. i mean theres only three versions of the sshd_conf but they are pretty vastly different.
+2014-08-15 15:55:42	soehlert	plus it made it so much easier to at least get the standard image finished for now
+2014-08-15 15:55:57	soehlert	20% of the work for 80% of the payout and that whole thing
+2014-08-15 15:56:56	jazoff	yeah
+2014-08-15 15:57:13	soehlert	lets me deal with the bastion stuff when i have more time too which is nice
+2014-08-15 15:57:33	jazoff	it definitely makes sense to do just do different files at first
+2014-08-15 15:57:52	jazoff	when it's all done, if we realize the files are 100% the same except for 1 line, then it's easy to template it
+2014-08-15 15:58:16	soehlert	ya in the future we can come back and do it template style. that will also give us three definitive ones to base off of. i know before some of the ones we were using were done by hand and so had slight differences
+2014-08-15 15:58:39	soehlert	this way we'll have the bastion, intra_bastion and standard one all nailed on exactly how we need them before deciding how to template
+2014-08-15 16:02:30	soehlert	so it seems the new install stuff is not installing the facter/facts.d dirs. not sure what to do. 
+2014-08-15 16:02:30	soehlert	just been manually creating them after the first puppet run, but i was thinking of adding it to the install.bash script that puppet runs to install the agent
+2014-08-15 16:02:42	soehlert	my concern there is it will be overwritten/removed in the future
+2014-08-15 16:03:59	jazoff	can't you just tell puppet to create them?
+2014-08-15 16:04:33	soehlert	i guess that works, we'll just have to run puppet 3 times before it doesn't fail, but thats fine i suppose
+2014-08-20 11:39:25	jschipp	Error: Could not retrieve catalog from remote server: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on puppet-sec.ncsa.illinois.edu at 2014-07-16 12:12:57 -0500]
+2014-08-20 11:39:30	jschipp	Warning: Not using cache on failed catalog
+2014-08-20 11:39:32	jschipp	Error: Could not retrieve catalog; skipping run
+2014-08-20 11:39:35	jschipp	Error: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [self signed certificate in certificate chain for /CN=Puppet CA generated on puppet-sec.ncsa.illinois.edu at 2014-07-16 12:12:57 -0500]
+2014-08-20 11:39:55	jschipp	on nagios-monitor-sec, easy way to fix? need to get latest catalog
+2014-08-20 12:56:16	soehlert	http://www.slideshare.net/AshwinPawar/puppet-agent
+2014-08-20 13:20:13	jschipp	soehlert: that worked, thanks
+2014-08-20 15:30:01	jschipp	FYI: receiving this on cif:
+2014-08-20 15:30:02	jschipp	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Duplicate declaration: File[/etc/puppetlabs/facter/facts.d] is already declared in file /etc/puppetlabs/puppet/environments/production/modules/facts/manifests/init.pp:4; cannot redeclare at /etc/puppetlabs/puppet/environments/production/modules/role/manifests/init.pp:8 on node cif.ncsa.illinois.edu
+2014-08-20 15:30:05	jschipp	Warning: Not using cache on failed catalog
+2014-08-20 15:30:08	jschipp	Error: Could not retrieve catalog; skipping run
+2014-08-20 15:34:45	jazoff	jschipp: i fixed that the other day...
+2014-08-20 15:35:23	jazoff	oh, it's not in production
+2014-08-20 15:35:38	jazoff	try now
+2014-08-20 15:40:04	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-08-20 15:45:45	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-08-22 16:44:10	--	irc: disconnected from server
+2014-08-22 16:45:43	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-08-22 16:45:43	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-08-22 16:45:55	--	Mode #puppet [+]
+2014-08-22 16:45:55	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-08-26 07:15:02	jazoff	Aug 26 07:14:36 supercell puppet-agent[10486]: Could not retrieve catalog from remote server: Error 400 on SERVER: Syntax error at end of file; expected '}' at /etc/puppetlabs/puppet/environments/production/modules/users/manifests/init.pp:118 on node supercell.ncsa.illinois.edu
+2014-08-26 09:43:59	soehlert	crap good find
+2014-08-26 11:47:38	jazoff	you see the TeamCymruMalwareHashRegistry::Match alert from before
+2014-08-26 11:47:39	jazoff	er
+2014-08-27 20:19:56	--	irc: disconnected from server
+2014-08-27 20:20:09	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-08-27 20:20:09	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-08-27 20:20:21	--	Mode #puppet [+]
+2014-08-27 20:20:21	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-09-03 13:20:13	soehlert	jazoff: im really confused. drought doesnt have a role::profile yet, but it's getting an error on first run Invalid relationship: File[/etc/munin/plugins/proc_bro]
+2014-09-03 13:29:09	jazoff	uhh
+2014-09-03 13:30:28	jazoff	that is odd
+2014-09-03 13:34:29	jazoff	ooh
+2014-09-03 13:34:33	jazoff	maybe it's an epel thing
+2014-09-03 13:34:40	soehlert	?
+2014-09-03 13:35:14	jazoff	ooh, i think i know
+2014-09-03 13:35:54	soehlert	and it is?
+2014-09-03 13:36:05	jazoff	hmmm maybe not
+2014-09-03 13:36:11	jazoff	that wouldn't explain why it worked on the other 5 machines
+2014-09-03 13:36:23	jazoff	it just looks like munin::node is missing
+2014-09-03 13:36:43	jazoff	the plugin class doesnt auto include it
+2014-09-03 13:37:00	soehlert	is munin::node in common?
+2014-09-03 13:37:06	soehlert	or is this a bro only thing?
+2014-09-03 13:37:19	jazoff	mostly a bro thing
+2014-09-03 13:37:45	jazoff	but it wouldn't be trying to load the proc_bro thing unless it was running the bro module
+2014-09-03 13:39:02	soehlert	right which is what im getting at. i cant figure out why it's doing that
+2014-09-03 13:40:15	jazoff	oooh, there is the host file in heira
+2014-09-03 13:40:20	jazoff	classes:
+2014-09-03 13:40:20	jazoff	    - bro::worker
+2014-09-03 13:40:20	jazoff	bro::capture_lib: 'myricom'
+2014-09-03 13:40:20	jazoff	bro::worker::capture_lib: 'myricom'
+2014-09-03 13:40:33	soehlert	ahhh can we ditch the host file?
+2014-09-03 13:40:36	jazoff	bro::worekr shouldn't be there
+2014-09-03 13:40:40	jazoff	we need the other stuff though
+2014-09-03 13:40:57	soehlert	is there a way we can avoid using host specific files though? can we make a new profile for this?
+2014-09-03 13:41:13	jazoff	no, the myricom/pfring stuff is per host
+2014-09-03 13:41:32	soehlert	well right but cant we have a myricom_bro_worker and pfring_bro_worker
+2014-09-03 13:41:40	jazoff	we could, but that would be a ton of work
+2014-09-03 13:41:58	jazoff	can probably set the variables in the puppet console though
+2014-09-03 13:42:09	jazoff	and assign them via a group
+2014-09-03 13:42:19	jazoff	was just easier a while back to stick it in hiera
+2014-09-03 13:42:20	soehlert	why would it be a ton of work. it would basically be the same files that exist as host files right?
+2014-09-03 13:42:47	jazoff	hmmmmmmmmm
+2014-09-03 13:42:49	jazoff	mayyybe
+2014-09-03 13:43:00	jazoff	so nids-dev1 and drought are both bro/worker
+2014-09-03 13:43:08	jazoff	which keeps things simple there
+2014-09-03 13:43:38	jazoff	and then the only thing that changes is the myricom thing, so that was easier than having two different profiles
+2014-09-03 13:44:01	soehlert	the puppet code doesnt have to change its just a hiera change to using environments and role::profile vs hosts which 1) if we spin up a new machine we have to do a separate hosts file for that 2) i don't think to look at hosts because i was trying to keep the stuff broad so i never know what hosts are done individually (minor quibble i know) 3) do they still get a role::profile if theres a host?
+2014-09-03 13:44:26	jazoff	i think making a bro/worker_pfring and bro/worker_myricom might not be too bad, but it can get messy
+2014-09-03 13:44:34	jazoff	yeah, they still have a role::profile
+2014-09-03 13:47:03	jazoff	well, that seems to have fixed it
+2014-09-03 13:49:26	soehlert	ya it's working now. I just would like to avoid being pigeonholed by the host files. i'd rather make things broad and repeatable. that's my argument, but the bro stuff is yours so however works best for you.
+2014-09-03 13:50:32	soehlert	and just in case it's not clear thanks to text not conveying tone, i'm not being a smartass or anything
+2014-09-03 13:53:50	soehlert	ok drought should be good to go kerberos included
+2014-09-03 13:54:56	jazoff	yeah, I will think about this
+2014-09-03 13:55:14	jazoff	was more of a bandaid anyway, but i'm not sure what the better approach is
+2014-09-03 13:55:30	jazoff	the problem with naming the profile worker_pfring is where does it stop?
+2014-09-03 13:55:40	jazoff	do you end up with worker_pfring_2.2 ?
+2014-09-03 14:01:56	soehlert	or could you just do bro, bro-dev, and bro-third or whatever and then have something you set in hiera like: bro::interface: pfring or myricom
+2014-09-03 14:02:00	soehlert	and then one for version too?
+2014-09-03 14:04:04	jazoff	well the problem at the time was we had bro-dev and drought which was also bro development
+2014-09-03 14:04:12	jazoff	but bro-dev was pfring and drought was myricom
+2014-09-03 14:04:15	jazoff	but otherwise 100% the same
+2014-09-03 14:04:31	jazoff	and actually supercell was teh same too, just some needed pfring and some needed myricom
+2014-09-03 14:07:15	soehlert	right but i mean we can name them different things and have them load the same module just do the pfring or myricom. each "cluster" will be uniform amongst itself
+2014-09-03 14:09:51	jazoff	yeahhh i suppose
+2014-09-09 14:43:19	jschipp	btw, that environments still don't seem to be working. relays are still marked as development in /etc/motd (needs to be updated I know) but the changes only were availabled when i pushed to the production branch
+2014-09-09 14:44:03	soehlert	are you making the changes in the file? the WUI does not work to set the environments
+2014-09-09 14:48:35	jazoff	envs seemed to be working for me on the bro boxes
+2014-09-09 14:52:15	soehlert	ya they work for me everywhere else too. i think jschipp forgot to set it properly in the puppet.conf
+2014-09-09 14:52:43	soehlert	hmm nope turns out thats not true
+2014-09-09 14:54:46	jazoff	well. here's what I know...
+2014-09-09 14:55:00	jazoff	when I first ran puppet one some of the bro boxes, they grabbed the prod configs
+2014-09-09 14:55:14	jazoff	after I changed the puppet conf to development, it worked correctly
+2014-09-09 14:55:48	soehlert	i agree, things work just fine for me. i was hoping for jschipp's sake it'd be that easy fix
+2014-09-10 21:01:19	--	irc: disconnected from server
+2014-09-10 21:01:32	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-09-10 21:01:32	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-09-10 21:01:44	--	Mode #puppet [+]
+2014-09-10 21:01:44	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-09-11 09:25:28	 *	soehlert sighs
+2014-09-11 09:25:28	soehlert	ill add squid-sec to the list to fix kerb on
+2014-09-11 10:54:19	jazoff	munin-sec is having isssue stoo
+2014-09-11 11:01:19	soehlert	yup i know that one
+2014-09-11 14:03:14	jschipp	fyi: I parameterized the resolve module, resolv::type: "local" for nagios. Defaults to "normal" otherwise which is the what's there before:
+2014-09-11 14:03:17	jschipp	git show 68b5e1fe40e335bc84c7f40999a646e123961691
+2014-09-25 15:39:16	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-09-30 11:06:01	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-10-03 13:39:47	<--	wardog (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-10-03 13:41:12	-->	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has joined #puppet
+2014-10-07 13:41:19	<--	wraquel (wraquel@hidden-EA35C84E.ncsa.illinois.edu) has quit (Quit: brb)
+2014-10-07 13:42:10	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2014-10-09 16:33:51	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-10-10 16:46:58	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-10-10 16:57:47	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Quit: Changing server)
+2014-10-10 16:59:58	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-10-15 09:07:20	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-10-15 09:09:05	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2014-10-15 09:09:10	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Quit: wraquel)
+2014-10-15 09:09:32	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2014-10-28 10:29:45	soehlert	jschipp: looks like you fixed the sysctl thing. thanks
+2014-10-28 10:38:21	jschipp	np
+2014-10-28 10:38:41	jschipp	i forgot to add the condition, needed a reminder
+2014-10-28 11:12:36	soehlert	can someone help me...i can't figure out why seclogs won't get the archival script and cron file. seclogs is a production server pointed at puppet-sec with role of log and profile of storage. the files exist in production and the manifest should put it there. puppet runs dont fail.
+2014-10-28 11:20:53	jazoff	hmm
+2014-10-28 11:21:40	jazoff	what class are the archival script and cron job in?
+2014-10-28 11:31:48	soehlert	rsyslog::server
+2014-10-28 11:32:15	soehlert	and in the hiera file rsyslog class is applied and rsyslog::type: "server" is set
+2014-10-28 11:38:23	jazoff	hmm
+2014-10-28 11:40:28	jazoff	/etc/motd just says rsyslog
+2014-10-28 11:40:37	jazoff	not rsyslog::server
+2014-10-28 11:40:44	jazoff	oh, right, rsyslog is the class
+2014-10-28 11:41:23	jazoff	hmm
+2014-10-28 11:41:32	jazoff	hieradata/production/log/storage.yaml is empty
+2014-10-28 11:41:53	jazoff	development has a ton of stuff in it though
+2014-10-28 11:47:06	soehlert	wait what?
+2014-10-28 11:47:43	soehlert	its not at all empty for me. and i don't have any changes staged
+2014-10-28 11:47:49	jazoff	hmm
+2014-10-28 11:49:15	jazoff	oh, i was out of date
+2014-10-28 11:51:05	jazoff	ah
+2014-10-28 11:51:10	jazoff	it looks like it is commented out in init.pp
+2014-10-28 11:51:15	jazoff	  #file{"/usr/local/bin/archive.py":
+2014-10-28 11:51:17	jazoff	  #file{"/etc/cron.d/archive":
+2014-10-28 11:52:59	soehlert	are you in production or dev?
+2014-10-28 11:53:07	soehlert	it commented out in dev but not in production
+2014-10-28 11:58:57	jazoff	i see it commented in both
+2014-10-28 12:01:03	soehlert	i do not. and i have no changes staged, but jon just checked and it is commented on his too..
+2014-10-28 12:01:50	jazoff	what does git status say?
+2014-10-28 12:03:17	soehlert	no changes to commit. jon just made the change and pushed it so i'll try to pull it and see where we are
+2014-10-28 12:03:50	soehlert	aaaand now the files are there..ugh
+2014-10-28 12:03:55	soehlert	well whatever its working
+2014-10-28 12:10:32	jazoff	:)
+2014-10-29 13:05:12	--	irc: disconnected from server
+2014-10-29 13:05:25	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-10-29 13:05:25	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-10-29 13:05:37	--	Mode #puppet [+]
+2014-10-29 13:05:37	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-11-04 18:36:36	--	irc: disconnected from server
+2014-11-04 21:22:49	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-11-04 21:22:49	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-11-04 21:23:01	--	Mode #puppet [+]
+2014-11-04 21:23:01	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-11-06 14:58:36	--	wraquel is now known as wardog
+2014-11-10 14:39:09	soehlert	jazoff: so the CA machines (VMs) need to have ntp running for something with the HSMs. I'm trying to think how to handle it. I created an ntp::ca class that gives it the proper config file and I tried creating a common class that had the package and service stuff, but service gets called twice then thanks to our ntp::disable class
+2014-11-10 14:47:15	soehlert	all i can think of to do is pull that out of vmware/common.yaml and put it in bro/common.yaml, log/common.yaml, etc, etc. thoughts?
+2014-11-10 14:55:52	jazoff	hmm
+2014-11-10 14:56:36	jazoff	yeah that's tricky
+2014-11-10 14:56:39	soehlert	and actually that wouldn't work would it?
+2014-11-10 14:56:47	soehlert	because that would apply to everyone.
+2014-11-10 14:57:41	soehlert	maybe some sort of case statement in the ntp class and somehow exclude based on hostname
+2014-11-10 14:58:01	jazoff	maybe.. 
+2014-11-10 14:58:11	jazoff	i think with something like this there isn't going to be a neat solution
+2014-11-10 14:58:36	jazoff	the whole 'all vms should not have ntp except for these 2' ruins the convention
+2014-11-10 14:58:54	soehlert	oh i know it kills the convention.
+2014-11-10 14:59:05	soehlert	but that's just going to have to happen.
+2014-11-10 14:59:51	soehlert	wait could i make hosts yaml files for them and put ntp::ca in there? won't it come first and therefore override the common one? or is it still going to try to do both?
+2014-11-10 15:00:22	jazoff	not sure 
+2014-11-10 15:00:27	jazoff	you mean like with classes: ?
+2014-11-10 15:00:35	jazoff	not sure what happens if you have something twice
+2014-11-10 15:01:56	soehlert	well ya make host specific hiera files and put the ntp::class in there. but i think that would do the same thing it's currently doing. since it's grabbing the ca/common.yaml and the vmware/common.yaml
+2014-11-10 15:02:19	jazoff	yeah
+2014-11-10 15:02:25	jazoff	i guess that works
+2014-11-10 15:03:02	soehlert	well thats the thing, it doesnt work
+2014-11-10 15:07:27	jazoff	oh!
+2014-11-10 15:07:32	jazoff	why not?
+2014-11-10 15:07:52	jazoff	you removed the ntp disable from vmware common right?
+2014-11-10 15:08:38	soehlert	no i didn't i didn't wanna do that yet until i had a plan. removing it from there then screws us for future vms
+2014-11-10 15:09:08	jazoff	hmm ok, i think I see how to fix this
+2014-11-10 15:09:21	jazoff	if we change ntp to be like sshd is and can have ntp::type
+2014-11-10 15:09:29	jazoff	then we can set ntp::type to disable in vmware common
+2014-11-10 15:09:43	jazoff	and set it ca in ca/common
+2014-11-10 15:09:49	soehlert	but that will apply to these vms..
+2014-11-10 15:09:55	jazoff	and because of the order in hiera that will work
+2014-11-10 15:09:56	jazoff	right?
+2014-11-10 15:10:04	soehlert	idk i guess i'll give it a go
+2014-11-10 15:10:24	jazoff	like, you can't override ntp::disable to ntp::ca using hiera
+2014-11-10 15:10:28	jazoff	as far as I know
+2014-11-10 15:10:38	jazoff	since there's no way to do like
+2014-11-10 15:10:41	jazoff	classes:
+2014-11-10 15:10:46	jazoff	- -ntp::disable
+2014-11-10 15:11:05	jazoff	but overriding ntp::type to 'ca' is definitely doable
+2014-11-10 15:11:06	soehlert	right
+2014-11-10 15:11:13	soehlert	ok well ill give that a try thanks
+2014-11-10 15:11:40	jazoff	time for walk #2 :)
+2014-11-10 15:24:20	jazoff	oook
+2014-11-10 15:24:31	soehlert	not working :(
+2014-11-10 15:24:37	jazoff	error?
+2014-11-10 15:25:53	soehlert	no error, can you take a peek and make sure i did it right. it looks good to me, but ya konw it's tough to find errors in your own stuff sometimes
+2014-11-10 15:27:13	jazoff	oh, we need to fix heira.com
+2014-11-10 15:27:22	jazoff	move   - "%{::environment}/virtual/%{::virtual}" up
+2014-11-10 15:28:06	soehlert	how far up?
+2014-11-10 15:28:14	jazoff	well above the role profile
+2014-11-10 15:28:34	soehlert	ok thats what i figured, but that seems like it would be backwards to me, i'll try
+2014-11-10 15:29:04	soehlert	nope
+2014-11-10 15:29:13	soehlert	added vmware_tools though which is weird..
+2014-11-11 15:40:50	soehlert	hey jazoff look over here
+2014-11-11 16:17:43	jazoff	hi
+2014-11-11 16:18:20	jazoff	oh, did we not get the ntp thing working?
+2014-11-11 16:18:57	jazoff	there was a command you could run that would print out a hiera variable for a host.. i forget what it is though
+2014-11-11 16:19:03	jazoff	it was in my shell history on squall
+2014-11-11 16:19:47	soehlert	ya i tried that and every response was 'nil' 
+2014-11-11 16:20:10	soehlert	the other problem im running into is crashplan is restarting and replacing the conf file every time and i cant figure out how to make it stop
+2014-11-11 16:20:29	jazoff	yeah, i had noticed that
+2014-11-11 16:20:50	jazoff	if crashplan wants to change the config you can have puppet only deploy it initially
+2014-11-11 16:21:01	soehlert	but crashplan shouldn't be change the config
+2014-11-11 16:21:12	jazoff	one way to do taht is to push out a foo.cfg.dist file and exec a cp to foo.cfg if foo.cfg does not exist
+2014-11-11 16:21:15	jazoff	ah, but clearly it is :)
+2014-11-11 16:21:24	soehlert	well clearly something is.
+2014-11-11 16:21:45	jazoff	copy the crashplan config to /tmp before puppet runs
+2014-11-11 16:21:47	jazoff	then you can diff it
+2014-11-11 16:22:01	jazoff	or just run that puppet apply -somethingorother that jschipp runs that shows teh diff
+2014-11-11 16:22:08	soehlert	i just did that and i saw things like this: -            <lastModified>1415744001994</lastModified>
+2014-11-11 16:22:08	soehlert	+            <lastModified>1380304885497</lastModified>
+2014-11-11 16:22:15	soehlert	so that's going to always happen basically
+2014-11-11 16:22:23	jazoff	ah
+2014-11-11 16:22:25	jazoff	yep :)
+2014-11-11 16:22:28	soehlert	so your exec cp idea is probably best
+2014-11-11 16:23:26	jazoff	ah, well if it is showing nil for the other thing then the command must be off somehow
+2014-11-11 16:23:32	jazoff	because it should at least show something
+2014-11-11 16:23:38	soehlert	ya i probably did it wrong
+2014-11-11 16:23:46	jazoff	it took me ages to get it to work
+2014-11-11 16:23:46	soehlert	im not sure how to check for ntp::type 
+2014-11-11 16:23:58	soehlert	i tried hiera ntp::type which seemed like the correct way...buuuut
+2014-11-11 16:24:11	jazoff	what is the full comand you are running?
+2014-11-11 16:25:59	soehlert	that was it haha `hiera ntp::type`
+2014-11-11 16:25:59	soehlert	based on the quick look at docs that seemed right but i doubt it is
+2014-11-11 16:26:23	jazoff	oh, it should be something like hiera -c /etc/puppetlabs/puppet/hiera.yaml ntp::type hostname=splunki1.internal.ncsa.edu environment=development
+2014-11-11 16:26:42	soehlert	ahhh
+2014-11-11 16:27:37	soehlert	ok crashplan issue fixed
+2014-11-11 16:33:19	jazoff	ah, it works
+2014-11-11 16:33:24	jazoff	i remembered you need to prefix with ::
+2014-11-11 16:33:34	jazoff	[root@puppet-sec puppet]# hiera  -c /etc/puppetlabs/puppet/hiera.yaml ntp::type ::virtual=vmware ::environment=development
+2014-11-11 16:33:37	jazoff	vm
+2014-11-11 16:34:51	soehlert	aha
+2014-11-11 16:34:54	soehlert	[root@puppet-sec puppet]# hiera  -c /etc/puppetlabs/puppet/hiera.yaml ntp::type ::virtual=vmware ::environment=development ::clientcert="tepid.ncsa.illinois.edu"
+2014-11-11 16:34:54	soehlert	vm
+2014-11-11 16:35:07	soehlert	not sure if that clientcert part is right though i guess
+2014-11-11 16:35:10	jazoff	[root@puppet-sec puppet]# hiera  -c /etc/puppetlabs/puppet/hiera.yaml ntp::type role=ca ::profile=foo ::environment=development
+2014-11-11 16:35:12	jazoff	ca
+2014-11-11 16:35:30	soehlert	ya that can't be right
+2014-11-11 16:35:31	jazoff	clientcert wouldn't come into play
+2014-11-11 16:35:39	jazoff	how so? it looks right
+2014-11-11 16:35:42	soehlert	how do you check based on a certain host then?
+2014-11-11 16:35:54	soehlert	because i just tried it with splunki1-sec.internal.ncsa.edu and it said vm
+2014-11-11 16:35:55	jazoff	i dunno how to do that
+2014-11-11 16:36:07	jazoff	you just need to fill in the variables that the host would be using
+2014-11-11 16:36:17	soehlert	oh right i dindt see your role profile stuff
+2014-11-11 16:37:09	jazoff	http://puppetlabs.com/blog/debugging-hiera
+2014-11-11 16:37:14	jazoff	shows puppet apply -e '$somevar = hiera(foo) notify { $somevar: }'
+2014-11-11 16:37:18	jazoff	which they say may or may not work
+2014-11-11 16:38:53	soehlert	haha wow, may or may not work..
+2014-11-11 16:39:18	jazoff	"Depending on your setup, running this on the agent in question may work."
+2014-11-11 16:39:37	soehlert	ok im seeing another issue
+2014-11-11 16:39:50	soehlert	~/projects/puppet/puppet_configs/hieradata/development (configs) soehlert$ cat virtual/vmware.yaml
+2014-11-11 16:39:50	soehlert	---
+2014-11-11 16:39:50	soehlert	classes:
+2014-11-11 16:39:50	soehlert	- vmware_tools
+2014-11-11 16:39:55	soehlert	from my laptop in git 
+2014-11-11 16:40:06	soehlert	from puppet-sec: [root@puppet-sec puppet]# cat hieradata/development/virtual/vmware.yaml
+2014-11-11 16:40:06	soehlert	---
+2014-11-11 16:40:06	soehlert	classes:
+2014-11-11 16:40:06	soehlert	- vmware_tools
+2014-11-11 16:40:06	soehlert	ntp::type: "vm"
+2014-11-11 16:40:14	soehlert	i tried removing that just for testing
+2014-11-11 16:41:07	jazoff	looks like puppet-sec is just out of data
+2014-11-11 16:41:17	soehlert	out of data? or out of date?
+2014-11-11 16:41:29	soehlert	and it shouldn't be 
+2014-11-11 16:41:33	soehlert	~/projects/puppet/puppet_configs/hieradata/development (configs) soehlert$ git status
+2014-11-11 16:41:33	soehlert	On branch configs
+2014-11-11 16:41:33	soehlert	Your branch is up-to-date with 'origin/configs'.
+2014-11-11 16:41:33	soehlert	nothing to commit, working directory clean
+2014-11-11 16:41:48	jazoff	uhhh
+2014-11-11 16:41:55	jazoff	[root@puppet-sec hieradata]# git status
+2014-11-11 16:41:56	jazoff	# On branch configs
+2014-11-11 16:41:56	jazoff	# Your branch and 'origin/configs' have diverged,
+2014-11-11 16:41:56	jazoff	# and have 81 and 5 different commit(s) each, respectively.
+2014-11-11 16:42:26	jazoff	[root@puppet-sec hieradata]# git pull
+2014-11-11 16:42:26	soehlert	suggesting changes have been made directly on puppet-sec or it just hadn't pulled anything?
+2014-11-11 16:42:27	jazoff	error: Your local changes to 'hiera.yaml' would be overwritten by merge.  Aborting.
+2014-11-11 16:42:48	soehlert	ahh
+2014-11-11 16:42:57	jazoff	you moved the virtual thing up on the server?
+2014-11-11 16:43:12	soehlert	i guess i musta messed that up. i didnt think so but musta been in the wrong window
+2014-11-11 16:43:15	soehlert	oops
+2014-11-11 16:43:17	jazoff	yeah, easy fix
+2014-11-11 16:43:22	soehlert	that would explain why i had to do it again in git today
+2014-11-11 16:44:01	jazoff	all better now
+2014-11-11 16:44:06	soehlert	thanks
+2014-11-11 16:45:34	soehlert	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Hiera type mismatch: expected Array and got NilClass
+2014-11-11 16:45:50	soehlert	oh nvm i think i can fix that
+2014-11-11 16:46:05	jazoff	sounds like you have classes: with nothing after it
+2014-11-11 16:48:09	soehlert	ok that's fixed, but it doesnt look like our idea will work
+2014-11-11 16:48:16	jazoff	oh?
+2014-11-11 16:48:42	soehlert	when i remove the vm::type from virtual/vmware.yaml it shows ca, but when I put that back in virtual/vmware.yaml, it shows vm
+2014-11-11 16:49:24	jazoff	hmm, maybe the order needs to  be the other way
+2014-11-11 16:49:31	jazoff	i forget how hiera works.. need to find the doc on it
+2014-11-11 16:49:34	soehlert	the other way made more sense to me
+2014-11-11 16:49:46	jazoff	is it first wins or last wins?
+2014-11-11 16:50:19	soehlert	i thought it was first
+2014-11-11 16:50:26	soehlert	that's why you do most specific first
+2014-11-11 16:50:28	jazoff	In a normal (priority) lookup, Hiera will stop at the first data source with the requested data and return that value.
+2014-11-11 16:50:33	jazoff	yeah, you're right
+2014-11-11 16:50:43	jazoff	so, right the first time
+2014-11-11 16:51:37	soehlert	yup and now it works as expected :)
+2014-11-11 16:52:42	soehlert	at least it shows the right type anyway..
+2014-11-11 22:35:51	soehlert	just a heads up, i need to take a travel day friday.
+2014-11-13 14:35:30	soehlert	jschipp: nagios-monitor-sec is failing puppet runs
+2014-11-13 14:38:31	soehlert	hmm and lowp cant connect to puppet-sec?
+2014-11-13 15:49:43	jschipp	soehlert: kk, will check on it
+2014-11-13 16:00:32	jschipp	ah, missing cert files for that machine, forgot about that one
+2014-11-13 16:31:14	jschipp	I put in a CSR request
+2014-11-18 18:52:04	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2014-11-19 11:18:20	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-11-21 11:11:27	soehlert	jazoff: can i get a lil puppet help?
+2014-11-21 11:13:23	jazoff	sure
+2014-11-21 11:16:01	soehlert	so icepick wants to start doing qualys scans on our public hosts
+2014-11-21 11:16:08	jazoff	right, the ssh key thing
+2014-11-21 11:16:15	soehlert	i have a class that will add the qualys user and adds the ssh key and all that
+2014-11-21 11:16:21	soehlert	i created a fact looking for a public ip
+2014-11-21 11:16:25	soehlert	and that all works
+2014-11-21 11:16:32	soehlert	just not sure how to only deploy it to public hosts
+2014-11-21 11:16:41	jazoff	ah.. can use hiera for that
+2014-11-21 11:16:51	jazoff	like we did for vmware
+2014-11-21 11:18:44	soehlert	ok that part makes sense. not sure if my manifest is set up in a good way for that though. 
+2014-11-21 11:19:00	soehlert	i need the fact to go to all hosts to check, so that should probably be its own class right?
+2014-11-21 11:20:11	jazoff	oh
+2014-11-21 11:20:16	jazoff	yeah, kind of chicken and the egg there
+2014-11-21 11:21:10	soehlert	i guess i could make the fact be the main qualys class and then do a conditional class on the public ip thing? it will take two runs
+2014-11-21 11:23:00	jazoff	i guess
+2014-11-21 11:24:52	soehlert	any other ideas? i cant think of another
+2014-11-21 11:25:56	jazoff	either works
+2014-11-21 11:26:16	jazoff	if you think we may want to do other public or private only classes in the future, might be worth it to setup hiera now
+2014-11-21 11:26:18	soehlert	either being what?
+2014-11-21 11:26:40	jazoff	either use hiera or have an if statement in the manifest
+2014-11-21 11:26:43	soehlert	i set it up in hiera
+2014-11-21 11:26:43	soehlert	but the fact is what decides if a host is public or private
+2014-11-21 11:26:56	jazoff	ah right, you'll need to have that deployed on all hosts
+2014-11-21 11:26:56	soehlert	so maybe i should just make the fact a separate module..
+2014-11-21 11:27:09	jazoff	hmm
+2014-11-21 11:27:18	jazoff	https://docs.puppetlabs.com/facter/2.3/custom_facts.html#external-facts
+2014-11-21 11:28:21	soehlert	we're not using plugin sync
+2014-11-21 11:28:29	jazoff	ah, that was my next question
+2014-11-21 11:28:34	jazoff	it's not on by default?
+2014-11-21 11:28:44	soehlert	we're on 3.3 still i think
+2014-11-21 11:28:51	jazoff	ah
+2014-11-21 11:28:53	soehlert	upgrading puppet right now seemed like an awful idea
+2014-11-21 11:29:14	soehlert	once i finish up the centos stuff..
+2014-11-21 11:29:44	jazoff	yeah
+2014-11-21 11:29:52	jazoff	we do have the facts class
+2014-11-21 11:29:56	jazoff	which is kinda emtpy
+2014-11-21 11:29:59	jazoff	maybe move the check in there?
+2014-11-21 11:30:06	soehlert	oh really? 
+2014-11-21 11:30:06	soehlert	ya i can do that.
+2014-11-21 11:30:25	soehlert	then that shouyld be on every host and i'll just do qualys in the public.yaml
+2014-11-21 11:31:00	soehlert	how do i tie the public_ip fact to public.yaml in hiera though?
+2014-11-21 11:31:17	jazoff	ooooooh 
+2014-11-21 11:31:25	jazoff	add two facts...
+2014-11-21 11:31:38	jazoff	public_ip_address=141.142.x.y
+2014-11-21 11:31:40	jazoff	public_ip=true
+2014-11-21 11:31:48	jazoff	or whatever, then use public_ip for hiera
+2014-11-21 11:32:20	soehlert	ok i can do that, but i dont understand how public_ip=true ties to the hiera file for public machines
+2014-11-21 11:33:17	jazoff	we would have   - "%{::environment}/public_ip/%{::public_ip}"
+2014-11-21 11:33:27	jazoff	and have true.yaml and false.yaml
+2014-11-21 11:34:26	soehlert	ahhh ok perfect thanks!
+2014-11-21 11:34:37	soehlert	im going to lunch, but i'll knock that out after
+2014-11-21 11:35:17	jazoff	mm food, good idea
+2014-11-21 13:43:57	soehlert	jazoff: do you know if i can do both facts in the same shell script?
+2014-11-21 13:44:35	jazoff	yeah, i think you just echo two lines
+2014-11-21 13:45:20	soehlert	ok i thought the fact was based on the file name wasn't sure
+2014-11-21 14:07:53	soehlert	sweet: public_ip  true
+2014-11-21 14:07:53	soehlert	public_ip_addr  141.142.148.13
+2014-11-21 14:07:57	soehlert	from the dashboard
+2014-11-21 14:09:47	jazoff	cool:)
+2014-11-21 14:10:58	soehlert	and on an internal only one: public_ip false
+2014-11-21 14:11:03	soehlert	seems to work thanks man
+2014-11-21 14:12:23	soehlert	and the qualys works in conjunction
+2014-11-21 14:12:53	jazoff	cool :)
+2014-12-03 17:18:08	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Quit: Changing server)
+2014-12-03 17:18:09	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-12-03 17:18:26	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Quit: leaving)
+2014-12-03 17:19:34	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2014-12-11 11:41:57	jschipp	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Duplicate declaration: Package[pam_krb5] is already declared in file /etc/puppetlabs/puppet/environments/development/modules/nagios/manifests/server_web.pp:50; cannot redeclare at /etc/puppetlabs/puppet/environments/development/modules/packages/manifests/init.pp:11 on node nagios2-sec.internal.ncsa.edu
+2014-12-11 11:42:27	jschipp	just noticed this today, and I'm unable to find pam_krb5 in the configs repo
+2014-12-11 11:44:27	jschipp	I was able to run puppet on this host yesterday and I don't see anything jumping out in git log
+2014-12-11 11:45:33	soehlert	its being added by the packages module.
+2014-12-11 11:45:52	soehlert	in hieradate/development/common.yaml
+2014-12-11 11:45:52	soehlert	i moved it from kickstart to packages yesterday
+2014-12-11 11:47:18	jschipp	ah, my repo wasn't up to date so I didn't see those changes
+2014-12-11 11:47:40	soehlert	ya and i'd prefer to have it in packages so all machines get it. can you rmeove it from nagios?
+2014-12-11 11:49:00	jschipp	done
+2014-12-11 11:49:16	soehlert	perfect. sorry didnt know it was in there
+2014-12-11 11:50:04	jschipp	no worries
+2014-12-11 11:50:49	jschipp	are you seeing failures for cups-lib? 
+2014-12-11 11:50:50	jschipp	Error: Execution of '/bin/rpm -e cups-libs-1.4.2-50.el6_4.5.x86_64' returned 1: error: Failed dependencies:
+2014-12-11 11:50:52	jschipp	        libcups.so.2()(64bit) is needed by (installed) gtk2-2.20.1-4.el6.x86_64
+2014-12-11 11:51:04	soehlert	nope i havent seen that anywhere yet
+2014-12-11 11:52:30	soehlert	errr wait
+2014-12-11 11:52:30	soehlert	maybe i have..
+2014-12-11 11:53:04	soehlert	yup hah. oops
+2014-12-11 11:53:04	soehlert	all the dev servers.
+2014-12-11 11:53:17	jschipp	kk
+2014-12-11 11:54:06	soehlert	hmm im inclined to say we dont need gtk2 but im not sure
+2014-12-11 11:55:52	soehlert	or just leave cups-libs
+2014-12-11 11:55:52	soehlert	cups was really what i wanted gone..
+2014-12-11 11:59:14	jschipp	i doubt we need gtk2, that's a library for GUI's
+2014-12-11 12:04:01	jschipp	[root@nagios2-sec ~]# rpm -q --whatrequires gtk2
+2014-12-11 12:04:02	jschipp	no package requires gtk2
+2014-12-11 12:05:20	jschipp	none of my system are returning anything but tepid and supercell are for like the GUI firewall manager
+2014-12-11 12:06:32	jschipp	wut? rhythmbox on supercell, lots of stuff installed there taht shouldn't be there lol
+2014-12-11 12:14:55	soehlert	ya my concern is with the CAs mostly. i know terry loves his GUIs
+2014-12-11 12:14:55	soehlert	but guis are installed on cebrerus and bwbh machiens too
+2014-12-11 12:14:55	soehlert	and ya supercell was installed long ago by hand. that still needs converted doesn't it jazoff ?
+2014-12-11 12:40:22	jschipp	aren't those all in the ncsa_production branch?
+2014-12-11 12:40:46	jschipp	well I guess tepid may not be
+2014-12-11 12:44:42	soehlert	they are, but i want this to remain the same throughout the branches. i dont want to do things differently in dev unless there are plans on moving it to the rest
+2014-12-11 13:04:03	jazoff	soehlert: yeah, it does
+2014-12-11 13:04:27	soehlert	what does?
+2014-12-11 13:04:38	soehlert	oh nvm
+2014-12-11 13:04:46	soehlert	got it
+2014-12-11 13:04:46	soehlert	have you figured out the plan for that/
+2014-12-11 13:32:48	jazoff	oh..
+2014-12-11 13:33:09	jazoff	I wanted to hold off until the new splunk server was done, then finish puppetizing the splunk forwarder config
+2014-12-11 13:33:15	jazoff	since that's the main thing that isn't in puppet
+2014-12-11 13:35:22	soehlert	ahhh right thats what it was
+2014-12-18 02:19:08	--	irc: disconnected from server
+2014-12-18 02:33:01	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-12-18 02:33:01	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-12-18 02:33:13	--	Mode #puppet [+]
+2014-12-18 02:33:13	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-12-18 04:17:09	--	irc: disconnected from server
+2014-12-18 04:17:21	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-12-18 04:17:21	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-12-18 04:17:33	--	Mode #puppet [+]
+2014-12-18 04:17:33	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-12-31 00:34:46	--	irc: disconnected from server
+2014-12-31 00:34:59	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2014-12-31 00:34:59	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2014-12-31 00:35:11	--	Mode #puppet [+]
+2014-12-31 00:35:11	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2014-12-31 11:20:46	<--	wardog (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Quit: happy new year!)
+2014-12-31 11:21:35	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2015-01-26 13:49:50	--	irc: disconnected from server
+2015-01-26 13:50:03	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-01-26 13:50:03	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-01-26 13:50:15	--	Mode #puppet [+]
+2015-01-26 13:50:15	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-01-26 18:37:41	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2015-01-27 11:33:16	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2015-01-27 20:18:25	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Input/output error)
+2015-01-28 08:34:22	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2015-02-03 09:44:02	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Ping timeout)
+2015-02-03 09:44:02	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2015-02-03 09:44:02	--	irc: disconnected from server
+2015-02-03 09:45:35	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-03 09:45:35	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-03 09:45:47	--	Mode #puppet [+]
+2015-02-03 09:45:47	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-04 13:15:22	<--	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has quit (Ping timeout)
+2015-02-04 13:42:52	-->	jschipp (jschipp@hidden-E95C13A8.ncsa.illinois.edu) has joined #puppet
+2015-02-09 18:02:10	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Ping timeout)
+2015-02-09 18:05:01	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2015-02-11 23:27:36	--	irc: disconnected from server
+2015-02-11 23:27:49	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-11 23:27:49	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-11 23:28:01	--	Mode #puppet [+]
+2015-02-11 23:28:01	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-12 00:04:13	--	irc: disconnected from server
+2015-02-12 00:04:25	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-12 00:04:25	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-12 00:04:37	--	Mode #puppet [+]
+2015-02-12 00:04:37	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-12 15:57:55	soehlert	jazoff: you around? having weird puppet issues and i just cant figure it out
+2015-02-12 15:58:13	jazoff	hi
+2015-02-12 15:58:49	soehlert	so there was an extraneous route on puppet-sec causing issues with nagios and just didnt need to be there since puppet-sec is dual homed
+2015-02-12 15:58:49	soehlert	buuuut since removing it, internal only hosts cant do a run
+2015-02-12 15:59:11	jazoff	because of how dns resolves
+2015-02-12 15:59:14	soehlert	they get time out errors and doing tcpdumps on puppetsec shows puppet-sec not even sending anything back to that ip
+2015-02-12 15:59:31	jazoff	there needs to be a puppet-sec.internal.ncsa.edu
+2015-02-12 15:59:35	jazoff	that resolves to the 10. address
+2015-02-12 15:59:52	jazoff	i think
+2015-02-12 16:01:33	soehlert	so get that set up and piont all internal only hosts to that instead of the public ip?
+2015-02-12 16:01:42	soehlert	so i'll have to reissue all certs for private hosts
+2015-02-12 16:01:51	jazoff	er.. no...
+2015-02-12 16:02:09	jazoff	actually, since we can just change the puppet.conf that would work too..
+2015-02-12 16:02:39	jazoff	but puppet-sec.internal.ncsa.edu still doesnt exist
+2015-02-12 16:02:42	jazoff	so need to get that setup
+2015-02-12 16:03:38	jazoff	we setup the resolv module in puppet to put internal.ncsa.edu first if the box is on teh 10. network
+2015-02-12 16:03:54	jazoff	so in theory you could just use 'puppet' on all hosts
+2015-02-12 16:04:50	soehlert	ok well i put in a request for that A record
+2015-02-12 16:05:02	soehlert	ahhh forgot about the resolv module
+2015-02-12 16:07:27	jazoff	you can see if you connect directly from an internal box to the 10. address of puppet-sec it works ok
+2015-02-12 16:07:38	soehlert	yes i did see that
+2015-02-12 16:08:01	jazoff	and if you run tcpdump on puppet-sec and look at both eth interfaces you will see why the other way doesnt work
+2015-02-12 16:08:06	jazoff	dog walk time :)
+2015-02-12 16:08:18	soehlert	ya i already noticed that, but i didnt know the fix. 
+2015-02-12 16:15:15	jazoff	brbrrrrrr cold
+2015-02-12 16:15:23	soehlert	haha how cold?
+2015-02-12 16:16:14	jazoff	42 but really windy
+2015-02-12 16:16:24	jazoff	was 60 yesterday :)
+2015-02-12 16:16:58	soehlert	ughh this is why I'm ready for next week. Get some of that San Fran weather. Its 19 here
+2015-02-12 16:17:48	jazoff	:)
+2015-02-12 16:18:14	jazoff	SF was funny when i was there in OCT.. everyone walking around in jackets and scarves and I was in shorts and a t-shirt
+2015-02-12 16:18:31	jazoff	though I mentioned that to my friend and he said its because the temprature can really vary from one side to the other
+2015-02-12 16:20:03	soehlert	Hah. I think it's funny how people adapt. My sister obviously grew up with me by Chi. Then after college moved to Miami and now Houston. When I was in Hou last (Oct) it was low 60s. I was in shorts and a tshirt and she was wearing a full blown coat
+2015-02-12 16:20:27	jazoff	ever been to florida?
+2015-02-12 16:20:36	jazoff	they think 65 is the end of the world
+2015-02-12 16:20:40	soehlert	yup i was in miami a few times and then a bunch when i was little
+2015-02-12 16:20:52	soehlert	haha ya i saw parkas and scarves when it was in the upper 50s there once.
+2015-02-12 16:20:54	jazoff	ah well more old people florida
+2015-02-12 16:21:01	soehlert	i went surfing that day no shirt and boardshorts
+2015-02-13 13:37:20	soehlert	jazoff: puppet-sec has an internal hostname and it still fails.
+2015-02-13 13:50:05	jazoff	what hostname is in the puppet.conf file?
+2015-02-13 13:50:25	jazoff	puppet-sec or the full non-public hostname?
+2015-02-13 13:55:11	soehlert	puppet-sec.ncsa.illinois.edu
+2015-02-13 14:01:29	jazoff	change to just puppet-sec
+2015-02-13 14:01:45	jazoff	though, just realized we may run into cert problems
+2015-02-13 14:01:49	jazoff	but try that
+2015-02-13 14:01:57	soehlert	ya thats what i was trying to say yeseterday
+2015-02-13 14:02:01	jazoff	that'll fix the tcp problem
+2015-02-13 14:02:05	jazoff	im not sure if it will care
+2015-02-13 14:02:14	jazoff	since it trusts the cert 
+2015-02-13 14:18:07	soehlert	it does seem we've avoided cert issues
+2015-02-13 14:23:27	jazoff	:)
+2015-02-13 14:23:41	soehlert	now to just adjust that on all internal only hosts...
+2015-02-18 10:06:39	<--	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has quit (Quit: leaving)
+2015-02-18 10:07:48	-->	wraquel (wraquel@hidden-3819C22F.ncsa.illinois.edu) has joined #puppet
+2015-02-19 10:28:04	--	irc: disconnected from server
+2015-02-19 10:28:17	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-19 10:28:17	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-19 10:28:29	--	Mode #puppet [+]
+2015-02-19 10:28:29	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-24 23:40:04	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-24 23:40:04	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-24 23:40:08	--	Mode #puppet [+]
+2015-02-24 23:40:08	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-25 10:47:31	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-25 10:47:31	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-25 10:47:35	--	Mode #puppet [+]
+2015-02-25 10:47:35	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-25 12:28:24	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-25 12:28:24	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-25 12:28:28	--	Mode #puppet [+]
+2015-02-25 12:28:28	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-27 15:46:20	jschipp	is there a way to notify an exec type in a difference class?
+2015-02-27 15:48:24	soehlert	hmmm not sure. could try it, would probably be something like this
+2015-02-27 15:48:45	soehlert	notify => Exec["classname::exec"]
+2015-02-27 15:54:51	jschipp	can't find it then, thinking I may have inherit the class, then may work
+2015-02-27 15:55:17	soehlert	ya that might do it. makes sense to me anyways
+2015-02-27 15:56:21	jazoff	hmm.. i dont hink you need to qualify it
+2015-02-27 15:57:09	jazoff	notify => Exec["nameofexec"] should be fine
+2015-02-27 15:57:57	soehlert	i assume you mean after you've inherit it?
+2015-02-27 15:59:09	jazoff	i mean, you can do it from a completely different file
+2015-02-27 15:59:47	soehlert	but couldnt you have multiple execs with the same name then?
+2015-02-27 16:00:39	jazoff	correct
+2015-02-27 16:00:44	jazoff	you can't have any resouces with the same name
+2015-02-27 16:01:18	soehlert	in the same file. but say in squid I could have an exec called copy and i could have one called copy in ssh right?
+2015-02-27 16:01:25	soehlert	or is that what you mean you cant double up on?
+2015-02-27 16:01:32	jazoff	nope
+2015-02-27 16:01:42	jazoff	or yes, you can't have two Exec["copy"]
+2015-02-27 16:02:11	soehlert	no i mean like this from the squid/manifests/init.pp
+2015-02-27 16:02:24	soehlert	exec{"reload":
+2015-02-27 16:02:32	soehlert	so no other module can now use an exec named reload?
+2015-02-27 16:03:53	jazoff	right
+2015-02-27 16:04:02	soehlert	ahhh ok
+2015-02-27 16:04:06	jazoff	you should use exec {"reload-squid" or such
+2015-02-27 16:04:15	soehlert	i should probably rename it squid reload or something then
+2015-02-27 17:00:25	jschipp	thanks
+2015-02-28 02:46:09	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-28 02:46:09	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-28 02:46:13	--	Mode #puppet [+]
+2015-02-28 02:46:13	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-28 03:00:24	--	irc: disconnected from server
+2015-02-28 03:00:56	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-28 03:00:56	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-28 03:01:00	--	Mode #puppet [+]
+2015-02-28 03:01:00	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-28 03:01:48	--	irc: disconnected from server
+2015-02-28 03:02:01	-->	soehlert (soehlert@hidden-EF13FB3B.hsd1.il.comcast.net) has joined #puppet
+2015-02-28 03:02:01	--	Channel #puppet: 4 nicks (0 ops, 0 halfops, 0 voices, 4 normals)
+2015-02-28 03:02:05	--	Mode #puppet [+]
+2015-02-28 03:02:05	--	Channel created on Tue, 04 Feb 2014 20:39:53
+2015-02-28 03:02:14	--	irc: disconnected from server
