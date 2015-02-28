@@ -7,3 +7,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 alias scphome='scp -i ~/.ssh/server'
 alias trw='tmux rename-window'
 alias tmux='tmux -2'
+
+# Autocomplete hostnames from ssh config
+complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
