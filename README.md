@@ -8,7 +8,7 @@
         ssh-add ~/.ssh/bitbucket
 
 ## Clone dotfiles repo
-        git clone git@bitbucket.org:soehlert21/dotfiles.git
+        cd; git clone git@bitbucket.org:soehlert21/dotfiles.git
 
 ## Vim setup
         cd dotfiles; stow vim
