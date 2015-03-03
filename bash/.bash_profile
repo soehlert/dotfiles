@@ -37,6 +37,10 @@ function http() {
     curl http://httpcode.info/$1
 }
 
+function ext_ip(){
+  curl icanhazip.com
+}
+
 parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -57,6 +61,7 @@ ssh() {
 	if ! ssh-add -l >/dev/null 2>-; then    
 		ssh-add ~/.ssh/ubuntuserver  
     ssh-add ~/.ssh/bitbucket
+    ssh-add ~/.ssh/soehlert_ocean
 	fi  
 	/usr/bin/ssh "$@"
 }
