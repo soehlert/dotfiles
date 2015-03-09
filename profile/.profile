@@ -8,5 +8,12 @@ alias scphome='scp -i ~/.ssh/server'
 alias trw='tmux rename-window'
 alias tmux='tmux -2'
 
+# Show/hide hidden files in Finder
+alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
 # Autocomplete hostnames from ssh config
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
