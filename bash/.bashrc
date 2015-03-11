@@ -59,12 +59,12 @@ fi
 
 # ssh become a function, adding identity to agent when needed
 ssh() {  
-	if ! ssh-add -l >/dev/null 2>-; then    
-		ssh-add ~/.ssh/ubuntuserver  
+  if ! ssh-add -l >/dev/null 2>-; then    
+    ssh-add ~/.ssh/id_rsa
     ssh-add ~/.ssh/bitbucket
     ssh-add ~/.ssh/soehlert_ocean
-	fi  
-	/usr/bin/ssh "$@"
+  fi  
+  /usr/bin/ssh "$@"
 }
 export -f ssh
 
