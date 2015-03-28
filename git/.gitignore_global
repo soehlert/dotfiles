@@ -35,9 +35,22 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
--
+*-
 
 # swp files #
 #############
 .swp
 .gitignore
+
+# Vagrant #
+###########
+.vagrant/
+
+# Python #
+##########
+bin/
+build/
+include/
+lib/
+local/
+.pyc
