@@ -86,9 +86,10 @@ set smartcase
 map Q gq
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+" annoying as shit
+"if has('mouse')
+"  set mouse=a
+"endif
 
 " do not history when leavy buffer
 set hidden
