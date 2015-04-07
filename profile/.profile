@@ -7,7 +7,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 alias scphome='scp -i ~/.ssh/server'
 alias trw='tmux rename-window'
 alias tmux='tmux -2'
-alias ncsa_build='docker run -v `pwd`:/packages -v /Users/soehlert/projects/build_packages:/build_stuff --rm -t -i ncsa_builder'
+alias ncsa_build='docker run -v /Users/soehlert/projects/packages:/packages -v /Users/soehlert/projects/build_packages:/build_stuff --rm -t -i ncsa_builder'
 
 # Show/hide hidden files in Finder
 alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
