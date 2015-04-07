@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/soehlert/projects/puppet/puppet/modules/polo'
 let g:netrw_dirhist_2='/Users/soehlert/projects/puppet/modules/smtp/manifests'
 let g:netrw_dirhist_3='/Users/soehlert/projects/puppet/modules/rsyslog'
+let g:netrw_dirhist_4='/Users/soehlert/projects/puppet-configs/hieradata/development'
