@@ -48,27 +48,7 @@ parse_git_branch() {
 # Set up terminal for git
 PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 
-# start ssh agent and add relevant keys
-# start agent and set environment variables, if needed
-#agent_started=0
-#if ! env | grep -q SSH_AGENT_PID >/dev/null; then  
-#	echo "Starting ssh agent"  
-#	eval $(ssh-agent -s)  
-#	agent_started=1
-#fi
-
-# ssh become a function, adding identity to agent when needed
-#ssh() {  
-#  if ! ssh-add -l >/dev/null 2>-; then    
-#    ssh-add ~/.ssh/id_rsa
-#    ssh-add ~/.ssh/bitbucket
-#    ssh-add ~/.ssh/soehlert_ocean
-#  fi  
-#  /usr/bin/ssh "$@"
-#}
-#export -f ssh
-
 # source ~/.profile, if available
-if [[ -r ~/.profile ]]; then  
-	. ~/.profile
+if [[ -r ~/.profile ]]; then
+  . ~/.profile
 fi
