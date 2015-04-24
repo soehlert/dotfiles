@@ -128,6 +128,13 @@ let g:did_UltiSnips_vim_after = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" jedi-vim
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+
 "
 " Basic shortcuts definitions
 "  most in visual mode / selection (v or ⇧ v)
