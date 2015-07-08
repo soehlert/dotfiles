@@ -20,15 +20,18 @@ alias sudo='sudo '
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
 
 # virtualenvs
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=~/.virtualenvs
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # start ssh agent and add relevant keys
 # start agent and set environment variables, if needed
 agent_started=0
-if ! env | grep -q SSH_AGENT_PID >/dev/null; then
+if ! env | grep -q SSH_AGENT_PID >/dev/null; 
+if 
+then
   echo "Starting ssh agent"
   eval $(ssh-agent -s)
+  ssh-add ~/.ssh/bitbucket
   agent_started=1
 fi
 
@@ -36,7 +39,6 @@ fi
 ssh() {
   if ! ssh-add -l >/dev/null 2>-; then
     ssh-add ~/.ssh/id_rsa
-    ssh-add ~/.ssh/bitbucket
     ssh-add ~/.ssh/soehlert_ocean
   fi
   /usr/bin/ssh "$@"
