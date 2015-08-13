@@ -38,7 +38,6 @@ fi
 ssh() {
   if ! ssh-add -l >/dev/null 2>-; then
     ssh-add ~/.ssh/id_rsa
-    ssh-add ~/.ssh/soehlert_ocean
   fi
   /usr/bin/ssh "$@"
 }
