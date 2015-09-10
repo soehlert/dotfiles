@@ -30,7 +30,7 @@ if ! env | grep -q SSH_AGENT_PID >/dev/null;
 then
   echo "Starting ssh agent"
   eval $(ssh-agent -s)
-  ssh-add ~/.ssh/bitbucket
+  ssh-add ~/.ssh/id_rsa
   agent_started=1
 fi
 
