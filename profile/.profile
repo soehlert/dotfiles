@@ -25,23 +25,23 @@ complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]
 
 # start ssh agent and add relevant keys
 # start agent and set environment variables, if needed
-agent_started=0
-if ! env | grep -q SSH_AGENT_PID >/dev/null;
-then
-  echo "Starting ssh agent"
-  eval $(ssh-agent -s)
-  ssh-add ~/.ssh/id_rsa
-  agent_started=1
-fi
+#agent_started=0
+#if ! env | grep -q SSH_AGENT_PID >/dev/null;
+#then
+#  echo "Starting ssh agent"
+#  eval $(ssh-agent -s)
+#  ssh-add ~/.ssh/id_rsa
+#  agent_started=1
+#fi
 
 # ssh become a function, adding identity to agent when needed
-ssh() {
-  if ! ssh-add -l >/dev/null 2>-; then
-    ssh-add ~/.ssh/id_rsa
-  fi
-  /usr/bin/ssh "$@"
-}
-export -f ssh
+#ssh() {
+#  if ! ssh-add -l >/dev/null 2>-; then
+#    ssh-add ~/.ssh/id_rsa
+#  fi
+#  /usr/bin/ssh "$@"
+#}
+#export -f ssh
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
