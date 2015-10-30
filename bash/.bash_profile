@@ -50,3 +50,4 @@ PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 if [[ -r ~/.profile ]]; then  
 	. ~/.profile
 fi
+
