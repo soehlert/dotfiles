@@ -1,4 +1,6 @@
-export PATH=$PATH:/opt/local/bin/:~/.local/bin
+export PATH=/home/soehlert/projects/ansible/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/soehlert/.local/bin:/home/soehlert/bin:/opt/local/bin/:~/.local/bin
+export PYTHONPATH=/home/soehlert/projects/ansible/lib:
+export MANPATH=/home/soehlert/projects/ansible/docs/man:
 export EDITOR=vim
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
