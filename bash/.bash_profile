@@ -2,6 +2,7 @@ export PATH=/home/soehlert/projects/ansible/bin:/usr/local/bin:/usr/bin:/usr/loc
 export PYTHONPATH=/home/soehlert/projects/ansible/lib:
 export MANPATH=/home/soehlert/projects/ansible/docs/man:
 export ANSIBLE_INVENTORY=~/projects/ansible-configs/ansible_hosts
+export ANSIBLE_HOST_KEY_CHECKING=False
 export EDITOR=vim
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
