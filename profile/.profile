@@ -4,7 +4,6 @@ export MANPATH=/Users/soehlert/repos/ansible/docs/man:
 
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-source /usr/local/bin/virtualenvwrapper.sh
 
 # Laptop aliases
 alias scphome='scp -i ~/.ssh/server'

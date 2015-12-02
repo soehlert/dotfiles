@@ -1,5 +1,5 @@
 export TERM=xterm-256color
-export PATH=$PATH:/opt/local/bin/:~/.local/bin:~/ansible/bin:/opt/local/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
+export PATH=$PATH:/opt/local/bin:~/.local/bin:~/ansible/bin:/opt/local/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin
 export PYTHONPATH=/Users/soehlert/ansible/lib:
 export MANPATH=/Users/soehlert/ansible/docs/man:
 export EDITOR=vim
