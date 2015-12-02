@@ -1,4 +1,3 @@
-export PATH=/Users/soehlert/repos/ansible/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/opt/local/bin/:/Users/soehlert/.local/bin
 export PYTHONPATH=/Users/soehlert/repos/ansible/lib:
 export MANPATH=/Users/soehlert/repos/ansible/docs/man:
 
