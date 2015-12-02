@@ -8,10 +8,10 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/UltiSnips/
 let g:rehash256 = 1
-call pathogen#infect()
+"call pathogen#infect()
 call vundle#rc()
-Bundle 'gmarik/vundle'
-
+Bundle 'gmarik/vundle.vim'
+Bundle 'pearofducks/ansible-vim'
 Bundle 'tpope/vim-surround'
 Bundle 'gcmt/breeze.vim'
 Bundle 'kien/ctrlp.vim'
