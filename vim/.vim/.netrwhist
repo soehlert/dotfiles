@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/soehlert/projects/puppet/modules/bastion'
 let g:netrw_dirhist_2='/Users/soehlert/projects/puppet/modules/mount_nfs'
 let g:netrw_dirhist_3='/Users/soehlert/Downloads/bhr-ansible/drg'
+let g:netrw_dirhist_4='/Users/soehlert/projects/osx-ansible/group_vars'
+let g:netrw_dirhist_5='/Users/soehlert/projects/osx-ansible/roles/user'
+let g:netrw_dirhist_6='/Users/soehlert/projects/osx-ansible/group_vars'
+let g:netrw_dirhist_7='/Users/soehlert/dotfiles/proxy/.config'

@@ -1,4 +1,4 @@
-export PATH=$PATH:/opt/local/bin/:~/.local/bin
+export PATH=$PATH:/opt/local/bin:~/.local/bin
 export EDITOR=vim
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
