@@ -1,9 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_1='/Users/soehlert/projects/puppet/modules/bastion'
-let g:netrw_dirhist_2='/Users/soehlert/projects/puppet/modules/mount_nfs'
-let g:netrw_dirhist_3='/Users/soehlert/projects/ansible/roles/user/tasks'
-let g:netrw_dirhist_4='/Users/soehlert/projects/ansible/roles/user/files'
-let g:netrw_dirhist_5='/Users/soehlert/projects/ansible/group_vars'
-let g:netrw_dirhist_6='/Users/soehlert/projects/ansible/roles/plexReport'
-let g:netrw_dirhist_7='/Users/soehlert/projects/ansible/roles/packages'
-let g:netrw_dirhist_8='/Users/soehlert/dotfiles/vim/.vim'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/soehlert/projects/osx-ansible/roles/osx_base'
