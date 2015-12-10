@@ -1,5 +1,6 @@
 export TERM=xterm-256color
-export PATH=$PATH:/opt/local/bin/:~/.local/bin
+export PYTHONPATH=/Users/soehlert/ansible/lib:
+export MANPATH=/Users/soehlert/ansible/docs/man:
 export EDITOR=vim
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
