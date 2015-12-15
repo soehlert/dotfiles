@@ -1,5 +1,4 @@
 export PYTHONPATH=/Users/soehlert/repos/ansible/lib:
-export PIP_REQUIRE_VIRTUALENV=true
 export MANPATH=/Users/soehlert/repos/ansible/docs/man:
 export SSH_AUTH_SOCK=/Users/soehlert/.gnupg/S.gpg-agent.ssh
 
