@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =1
+<<<<<<< HEAD
+let g:netrw_dirhist_1='/Users/soehlert/projects/osx-ansible/roles/hazel'
+=======
 let g:netrw_dirhist_1='/Users/soehlert/projects/osx-ansible/roles/osx_base'
+>>>>>>> e33e065ee9fc7cf61264f9c1921c5de0038f9f07
