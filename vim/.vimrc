@@ -25,6 +25,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'bling/vim-airline'
 Bundle 'airblade/vim-gitgutter'
+Plugin 'rizzatti/dash.vim'
 
 " Color Themes
 Bundle 'flazz/vim-colorschemes'
