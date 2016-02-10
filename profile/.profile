@@ -28,7 +28,9 @@ if ! env | grep -q SSH_AGENT_PID >/dev/null;
 then
   echo "Starting ssh agent"
   eval `ssh-agent -s`
-  ssh-add ~/.ssh/id_rsa
+  ssh-add ~/.ssh/ansible
+  ssh-add ~/.ssh/bitbucket
+  ssh-add ~/.ss/github
   agent_started=1
 fi
 
