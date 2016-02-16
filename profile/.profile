@@ -21,19 +21,6 @@ alias sudo='sudo '
 # Autocomplete hostnames from ssh config
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
 
-# start ssh agent and add relevant keys
-# start agent and set environment variables, if needed
-agent_started=0
-if ! env | grep -q SSH_AGENT_PID >/dev/null;
-then
-  echo "Starting ssh agent"
-  eval `ssh-agent -s`
-  ssh-add ~/.ssh/ansible
-  ssh-add ~/.ssh/bitbucket
-  ssh-add ~/.ss/github
-  agent_started=1
-fi
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
