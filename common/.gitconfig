@@ -1,0 +1,28 @@
+[user]
+  name  = Sam Oehlert
+  email = soehlert@illinois.edu
+[core]
+  editor       = vim
+  excludesfile = /Users/sam/.gitignore_global
+  autocrlf     = false
+  safecrlf     = true
+[color]
+  ui = true
+[alias]
+  co     = checkout
+  c      = commit
+  st     = status
+  br     = branch
+  dd     = !git diff -R development
+  dp     = !git diff -R production
+  dn     = !git diff -R ncsa_production
+  cd     = !git checkout development
+  cp     = !git checkout production
+  cn     = !git checkout ncsa_production
+  hist   = log --pretty= format:'%h %ad | %s%d [%an]' --graph --date = short
+  type   = cat-file -t
+  dump   = cat-file -p
+  deploy = !git checkout production && git pull && git merge development && git push && git checkout development
+[push]
+	default = tracking
+
