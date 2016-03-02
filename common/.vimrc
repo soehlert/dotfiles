@@ -24,6 +24,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Bundle 'airblade/vim-gitgutter'
 Plugin 'rizzatti/dash.vim'
 
