@@ -13,15 +13,13 @@
   c      = commit
   st     = status
   br     = branch
-  dd     = !git diff -R development
-  dp     = !git diff -R production
-  dn     = !git diff -R ncsa_production
-  cd     = !git checkout development
-  cp     = !git checkout production
-  cn     = !git checkout ncsa_production
+  dp     = !git diff -R playground
+  dm     = !git diff -R master
+  cp     = !git checkout playground
+  cm     = !git checkout master
   hist   = log --pretty= format:'%h %ad | %s%d [%an]' --graph --date = short
   type   = cat-file -t
   dump   = cat-file -p
-  deploy = !git checkout production && git pull && git merge development && git push && git checkout development
+  deploy = !git checkout master && git pull && git merge --no-ff --log playground && git push && git checkout playground
 [push]
-	default = simple
+  default = simple
