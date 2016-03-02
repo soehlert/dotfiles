@@ -20,6 +20,8 @@
   hist   = log --pretty= format:'%h %ad | %s%d [%an]' --graph --date = short
   type   = cat-file -t
   dump   = cat-file -p
+  play   = !git checkout playground && git pull && git merge --no-ff --log $1
   deploy = !git checkout master && git pull && git merge --no-ff --log playground && git push && git checkout playground
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 [push]
   default = simple
