@@ -1,6 +1,6 @@
 [user]
   name  = Sam Oehlert
-  email = soehlert@illinois.edu
+  email = sam.oehlert@gmail.com
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global
@@ -24,5 +24,4 @@
   dump   = cat-file -p
   deploy = !git checkout production && git pull && git merge development && git push && git checkout development
 [push]
-	default = tracking
-
+	default = simple
