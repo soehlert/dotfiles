@@ -30,6 +30,12 @@ parse_git_branch() {
 # Set up terminal for git
 PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 
+# add epass token if present
+if epass-list;
+then
+  epass-add
+fi
+
 # source ~/.profile, if available
 if [[ -r ~/.profile ]]; then
   . ~/.profile
