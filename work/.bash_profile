@@ -1,4 +1,4 @@
-export PATH=~/soehlert/projects/ansible/bin:~/soehlert/scripts/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:~/soehlert/.local/bin:~/soehlert/bin:/opt/local/bin:~/.local/bin
+export PATH=~/projects/ansible/bin:~/scripts/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:~/.local/bin:~/bin:/opt/local/bin:~/.local/bin
 export PYTHONPATH=/home/soehlert/projects/ansible/lib:
 export MANPATH=/home/soehlert/projects/ansible/docs/man:
 export ANSIBLE_HOST_KEY_CHECKING=False
