@@ -36,8 +36,8 @@ then
   if [ ! -z "$SSH_AUTH_SOCK" ] ;
   then
     eval `ssh-agent`
+    epass-add
   fi
-  epass-add
 fi
 
 # source ~/.profile, if available
