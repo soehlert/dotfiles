@@ -31,7 +31,7 @@ parse_git_branch() {
 PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 
 # add epass token if present
-if epass-list 2>/dev/null;
+if [ -z "$SSH_AUTH_SOCK" ] && [epass-list 2>/dev/null] ;
 then
   eval `ssh-agent`
   epass-add
