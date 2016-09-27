@@ -13,6 +13,9 @@ shopt -s nocaseglob
 #############
 alias ll='ls -al'
 alias hidden='ls -al | grep "^\."'
+alias epass-add='ssh-add -s /usr/local/lib/opensc-pkcs11.so'
+alias epass-list='pkcs15-tool --list-keys --reader 0'
+alias epass-rm='ssh-add -e /usr/local/lib/opensc-pkcs11.so'
 
 # FUNCTIONS
 #############
