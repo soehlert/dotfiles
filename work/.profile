@@ -3,7 +3,7 @@ source ~/scripts/django_completion
 
 export PYTHONPATH=/Users/soehlert/repos/ansible/lib:
 export MANPATH=/Users/soehlert/repos/ansible/docs/man:
-export SSH_AUTH_SOCK=/Users/soehlert/.gnupg/S.gpg-agent.ssh
+#export SSH_AUTH_SOCK=/Users/soehlert/.gnupg/S.gpg-agent.ssh
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
