@@ -35,7 +35,7 @@ if epass-list 2>/dev/null ;
 then
   if [ ! -z "$SSH_AUTH_SOCK" ] ;
   then
-    eval `ssh-agent`
+    #eval `ssh-agent`
     epass-add
   fi
 fi
