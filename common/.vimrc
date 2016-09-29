@@ -137,6 +137,7 @@ let g:airline_powerline_fonts = 1
 
 " Find
 map <C-f> /
+imap jk <Esc>
 " indend / deindent after selecting the text with (⇧ v), (.) to repeat.
 vnoremap <Tab> >
 vnoremap <S-Tab> <
