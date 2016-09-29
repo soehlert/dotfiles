@@ -49,3 +49,8 @@ fi
 if [[ -r ~/.profile ]]; then
   . ~/.profile
 fi
+
+# source ~/scripts/django_completion
+if [[ -r ~/scripts/django_completion ]]; then
+  . ~/scripts/django_completion
+fi
