@@ -1,6 +1,6 @@
 [user]
   name  = Sam Oehlert
-  email = soehlert@es.net
+  useConfigOnly = true
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global

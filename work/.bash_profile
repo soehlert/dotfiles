@@ -20,7 +20,12 @@ alias epass-rm='ssh-add -e /usr/local/lib/opensc-pkcs11.so'
 # FUNCTIONS
 #############
 function http() {
-    curl http://httpcode.info/$1
+  curl http://httpcode.info/$1
+}
+
+function lock() {
+  epass-rm
+  /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
 }
 
 function checkip(){
