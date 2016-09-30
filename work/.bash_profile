@@ -13,7 +13,7 @@ shopt -s nocaseglob
 #############
 alias ll='ls -al'
 alias hidden='ls -al | grep "^\."'
-alias epass-add='ssh-add -s /usr/local/lib/opensc-pkcs11.so'
+alias epass-add='if [ ! -S ~/.ssh/ssh_auth_sock ]; then eval $(ssh-agent); ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock; export SSH_AUTH_SOCK; ssh-add -s /usr/local/lib/opensc-pkcs11.so; else ssh-add -s /usr/local/lib/opensc-pkcs11.so; fi'
 alias epass-list='pkcs15-tool --list-keys --reader 0'
 alias epass-rm='ssh-add -e /usr/local/lib/opensc-pkcs11.so'
 
@@ -28,22 +28,23 @@ function checkip(){
 }
 
 parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+
 # Set up terminal for git
 PS1='[\u@\h: \w$(parse_git_branch)]\$ '
 
 # add epass token if present
-if epass-list >/dev/null 2>&1 ;
-then
-  if [ ! -S ~/.ssh/ssh_auth_sock ] ;
-  then
-    eval `ssh-agent`
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-    epass-add
-  fi
-fi
+#if epass-list >/dev/null 2>&1 ;
+#then
+#  if [ ! -S ~/.ssh/ssh_auth_sock ] ;
+#  then
+#    eval `ssh-agent`
+#    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+#    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+#    epass-add
+#  fi
+#fi
 
 # source ~/.profile, if available
 if [[ -r ~/.profile ]]; then
