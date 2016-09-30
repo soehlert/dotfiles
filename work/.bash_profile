@@ -13,7 +13,7 @@ shopt -s nocaseglob
 #############
 alias ll='ls -al'
 alias hidden='ls -al | grep "^\."'
-alias epass-add='if [ ! -S ~/.ssh/ssh_auth_sock ]; then eval $(ssh-agent); ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock; export SSH_AUTH_SOCK; ssh-add -s /usr/local/lib/opensc-pkcs11.so; else ssh-add -s /usr/local/lib/opensc-pkcs11.so; fi'
+alias epass-add='eval $(ssh-agent) && ssh-add -s /usr/local/lib/opensc-pkcs11.so'
 alias epass-list='pkcs15-tool --list-keys --reader 0'
 alias epass-rm='ssh-add -e /usr/local/lib/opensc-pkcs11.so'
 
