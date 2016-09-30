@@ -23,11 +23,6 @@ function http() {
   curl http://httpcode.info/$1
 }
 
-function lock() {
-  epass-rm
-  /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
-}
-
 function checkip(){
   curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 }

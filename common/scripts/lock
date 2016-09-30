@@ -1,0 +1,5 @@
+#!/bin/bash
+
+killall ssh-agent
+rm /Users/soehlert/.ssh/cm_socket/*
+/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
