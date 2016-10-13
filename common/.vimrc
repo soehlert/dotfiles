@@ -180,3 +180,4 @@ noremap  <Leader>g :GitGutterToggle<CR>
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+Plugin 'wakatime/vim-wakatime'

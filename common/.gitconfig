@@ -1,6 +1,7 @@
 [user]
-  name  = Sam Oehlert
+	name = Sam Oehert
   useConfigOnly = true
+	email = sam.oehlert@gmail.com
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global
