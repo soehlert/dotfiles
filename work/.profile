@@ -1,9 +1,8 @@
-# extras
-source ~/scripts/django_completion
-
+# This all should be useful just for Main hosts
 export PYTHONPATH=/Users/soehlert/repos/ansible/lib:
 export MANPATH=/Users/soehlert/repos/ansible/docs/man:
-#export SSH_AUTH_SOCK=/Users/soehlert/.gnupg/S.gpg-agent.ssh
+export ANSIBLE_HOST_KEY_CHECKING=False
+export PATH=~/projects/ansible/bin:~/scripts/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:~/.local/bin:~/bin:/opt/local/bin:~/.local/bin
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -16,10 +15,3 @@ alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true 
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
-# Autocomplete hostnames from ssh config
-complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config)" scp sftp ssh
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
