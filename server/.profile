@@ -3,7 +3,6 @@ source ~/scripts/django_completion
 
 export PYTHONPATH=/Users/soehlert/repos/ansible/lib:
 export MANPATH=/Users/soehlert/repos/ansible/docs/man:
-export SSH_AUTH_SOCK=/Users/soehlert/.gnupg/S.gpg-agent.ssh
 
 # Laptop aliases
 alias trw='tmux rename-window'
