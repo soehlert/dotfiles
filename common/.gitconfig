@@ -1,24 +1,8 @@
-[user]
-  name  = Sam Oehlert
-  useConfigOnly = true
-[core]
-  editor       = vim
-  excludesfile = /Users/sam/.gitignore_global
-  autocrlf     = false
-  safecrlf     = true
-[color]
-  ui = true
-[alias]
-  co     = checkout
-  c      = commit
-  st     = status
-  br     = branch
-  dp     = !git diff -R playground
-  dm     = !git diff -R master
-  cp     = !git checkout playground
-  cm     = !git checkout master
-  play   = !git checkout playground && git pull && git merge --no-ff --log $1
-  deploy = !git checkout master && git pull && git merge --no-ff --log playground && git push && git checkout playground
-  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 [push]
-  default = simple
+    default = current
+[core]
+    excludesfile = ~/.gitexcludesfile
+    editor = vim
+[user]
+    name = Sam Oehlert
+    email = soehlert@es.net
