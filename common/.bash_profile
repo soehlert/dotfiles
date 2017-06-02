@@ -13,6 +13,12 @@ alias hidden='ls -al | grep "^\."'
 
 # FUNCTIONS
 #############
+# Super useful Docker container oneshots.
+# Usage: dockrun, or dockrun [centos7|fedora24|debian8|ubuntu1404|etc.]
+dockrun() {
+  docker run -it geerlingguy/docker-"${1:-ubuntu1604}"-ansible /bin/bash
+}
+
 function http() {
   curl http://httpcode.info/$1
 }
