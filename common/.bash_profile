@@ -10,6 +10,8 @@ shopt -s nocaseglob
 #############
 alias ll='ls -al'
 alias hidden='ls -al | grep "^\."'
+alias adtc='docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=~/projects/ansible-testing:/etc/ansible geerlingguy/docker-centos7-ansible:latest /usr/lib/systemd/systemd'
+alias adtu='docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/group:ro --volume=~/projects/ansible-testing:/etc/ansible geerlingguy/docker-ubuntu1604-ansible:latest /usr/lib/systemd/systemd'
 
 # FUNCTIONS
 #############
