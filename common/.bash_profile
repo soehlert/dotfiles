@@ -11,6 +11,16 @@ shopt -s nocaseglob
 alias ll='ls -al'
 alias hidden='ls -al | grep "^\."'
 
+# Colors
+#############
+COLOR_RED="\033[0;31m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_GREEN="\033[0;32m"
+COLOR_OCHRE="\033[38;5;95m"
+COLOR_BLUE="\033[0;34m"
+COLOR_WHITE="\033[0;37m"
+COLOR_RESET="\033[0m"
+
 # FUNCTIONS
 #############
 # Super useful Docker container oneshots.
@@ -47,10 +57,6 @@ if [ -f ~/scripts/django_completion ]; then
   . ~/scripts/django_completion
 fi
 
-if [ -f ~/projects/bash-wakatime/bash-wakatime.sh ]; then
-  . ~/projects/bash-wakatime/bash-wakatime.sh
-fi
-
 if [ -f ~/.bash_work ]; then
   . ~/.bash_work
 fi
@@ -58,3 +64,8 @@ fi
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+# Setting PATH for Python 3.5
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
