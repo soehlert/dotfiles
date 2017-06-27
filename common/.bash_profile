@@ -37,15 +37,29 @@ function checkip(){
   curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 }
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+#parse_git_branch() {
+#  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+#}
+function git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* (*\([^)]*\))*/\1/'
+}
+
+function markup_git_branch {
+  if [[ -n $@ ]]; then
+    if [[ -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+      echo -e " \001\033[32m\002($@)\001\033[0m\002"
+    else
+      echo -e " \001\033[31m\002($@)\001\033[0m\002"
+    fi
+  fi
 }
 
 # Autocomplete hostnames from ssh config
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config) " scp sftp ssh
 
 # Set up terminal for git
-PS1='[\u@\h: \w$(parse_git_branch)]\$ '
+#PS1='[\u@\h: \w$(parse_git_branch)]\$ '
+export PS1="[\u@\h: \w\$(markup_git_branch \$(git_branch))]$ "
 
 # source ~/.profile, if available
 if [ -f ~/.profile ]; then
