@@ -1,13 +1,11 @@
 [user]
-	name = Sam Oehert
+  name = Sam Oehert
   useConfigOnly = true
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global
   autocrlf     = false
   safecrlf     = true
-[color]
-  ui = true
 [alias]
   co     = checkout
   c      = commit
@@ -27,4 +25,4 @@
     editor = vim
 [user]
     name = Sam Oehlert
-    email = soehlert@es.net
+    email = "(none)"

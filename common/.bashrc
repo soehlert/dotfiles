@@ -19,3 +19,6 @@ export GREP_OPTIONS="--color=auto"
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+
+# No brew analytics
+export HOMEBREW_NO_ANALYTICS=1

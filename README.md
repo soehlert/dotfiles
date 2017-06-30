@@ -5,18 +5,17 @@
         yum install stow
 
 ## Add ssh key (may need to use different name)
-        ssh-add ~/.ssh/bitbucket
+        ssh-add ~/.ssh/github
 
 ## Clone dotfiles repo
-        cd; git clone git@bitbucket.org:soehlert21/dotfiles.git
+        cd; git clone git@github.com:soehlert/dotfiles.git
 
 ## Vim setup
-        cd dotfiles; stow vim
-        git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
+        cd dotfiles; stow common; stow (home|work|server)
+        git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
         vim
         :BundleInstall
 
 ### What is this repository for? ###
 
 * My dotfiles to use with stow
-* 1.0
