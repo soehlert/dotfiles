@@ -37,7 +37,6 @@ function http() {
 
 function weather(){
   curl wttr.in/"$@"
-  echo -e "\n"
 }
 
 function checkip(){
