@@ -35,13 +35,14 @@ function http() {
   curl http://httpcode.info/$1
 }
 
-function checkip(){
-  curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+function weather(){
+  curl wttr.in/"$@"
 }
 
-#parse_git_branch() {
-#  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-#}
+function checkip(){
+  curl ipecho.net/plain
+}
+
 function git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* (*\([^)]*\))*/\1/'
 }
