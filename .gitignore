@@ -1,3 +1,5 @@
 .netrwhist
 work/.config/fantascraper.conf
 work/.config/physioroom.conf
+home/.config/configstore
+home/.config/wireshark
