@@ -3,3 +3,5 @@ work/.config/fantascraper.conf
 work/.config/physioroom.conf
 work/.config/configstore
 work/.config/MusicBrainz
+home/.config/configstore
+home/.config/wireshark
