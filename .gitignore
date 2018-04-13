@@ -7,3 +7,5 @@ work/.config/MusicBrainz
 home/.config/configstore
 home/.config/wireshark
 common/.vim/plugged/*
+home/.config/MusicBrainz
+home/.config/gtk-2.0

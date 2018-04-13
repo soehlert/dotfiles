@@ -7,7 +7,7 @@
   autocrlf     = false
   safecrlf     = true
 [alias]
-  co     = checkout
+  co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   c      = commit
   st     = status
   br     = branch
@@ -20,9 +20,3 @@
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 [push]
     default = current
-[core]
-    excludesfile = ~/.gitexcludesfile
-    editor = vim
-[user]
-    name = Sam Oehlert
-    email = "(none)"

@@ -36,10 +36,6 @@ function http() {
   curl http://httpcode.info/$1
 }
 
-#function weather(){
-#  curl wttr.in/"$@"
-#}
-
 function checkip(){
   curl ipecho.net/plain
 }
