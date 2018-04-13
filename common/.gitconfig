@@ -7,7 +7,7 @@
   autocrlf     = false
   safecrlf     = true
 [alias]
-  co     = "!f() { git checkout \"$@\" && git stash list | grep \"$!:\"; }; f"
+  co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   c      = commit
   st     = status
   br     = branch
