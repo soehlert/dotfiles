@@ -32,10 +32,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
 
-" Syntax highlighter
-" Need ultisnips first
-Plug 'SirVer/ultisnips'
-Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
+" Syntax stuff
+Plug 'vim-syntastic/syntastic'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 call plug#end()
 
@@ -77,3 +75,13 @@ let g:promptline_preset = {
         \'c' : [ promptline#slices#vcs_branch() ],
 		\'y' : [ promptline#slices#git_status() ],
 		\'z' : [ promptline#slices#python_virtualenv() ]}
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
