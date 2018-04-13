@@ -39,7 +39,7 @@ Thumbs.db
 
 # swp files #
 #############
-.swp
+*.swp
 .gitignore
 
 # Vagrant #
