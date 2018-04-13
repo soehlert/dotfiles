@@ -79,6 +79,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+if [ -f ~/.shell_prompt.sh ]; then
+  . ~/.shell_prompt.sh
+fi
+
 # Setting PATH for Python 3.5
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
