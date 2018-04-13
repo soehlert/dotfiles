@@ -5,3 +5,4 @@ work/.config/configstore
 work/.config/MusicBrainz
 home/.config/configstore
 home/.config/wireshark
+common/.vim/plugged/*
