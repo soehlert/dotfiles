@@ -49,11 +49,13 @@ set ts=4
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
-"autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree
 " Auto close vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif")
 " Map ctrl-n to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
+" Ignore rnd file permissions issue
+let NERDTreeIgnore = [ '.rnd' ]
 
 " Need to download and install the fonts first
 " (https://github.com/powerline/fonts)
@@ -71,9 +73,9 @@ colorscheme solarized
 
 " Promptline settings
 let g:promptline_preset = {
-        \'a' : [ promptline#slices#host() ],
-        \'b' : [ promptline#slices#cwd() ],
-        \'c' : [ promptline#slices#vcs_branch() ],
+		\'a' : [ promptline#slices#host() ],
+		\'b' : [ promptline#slices#cwd() ],
+		\'c' : [ promptline#slices#vcs_branch() ],
 		\'y' : [ promptline#slices#git_status() ],
 		\'z' : [ promptline#slices#python_virtualenv() ]}
 
