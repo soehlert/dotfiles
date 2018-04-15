@@ -34,6 +34,7 @@ Plug 'edkolev/promptline.vim'
 
 " Syntax stuff
 Plug 'vim-syntastic/syntastic'
+Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 call plug#end()
 
