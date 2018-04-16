@@ -52,6 +52,8 @@ set ts=4
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
 autocmd vimenter * NERDTree
+" Set focus to actual file by default instead of nerdtree
+autocmd VimEnter * wincmd p
 " Auto close vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Map ctrl-n to toggle nerdtree
