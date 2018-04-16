@@ -1,17 +1,19 @@
+# Currently commented out some shopts because brew bash doesn't support them?
+
 # Don't overwrite history file
 shopt -s histappend
- 
+
 # Typing directory name by itself cds to it
-shopt -s autocd
+#shopt -s autocd
 
 # Automatically fix directory name typos when changing directory
 shopt -s cdspell
 
 #Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
-shopt -s direxpend dirspell
+#shopt -s direxpend dirspell
 
 #Enable the ** globstar recursive pattern in file and directory expansions.
-shopt -s globstar
+#shopt -s globstar
 
 # Enable history expansion with the space key
 bind Space:magic-space
