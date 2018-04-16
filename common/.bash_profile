@@ -1,19 +1,6 @@
 # This should be useful on every host I have
 export PATH=~/scripts:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:~/.local/bin:~/bin:/opt/local/bin:~/.local/bin
 
-# Shell opts
-#############
-shopt -s cdspell
-shopt -s nocaseglob
-
-# ALIASES
-#############
-alias ll='ls -al'
-alias hidden='ls -al | grep "^\."'
-alias prompt='source ~/.bash_profile'
-alias adtc='docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/Users/soehlert/projects/ansible-testing:/etc/ansible geerlingguy/docker-centos7-ansible:latest /usr/lib/systemd/systemd'
-alias adtu='docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/group:ro --volume=/Users/soehlert/projects/ansible-testing:/etc/ansible geerlingguy/docker-ubuntu1604-ansible:latest /usr/lib/systemd/systemd'
-
 # Colors
 #############
 COLOR_RED="\033[0;31m"
@@ -56,10 +43,6 @@ function markup_git_branch {
 
 # Autocomplete hostnames from ssh config
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config) " scp sftp ssh
-
-# Set up terminal for git
-#PS1='[\u@\h: \w$(parse_git_branch)]\$ '
-export PS1="[\u@\h: \w\$(markup_git_branch \$(git_branch))]$ "
 
 # source ~/.profile, if available
 if [ -f ~/.profile ]; then

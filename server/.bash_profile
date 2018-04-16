@@ -5,16 +5,6 @@ export ANSIBLE_INVENTORY=~/projects/ansible/ansible_hosts
 export ANSIBLE_HOST_KEY_CHECKING=False
 export EDITOR=vim
 
-# Shell opts
-#############
-shopt -s cdspell
-shopt -s nocaseglob
-
-# ALIASES
-#############
-alias ll='ls -al'
-alias hidden='ls -al | grep "^\."'
-
 # FUNCTIONS
 #############
 function http() {
