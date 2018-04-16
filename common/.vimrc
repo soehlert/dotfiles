@@ -44,7 +44,9 @@ call plug#end()
 set backspace=indent,eol,start
 
 " Autoindent
-set autoindent
+"set autoindent
+set smartindent
+set shiftwidth=4
 set ts=4
 
 " Nerdtree settings
