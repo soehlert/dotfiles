@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Vim-plugs 
+" Vim-plugs
 """""""""""
 call plug#begin('~/.vim/plugged')
 " Vim looks
@@ -80,11 +80,11 @@ colorscheme solarized
 
 " Promptline settings
 let g:promptline_preset = {
-		\'a' : [ promptline#slices#host() ],
-		\'b' : [ promptline#slices#cwd() ],
-		\'c' : [ promptline#slices#vcs_branch() ],
-		\'y' : [ promptline#slices#git_status() ],
-		\'z' : [ promptline#slices#python_virtualenv() ]}
+	\'a' : [ promptline#slices#host() ],
+	\'b' : [ promptline#slices#cwd() ],
+	\'c' : [ promptline#slices#vcs_branch() ],
+	\'y' : [ promptline#slices#git_status() ],
+	\'z' : [ promptline#slices#python_virtualenv() ]}
 
 " Syntastic settings
 set statusline+=%#warningmsg#
