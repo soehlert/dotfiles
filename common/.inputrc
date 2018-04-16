@@ -1,12 +1,3 @@
-# The TAB key cycles forward through the completion choices. Press an arrow key, such as right-arrow, to choose a selection.
-TAB: menu-complete
-
-# The Shift-TAB key cycles backward through the completion choices. This is useful if you pressed TAB too many times and overshot the desired choice. Like TAB, press an arrow key, such as right-arrow, to choose a selection.
-"e\[Z": menu-complete-backward
-
-# The first press of the completion key, TAB, will display a list of choices that match the given prefix, whilst the next press of the completion key will start cycling through the available choices.
-set menu-complete-display-prefix on
-
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
