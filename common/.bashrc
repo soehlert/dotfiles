@@ -31,7 +31,7 @@ complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]
 
 # Load some useful files
 if [ -f ~/scripts/django_completion ]; then
-	. ~/.scripts/django_completion
+	. ~/scripts/django_completion
 fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
