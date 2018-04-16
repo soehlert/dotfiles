@@ -1,29 +1,6 @@
-export TERM=xterm-256color
-
-# History file stuff
-# Larger bash history (allow 32³ entries; default is 500)
-# Make some commands not show up in history
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL='erasedups:ignoreboth'
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+# Don't overwrite history file
 shopt -s histappend
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
-# Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
-
-# Always enable colored `grep` output
-export GREP_OPTIONS="--color=auto"
-
-# Prefer US English and use UTF-8
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-
-# No brew analytics
-export HOMEBREW_NO_ANALYTICS=1
-
+ 
 # Typing directory name by itself cds to it
 shopt -s autocd
 
@@ -39,5 +16,32 @@ shopt -s globstar
 # Enable history expansion with the space key
 bind Space:magic-space
 
-# Source shell_prompt
-source ~/.shell_prompt.sh
+# Functions
+###########
+function http() {
+	curl http://httpcode.info/$1
+}
+
+function checkip() {
+	curl ipecho.net/plain
+}
+
+# Autocomplete hostnames from ssh config
+complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config) " scp sftp ssh
+
+# Load some useful files
+if [ -f ~/scripts/django_completion ]; then
+	. ~/.scripts/django_completion
+fi
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew-prefix)/etc/bash_completion
+fi
+
+if [ -f ~/.shell_prompt.sh ]; then
+	. ~/.shell_prompt.sh
+fi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
