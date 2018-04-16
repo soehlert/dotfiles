@@ -51,7 +51,7 @@ set ts=4
 " Open up nerdtree automatically when starting vim
 autocmd vimenter * NERDTree
 " Auto close vim if nerdtree is the only thing open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif")
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Map ctrl-n to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
 " Ignore rnd file permissions issue
