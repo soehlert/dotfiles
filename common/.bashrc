@@ -35,7 +35,7 @@ if [ -f ~/scripts/django_completion ]; then
 fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	. $(brew-prefix)/etc/bash_completion
+	. $(brew --prefix)/etc/bash_completion
 fi
 
 if [ -f ~/.shell_prompt.sh ]; then
