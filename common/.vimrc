@@ -46,6 +46,7 @@ set backspace=indent,eol,start
 " Autoindent
 "set autoindent
 set smartindent
+set smarttab
 set shiftwidth=4
 set ts=4
 
