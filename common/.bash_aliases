@@ -2,12 +2,12 @@
 alias sudo='sudo '
 
 # Make ls easier to use
-alias ls='ls --color --classify --human-readable'
-alias ll='ls -l'
-alias ll.='ls -la'
-alias lls='ls -la --sort=size'
-alias llt='ls -la --sort=time'
-alias hidden='ls -al | grep "^\."'
+alias ls='/bin/ls -G'
+alias ll='/bin/ls -l'
+alias ll.='/bin/ls -la'
+alias lls='/bin/ls -la --sort=size'
+alias llt='/bin/ls -la --sort=time'
+alias hidden='/bin/ls -al | grep "^\."'
 alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
