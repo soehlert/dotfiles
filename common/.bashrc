@@ -5,8 +5,9 @@ export TERM=xterm-256color
 # Make some commands not show up in history
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoredups
+export HISTCONTROL='erasedups:ignoreboth'
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+shopt -s histappend
 
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
@@ -22,3 +23,18 @@ export LC_ALL="en_US.UTF-8"
 
 # No brew analytics
 export HOMEBREW_NO_ANALYTICS=1
+
+# Typing directory name by itself cds to it
+shopt -s autocd
+
+# Automatically fix directory name typos when changing directory
+shopt -s cdspell
+
+#Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
+shopt -s direxpend dirspell
+
+#Enable the ** globstar recursive pattern in file and directory expansions.
+shopt -s globstar
+
+# Enable history expansion with the space key
+bind Space:magic-space
