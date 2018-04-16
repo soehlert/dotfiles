@@ -38,3 +38,6 @@ shopt -s globstar
 
 # Enable history expansion with the space key
 bind Space:magic-space
+
+# Source shell_prompt
+source ~/.shell_prompt.sh
