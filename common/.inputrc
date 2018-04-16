@@ -1,8 +1,20 @@
+# The TAB key cycles forward through the completion choices. Press an arrow key, such as right-arrow, to choose a selection.
+TAB: menu-complete
+
+# The Shift-TAB key cycles backward through the completion choices. This is useful if you pressed TAB too many times and overshot the desired choice. Like TAB, press an arrow key, such as right-arrow, to choose a selection.
+"e\[Z": menu-complete-backward
+
+# The first press of the completion key, TAB, will display a list of choices that match the given prefix, whilst the next press of the completion key will start cycling through the available choices.
+set menu-complete-display-prefix on
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
+
+# Treat hypens and underscores as equivalent when completing.
+set completion-map-case on
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
@@ -17,6 +29,10 @@ set match-hidden-files off
 
 # Show all autocomplete results at once
 set page-completions off
+
+#Disable beeps and do not display control characters
+set bell-style none
+set echo-control-characters off
 
 # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
@@ -38,3 +54,4 @@ set convert-meta off
 
 # Use Alt/Meta + Delete to delete the preceding word
 "\e[3;3~": kill-word
+
