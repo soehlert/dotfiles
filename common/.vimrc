@@ -58,6 +58,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>
 " Ignore rnd file permissions issue
 let NERDTreeIgnore = [ '.rnd' ]
+" Show hidden files
+let NERDTreeShowHidden=1
 
 " Need to download and install the fonts first
 " (https://github.com/powerline/fonts)
