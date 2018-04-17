@@ -1,6 +1,9 @@
 # Enable aliases to be sudo'ed
 alias sudo='sudo '
 
+# Colorize grep
+alias grep='grep --color -E'
+
 # Make ls easier to use
 alias ls='/bin/ls -G'
 alias ll='/bin/ls -lG'
