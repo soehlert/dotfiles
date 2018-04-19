@@ -1,5 +1,5 @@
 # All these sections are optional, edit this file as you like.
-# [general]
+[general]
 # ignore=title-trailing-punctuation, T3
 # verbosity should be a value between 1 and 3, the commandline -v flags take precedence over this
 # verbosity = 2
@@ -14,7 +14,7 @@ ignore-merge-commits=false
 # See http://jorisroovers.github.io/gitlint/user_defined_rules for details
 # extra-path=examples/
 
-# [title-max-length]
+[title-max-length]
 line-length=80
 
 # [title-must-not-contain-word]
@@ -30,7 +30,7 @@ line-length=80
 # (e.g. title-must-not-contain-word).
 # regex=^US[0-9]*
 
-# [B1]
+[B1]
 # B1 = body-max-line-length
 line-length=120
 
