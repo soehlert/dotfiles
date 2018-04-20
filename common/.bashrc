@@ -4,17 +4,26 @@ shopt -s autocd
 # Automatically fix directory name typos when changing directory
 shopt -s cdspell
 
-#Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
+# Attempts to save all lines of a multiple-line command in the same history entry. This allows easy re-editing of multi-line commands.
+shopt -s cmdhist
+
+# Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
 shopt -s direxpand dirspell
 
 # Allow tab completion of hidden files
 shopt -s dotglob
 
-#Enable the ** globstar recursive pattern in file and directory expansions.
+# Expand aliases
+shopt -s expand_aliases
+
+# Enable the ** globstar recursive pattern in file and directory expansions.
 shopt -s globstar
 
 # Don't overwrite history file
 shopt -s histappend
+
+# Case insensitive globbing
+shopt -s nocaseglob
 
 # Enable history expansion with the space key
 bind Space:magic-space
