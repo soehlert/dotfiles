@@ -1,9 +1,5 @@
-# Currently commented out some shopts because they don't work inside of tmux
 # Typing directory name by itself cds to it
 shopt -s autocd
-
-# Don't overwrite history file
-shopt -s histappend
 
 # Automatically fix directory name typos when changing directory
 shopt -s cdspell
@@ -16,6 +12,9 @@ shopt -s dotglob
 
 #Enable the ** globstar recursive pattern in file and directory expansions.
 shopt -s globstar
+
+# Don't overwrite history file
+shopt -s histappend
 
 # Enable history expansion with the space key
 bind Space:magic-space

@@ -28,4 +28,8 @@ alias rm='/bin/rm -i'
 
 # Tmux related
 alias trw='tmux rename-window'
-alias tmux='tmux -2'
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	alias tmux='tmux -2'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	alias tmux='tmux -2 new-session /usr/local/bin/bash'
+fi
