@@ -1,6 +1,6 @@
 # Currently commented out some shopts because they don't work inside of tmux
 # Typing directory name by itself cds to it
-#shopt -s autocd
+shopt -s autocd
 
 # Don't overwrite history file
 shopt -s histappend
@@ -9,13 +9,13 @@ shopt -s histappend
 shopt -s cdspell
 
 #Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
-#shopt -s direxpand dirspell
+shopt -s direxpand dirspell
 
 # Allow tab completion of hidden files
 shopt -s dotglob
 
 #Enable the ** globstar recursive pattern in file and directory expansions.
-#shopt -s globstar
+shopt -s globstar
 
 # Enable history expansion with the space key
 bind Space:magic-space
