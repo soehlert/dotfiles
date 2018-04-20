@@ -28,6 +28,9 @@ shopt -s nocaseglob
 # Enable history expansion with the space key
 bind Space:magic-space
 
+# Enable zsh like tab completion
+bind 'TAB:menu-complete'
+
 # Functions
 ###########
 function http() {
