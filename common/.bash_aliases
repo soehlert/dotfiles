@@ -27,9 +27,11 @@ alias mv='/bin/mv -i'
 alias rm='/bin/rm -i'
 
 # Tmux related
-alias trw='tmux rename-window'
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	alias tmux='tmux -2'
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	alias tmux='tmux -2 new-session /usr/local/bin/bash'
-fi
+#alias trw='tmux rename-window'
+#if [[ "$( uname -s )" == Darwin ]]; then
+#	alias tmux='tmux -2 new-session /usr/local/bin/bash'
+#else
+#	alias tmux='tmux -2'
+#fi
+
+alias tmux='tmux -2'

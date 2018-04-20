@@ -1,3 +1,6 @@
+# Make sure we use homebrew bash
+SHELL="/usr/local/bin/bash"
+
 # Typing directory name by itself cds to it
 shopt -s autocd
 
