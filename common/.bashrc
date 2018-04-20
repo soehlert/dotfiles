@@ -1,16 +1,18 @@
-# Currently commented out some shopts because brew bash doesn't support them?
+# Currently commented out some shopts because they don't work inside of tmux
+# Typing directory name by itself cds to it
+#shopt -s autocd
 
 # Don't overwrite history file
 shopt -s histappend
-
-# Typing directory name by itself cds to it
-#shopt -s autocd
 
 # Automatically fix directory name typos when changing directory
 shopt -s cdspell
 
 #Automatically expand directory globs and fix directory name typos whilst completing. Note, this works in conjuction with the cdspell option listed above.
-#shopt -s direxpend dirspell
+#shopt -s direxpand dirspell
+
+# Allow tab completion of hidden files
+shopt -s dotglob
 
 #Enable the ** globstar recursive pattern in file and directory expansions.
 #shopt -s globstar
