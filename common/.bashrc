@@ -21,29 +21,38 @@ bind Space:magic-space
 # Functions
 ###########
 function http() {
-	curl http://httpcode.info/$1
+	curl "http://httpcode.info/$1"
 }
 
 function checkip() {
 	curl ipecho.net/plain
 }
 
-# Autocomplete hostnames from ssh config
-complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/[,\s]+/)[1..-1].reject{|host| host.match(/\*|\?/)} if $_.match(/^\s*Host\s+/);' < $HOME/.ssh/config) " scp sftp ssh
+# Add tab completion for SSH hostnames based on ~/.ssh/config
+# ignoring wildcards
+[[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
+	-o "nospace" \
+	-W "$(grep "^Host" ~/.ssh/config | \
+	grep -v "[?*]" | cut -d " " -f2 | \
+	tr ' ' '\n')" scp sftp ssh
 
 # Load some useful files
+# shellcheck source=/dev/null
 if [ -f ~/scripts/django_completion ]; then
 	. ~/scripts/django_completion
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	. $(brew --prefix)/etc/bash_completion
+# shellcheck source=/dev/null
+if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+	. "$(brew --prefix)/etc/bash_completion"
 fi
 
+# shellcheck source=/dev/null
 if [ -f ~/.shell_prompt.sh ]; then
 	. ~/.shell_prompt.sh
 fi
 
+# shellcheck source=/dev/null
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
