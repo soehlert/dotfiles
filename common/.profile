@@ -22,5 +22,8 @@ export GREP_OPTIONS="--color=auto"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# Only show the current directory's name in the tab
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
 # No brew analytics
 export HOMEBREW_NO_ANALYTICS=1
