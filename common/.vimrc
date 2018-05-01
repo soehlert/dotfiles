@@ -31,6 +31,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
 
+" Fuzzy finder
+Plug '/usr/local/opt/fzf'
+
 " Syntax stuff
 Plug 'vim-syntastic/syntastic'
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
