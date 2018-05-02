@@ -43,5 +43,3 @@ cask "vlc"
 cask "zerotier-one"
 cask "caskroom/drivers/ubiquiti-unifi-controller"
 cask "caskroom/fonts/font-hack-nerd-font"
-mas "iMovie", id: 408981434
-mas "Logic Pro X", id: 634148309

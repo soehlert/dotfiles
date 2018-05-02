@@ -20,6 +20,9 @@ alias ..2='..; ..'
 alias ..3='..2; ..'
 alias ..4='..3; ..'
 alias ..5='..4; ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # Confirm unsafe file operations
 alias cp='/bin/cp -i'
