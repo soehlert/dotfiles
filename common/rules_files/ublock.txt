@@ -1,6 +1,6 @@
 {
-  "timeStamp": 1525315805629,
-  "version": "1.16.2",
+  "timeStamp": 1525463268692,
+  "version": "1.16.4",
   "userSettings": {
     "advancedUserEnabled": false,
     "alwaysDetachLogger": false,
@@ -53,5 +53,5 @@
   "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
   "urlFilteringString": "",
   "hostnameSwitchesString": "no-large-media: behind-the-scene false",
-  "userFilters": "! 5/2/2018, 9:45:25 PM https://twitter.com/\ntwitter.com##.trends.Trends.module\n\n! 5/2/2018, 9:45:32 PM https://twitter.com/\ntwitter.com##.roaming-module.module.Footer > .flex-module:nth-of-type(1)\n\n! 5/2/2018, 9:45:37 PM https://twitter.com/\ntwitter.com##.Footer-adsModule.flex-module\n\n! 5/2/2018, 9:45:42 PM https://twitter.com/\ntwitter.com##.import-prompt.flex-module\n"
+  "userFilters": "! 5/4/2018, 2:47:22 PM https://www.reddit.com/r/ansible/comments/4j1m6z/escaping_double_quotes_and_path_strings_in/\nwww.reddit.com###sidebar-atf-0\n\n! 5/4/2018, 2:47:28 PM https://www.reddit.com/r/ansible/comments/4j1m6z/escaping_double_quotes_and_path_strings_in/\nwww.reddit.com##.ecimIQ.hduf6k-5 > .fePAzF.ii4q9d-0 > .vuIDB.s1kmzeq4-1\n\n! 5/4/2018, 2:47:34 PM https://www.reddit.com/r/ansible/comments/4j1m6z/escaping_double_quotes_and_path_strings_in/\nwww.reddit.com##div.fePAzF.ii4q9d-0:nth-of-type(2) > .vuIDB.s1kmzeq4-1\n\n! 5/4/2018, 2:47:38 PM https://www.reddit.com/r/ansible/comments/4j1m6z/escaping_double_quotes_and_path_strings_in/\nwww.reddit.com##.nMxeZ.zhbz5g-4\n"
 }
