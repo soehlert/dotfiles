@@ -20,6 +20,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 " Quickly line up things with :Tab command
 Plug 'godlygeek/tabular'
+" Set up easy alignment
+Plug 'junegunn/vim-easy-align'
 " Expand region allows you to grow/shrink your visual block
 Plug 'terryma/vim-expand-region'
 " Full path fuzzy finder
@@ -28,6 +30,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" NERD tree git 
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
 
@@ -87,6 +91,12 @@ let g:promptline_preset = {
 	\'c' : [ promptline#slices#vcs_branch() ],
 	\'y' : [ promptline#slices#git_status() ],
 	\'z' : [ promptline#slices#python_virtualenv() ]}
+
+" Alignment settings
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Syntastic settings
 set statusline+=%#warningmsg#
