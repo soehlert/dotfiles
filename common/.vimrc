@@ -18,6 +18,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
 " Auto add closing brackets/quotes/parens
 Plug 'Raimondi/delimitMate'
+" Comment/uncomment easily
+Plug 'tpope/vim-commentary'
 " Quickly line up things with :Tab command
 Plug 'godlygeek/tabular'
 " Set up easy alignment
