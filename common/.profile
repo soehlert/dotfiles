@@ -1,6 +1,6 @@
 # Exports
 #########
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/Caskroom:~/bin:/opt/local/bin:~/.local/bin:~/scripts:~/projects/ansible/bin:~/go/bin/ghb0t
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/Caskroom:~/bin:/opt/local/bin:~/.local/bin:~/scripts:~/projects/ansible/bin:~/go/bin
 export TERM=xterm-256color
 # History file stuff
 # Larger bash history (allow 32³ entries; default is 500)
