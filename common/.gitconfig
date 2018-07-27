@@ -9,14 +9,19 @@
 [alias]
   co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   c      = commit
-  st     = status
   br     = branch
-  dp     = !git diff -R playground
-  dm     = !git diff -R master
   cp     = !git checkout playground
   cm     = !git checkout master
+  dp     = !git diff -R playground
+  dm     = !git diff -R master
+  po	 = "!git push -u origin $(git branch-name)"
+  st     = status
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 [push]
   default = simple
 [credential]
 	helper = none
+# BEGIN ANSIBLE MANAGED BLOCK
+[include]
+  path = "/Users/soehlert/.gitaliases"
+# END ANSIBLE MANAGED BLOCK
