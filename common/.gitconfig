@@ -10,11 +10,11 @@
   co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   c      = commit
   br     = branch
-  cp     = !git checkout playground
-  cm     = !git checkout master
+  cm	 = commit -m 
+  com    = !git checkout master
   dp     = !git diff -R playground
   dm     = !git diff -R master
-  po	 = "!git push -u origin $(git branch-name)"
+  po	 = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
   st     = status
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 [push]
