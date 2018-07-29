@@ -1,4 +1,6 @@
 .netrwhist
+common/.vim/autoload/plug.vim
+common/.vim/autoload/plug.vim.old
 */plug.vim.old
 */.config/fantascraper.conf
 */.config/physioroom.conf
