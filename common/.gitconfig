@@ -1,6 +1,3 @@
-[user]
-  name = Sam Oehert
-  useConfigOnly = true
 [core]
   editor       = vim
   excludesfile = /Users/sam/.gitignore_global
@@ -24,6 +21,14 @@
   default = simple
 [credential]
 	helper = none
+[includeIf "gitdir:/Users/soehlert/projects/work/"]
+    [user]
+        name = Sam Oehlert
+        email = soehlert@es.net
+[includeIf "gitdir:/Users/soehlert/projects/personal/"]
+    [user]
+        name = Sam Oehlert
+        email = sam.oehlert@gmail.com
 # BEGIN ANSIBLE MANAGED BLOCK
 [include]
   path = "/Users/soehlert/.gitaliases"
