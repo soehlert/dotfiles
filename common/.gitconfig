@@ -7,11 +7,12 @@
   autocrlf     = false
   safecrlf     = true
 [alias]
-  co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
-  c      = commit
   br     = branch
+  c      = commit
   cm	 = commit -m 
+  co     = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   com    = !git checkout master
+  cob    = "!f() { git checkout -b \"$@\"}; f"
   dp     = !git diff -R playground
   dm     = !git diff -R master
   po	 = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
