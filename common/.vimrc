@@ -26,8 +26,6 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 " Expand region allows you to grow/shrink your visual block
 Plug 'terryma/vim-expand-region'
-" Full path fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
 " Allow vim to work well with csv files
 Plug 'chrisbra/csv.vim'
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
@@ -107,6 +105,8 @@ nmap ga <Plug>(EasyAlign)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_arts='--ignore=E305 --max-line-length=120'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
