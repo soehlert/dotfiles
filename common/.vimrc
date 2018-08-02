@@ -32,7 +32,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chrisbra/csv.vim'
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" NERD tree git 
+" NERD tree git
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
@@ -51,12 +51,15 @@ call plug#end()
 " Use delete like normal
 set backspace=indent,eol,start
 
+filetype indent plugin on
 " Autoindent
-"set autoindent
+set autoindent
 set smartindent
-set smarttab
+set expandtab
+set modeline
 set shiftwidth=4
-set ts=4
+set softtabstop=4
+set ts=8
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim

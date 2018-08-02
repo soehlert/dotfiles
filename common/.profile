@@ -28,3 +28,5 @@ export HOMEBREW_NO_ANALYTICS=1
 # Use fd for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --color=never'
 export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+
+export PATH=/usr/local/Cellar/openssl/1.0.2o_2/bin:$PATH
