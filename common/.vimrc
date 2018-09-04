@@ -34,14 +34,22 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
+" Vim treat camelcase and underscores as word boundaries
+Plug 'vim-scripts/camelcasemotion'
+" Allows easier to move lines
+Plug 'matze/vim-move'
 
 " Fuzzy finder
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim' " Tab to select multiple results
 
 " Syntax stuff
+Plug 'plasticboy/vim-markdown'
 Plug 'vim-syntastic/syntastic'
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
 " Vim settings
@@ -49,15 +57,64 @@ call plug#end()
 " Use delete like normal
 set backspace=indent,eol,start
 
+" No swap file
+set noswapfile
+
+" Show incomplete commands
+set showcmd
+
+" Incremental searching (search as you type)
+set incsearch
+
+" Autoload files that have changed outside of vim
+set autoread
+
+" Visual autocomplete for command menu (e.g. :e ~/path/to/file)
+set wildmenu
+
+" Allow substitutions to dynamically be represented in the buffer
+" https://asciinema.org/a/92207
+:silent! set inccommand=nosplit
+
+
 filetype indent plugin on
 " Autoindent
 set autoindent
-set smartindent
-set expandtab
+" Allows for dynamic variables depending on file type
 set modeline
-set shiftwidth=4
-set softtabstop=4
-set ts=8
+" Intelligently indent on new line
+set smartindent
+" Convert tabs to spaces
+set expandtab
+" Manual indenting tab size in spaces
+set tabstop=2
+" Automatic indenting tab size in spaces
+set shiftwidth=2
+
+autocmd FileType gitcommit setlocal spell textwidth=72
+autocmd FileType markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+autocmd FileType sh,ruby,yaml,vim setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType php,python setlocal shiftwidth=4 tabstop=4 expandtab
+" See `:h fo-table` for details of formatoptions `t` to force wrapping of text
+autocmd FileType python,ruby,go,sh,javascript setlocal textwidth=79 formatoptions+=t
+
+" FZF (search files)
+" Shift-Tab to select multiple files
+" Ctrl-t = tab
+" Ctrl-x = split
+" Ctrl-y = vertical
+map <leader>t :FZF<CR>
+map <leader>y :Buffers<CR>
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
+set wildmode=list:longest,list:full
+
+" Camelcase settings to replace w,b,e word boundary commands
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
@@ -96,17 +153,21 @@ let g:promptline_preset = {
 	\'z' : [ promptline#slices#python_virtualenv() ]}
 
 " Alignment settings
+" vim-move (<C-j>, <C-k> to move lines around more easily than :move)
+let g:move_key_modifier = 'C'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Syntax highlighting for specific files
+autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_arts='--ignore=E305 --max-line-length=120'
+let g:syntastic_python_flake8_args='--ignore=E305,E302 --max-line-length=120'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
