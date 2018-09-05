@@ -20,8 +20,7 @@ Plug 'tpope/vim-fugitive'
 " Auto add closing brackets/quotes/parens
 Plug 'Raimondi/delimitMate'
 " Comment/uncomment easily
-Plug 'tpope/vim-commentary'
-" Quickly line up things with :Tab command
+Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
 Plug 'godlygeek/tabular'
 " Set up easy alignment
 Plug 'junegunn/vim-easy-align'
@@ -37,8 +36,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'edkolev/promptline.vim'
 " Vim treat camelcase and underscores as word boundaries
 Plug 'vim-scripts/camelcasemotion'
-" Allows easier to move lines
-Plug 'matze/vim-move'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -76,7 +73,6 @@ set wildmenu
 " Allow substitutions to dynamically be represented in the buffer
 " https://asciinema.org/a/92207
 :silent! set inccommand=nosplit
-
 
 filetype indent plugin on
 " Autoindent
@@ -154,8 +150,6 @@ let g:promptline_preset = {
 	\'z' : [ promptline#slices#python_virtualenv() ]}
 
 " Alignment settings
-" vim-move (<C-j>, <C-k> to move lines around more easily than :move)
-let g:move_key_modifier = 'C'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
