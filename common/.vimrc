@@ -45,6 +45,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'ambv/black', { 'for': 'python' }
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
@@ -152,6 +153,9 @@ let g:promptline_preset = {
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Run black formatter for python files on save
+autocmd BufWritePre *.py execute ':Black'
 
 " Syntax highlighting for specific files
 autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
