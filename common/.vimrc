@@ -19,8 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 " Comment/uncomment easily
 Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
-Plug 'godlygeek/tabular'
-" Set up easy alignment
+Plug 'godlygeek/tabular' " Set up easy alignment
 Plug 'junegunn/vim-easy-align'
 " Expand region allows you to grow/shrink your visual block
 Plug 'terryma/vim-expand-region'
@@ -103,17 +102,6 @@ map <leader>t :FZF<CR>
 map <leader>y :Buffers<CR>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
 set wildmode=list:longest,list:full
-
-" Wordmotion (camelCase and under_score movement) settings
-let g:wordmotion_mappings = {
-\ 'w' : '<c-w>',
-\ 'b' : '<c-b>',
-\ 'e' : '<c-e>',
-\ 'ge' : 'g<c-e>',
-\ 'aw' : 'a<c-w>',
-\ 'iw' : 'i<c-w>',
-\ '<C-R><C-W>' : '<C-R><c-w>'
-\ }
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
