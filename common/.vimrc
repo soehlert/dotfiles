@@ -150,12 +150,15 @@ autocmd BufWritePre *.py execute ':Black'
 
 " Syntax highlighting for specific files
 autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
+" Set yaml.ansible file type on playbooks as well
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_ansible_checkers=['ansible_lint']
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E305,E302 --max-line-length=120'
+let g:syntastic_python_flake8_args='--ignore=E305,E302 --max-line-length=88'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
