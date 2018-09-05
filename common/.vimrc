@@ -33,7 +33,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
 " Vim treat camelcase and underscores as word boundaries
-Plug 'vim-scripts/camelcasemotion'
+Plug 'chaoren/vim-wordmotion'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -104,13 +104,16 @@ map <leader>y :Buffers<CR>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
 set wildmode=list:longest,list:full
 
-" Camelcase settings to replace w,b,e word boundary commands
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-sunmap w
-sunmap b
-sunmap e
+" Wordmotion (camelCase and under_score movement) settings
+let g:wordmotion_mappings = {
+\ 'w' : '<c-w>',
+\ 'b' : '<c-b>',
+\ 'e' : '<c-e>',
+\ 'ge' : 'g<c-e>',
+\ 'aw' : 'a<c-w>',
+\ 'iw' : 'i<c-w>',
+\ '<C-R><C-W>' : '<C-R><c-w>'
+\ }
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
