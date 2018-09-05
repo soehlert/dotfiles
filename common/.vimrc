@@ -13,8 +13,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 " Tmux statusline looks like vim-airline
 Plug 'edkolev/tmuxline.vim'
-" Play nicely with tmux navigation
-Plug 'christoomey/vim-tmux-navigator'
 " Play nicely with git
 Plug 'tpope/vim-fugitive'
 " Auto add closing brackets/quotes/parens
