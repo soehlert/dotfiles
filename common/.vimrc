@@ -19,9 +19,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 " Comment/uncomment easily
 Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
+" Allow for tabbing
 Plug 'godlygeek/tabular'
 " Set up easy alignment
 Plug 'junegunn/vim-easy-align'
+" On the fly table creation/resizing
+Plug 'dhruvasagar/vim-table-mode'
 " Expand region allows you to grow/shrink your visual block
 Plug 'terryma/vim-expand-region'
 " Allow vim to work well with csv files
