@@ -19,9 +19,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 " Comment/uncomment easily
 Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
+<<<<<<< HEAD
 " Allow for tabbing
 Plug 'godlygeek/tabular'
 " Set up easy alignment
+=======
+Plug 'godlygeek/tabular' " Set up easy alignment
+>>>>>>> 5c2d57f86d89b3187435c0224b9df5695574ec01
 Plug 'junegunn/vim-easy-align'
 " On the fly table creation/resizing
 Plug 'dhruvasagar/vim-table-mode'
@@ -36,7 +40,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
 " Vim treat camelcase and underscores as word boundaries
-Plug 'vim-scripts/camelcasemotion'
+Plug 'chaoren/vim-wordmotion'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -107,14 +111,6 @@ map <leader>y :Buffers<CR>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
 set wildmode=list:longest,list:full
 
-" Camelcase settings to replace w,b,e word boundary commands
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-sunmap w
-sunmap b
-sunmap e
-
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
 autocmd vimenter * NERDTree
@@ -162,12 +158,16 @@ autocmd BufWritePre *.py execute ':Black'
 
 " Syntax highlighting for specific files
 autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
+" Set yaml.ansible file type on playbooks as well
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_ansible_checkers=['ansible_lint']
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E305,E302 --max-line-length=120'
+let g:syntastic_python_flake8_args='--ignore=E305,E302 --max-line-length=88'
+let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
