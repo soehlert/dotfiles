@@ -2,6 +2,7 @@
 common/.vim/autoload/plug.vim
 common/.vim/autoload/plug.vim.old
 */plug.vim.old
+~/.config/ansible-scribe
 */.config/fantascraper.conf
 */.config/physioroom.conf
 */.config/wireshark
