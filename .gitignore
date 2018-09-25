@@ -5,6 +5,7 @@ common/.vim/autoload/plug.vim.old
 */.config/fantascraper.conf
 */.config/physioroom.conf
 */.config/wireshark
+*/.config/ansible-scribe/*
 */.config/configstore
 */.config/MusicBrainz
 */.config/neofetch
