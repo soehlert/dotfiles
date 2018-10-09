@@ -73,6 +73,7 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+# shellcheck source=/dev/null
 if [ -f ~/.fzf.bash ]; then
-    . ~/.fzf.bash
+  . ~/.fzf.bash
 fi
