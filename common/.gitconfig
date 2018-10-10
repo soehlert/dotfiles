@@ -14,7 +14,6 @@
   cz           = !cz commit
   dp           = !git diff -R playground
   dm           = !git diff -R master
-  g            = !git
   po           = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
   st           = status
   up           = !git pull --rebase --prune $@ && git submodule update --init --recursive

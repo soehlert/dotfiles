@@ -1,6 +1,9 @@
 # Enable aliases to be sudo'ed
 alias sudo='sudo '
 
+# Shorten up git
+alias g='git '
+
 # Colorize grep
 alias grep='grep --color -E'
 
