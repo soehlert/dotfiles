@@ -44,7 +44,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
-Plug 'ambv/black', { 'for': 'python' }
+Plug 'ambv/black',
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
