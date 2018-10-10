@@ -45,6 +45,7 @@ Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'ambv/black',
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
@@ -147,6 +148,12 @@ nmap ga <Plug>(EasyAlign)
 
 " Run black formatter for python files on save
 autocmd BufWritePre *.py execute ':Black'
+
+" Prettier Settings
+" Turn off auto focus on quickfix for prettier
+let g:prettier#quickfix_auto_focus = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
 
 " Syntax highlighting for specific files
 autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
