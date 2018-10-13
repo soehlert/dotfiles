@@ -4,6 +4,9 @@ alias sudo='sudo '
 # Shorten up git
 alias g='git '
 
+# Gitleaks
+alias gl='docker run --rm --name=gitleaks zricethezav/gitleaks --help'
+
 # Colorize grep
 alias grep='grep --color -E'
 
