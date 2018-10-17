@@ -36,6 +36,11 @@ bind 'TAB:menu-complete'
 
 # Functions
 ###########
+function bins() {
+  alias | awk '{print $2}' | cut -d '=' -f1
+  declare -F | grep -v bins | awk '{print $3}' | grep '\b[a-z]+\b'
+}
+
 function http() {
 	curl "http://httpcode.info/$1"
 }
