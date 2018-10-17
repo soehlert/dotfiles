@@ -97,9 +97,9 @@ isup() {
 	local uri=$1
 
 	if curl -s --head  --request GET "$uri" | grep "200 OK" > /dev/null ; then
-		notify-send --urgency=critical "$uri is down"
+		echo "$uri is down"
 	else
-		notify-send --urgency=low "$uri is up"
+		echo "$uri is up"
 	fi
 }
 
