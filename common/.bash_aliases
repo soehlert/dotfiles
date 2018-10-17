@@ -23,9 +23,14 @@ alias ll='/bin/ls -lG'
 alias ll.='/bin/ls -laG'
 alias lls='/bin/ls -laG --sort=size'
 alias llt='/bin/ls -laG --sort=time'
+
+# File hiding stuff
 alias hidden='/bin/ls -laG | grep "^\."'
 alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# System info for macOS
+alias sysinfo='system_profiler SPSoftwareDataType'
 
 # Directory backtracking
 alias ..='cd ..'
@@ -43,11 +48,5 @@ alias mv='/bin/mv -i'
 alias rm='/bin/rm -i'
 
 # Tmux related
-#alias trw='tmux rename-window'
-#if [[ "$( uname -s )" == Darwin ]]; then
-#	alias tmux='tmux -2 new-session /usr/local/bin/bash'
-#else
-#	alias tmux='tmux -2'
-#fi
-
+alias trw='tmux rename-window'
 alias tmux='tmux -2'

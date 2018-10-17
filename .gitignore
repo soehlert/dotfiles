@@ -1,6 +1,7 @@
 .netrwhist
 common/.vim/autoload/plug.vim
 common/.vim/autoload/plug.vim.old
+common/.vim/black
 */plug.vim.old
 ~/.config/ansible-scribe
 */.config/fantascraper.conf
