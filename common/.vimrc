@@ -21,8 +21,6 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
 Plug 'godlygeek/tabular' " Set up easy alignment
 Plug 'junegunn/vim-easy-align'
-" Expand region allows you to grow/shrink your visual block
-Plug 'terryma/vim-expand-region'
 " Allow vim to work well with csv files
 Plug 'chrisbra/csv.vim'
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
@@ -45,7 +43,7 @@ Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'ambv/black',
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'for': 'javascript', 'do': 'npm install' }
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
