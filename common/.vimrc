@@ -144,6 +144,9 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Turn off folding
+set nofoldenable
+
 " Run black formatter for python files on save
 autocmd BufWritePre *.py execute ':Black'
 
@@ -151,7 +154,7 @@ autocmd BufWritePre *.py execute ':Black'
 " Turn off auto focus on quickfix for prettier
 let g:prettier#quickfix_auto_focus = 0
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue Prettier
 
 " Syntax highlighting for specific files
 autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
