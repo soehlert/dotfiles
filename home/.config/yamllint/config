@@ -1,0 +1,6 @@
+extends: default
+
+rules:
+  # 88 chars should be enough
+  line-length:
+    max: 88
