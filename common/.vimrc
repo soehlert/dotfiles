@@ -144,6 +144,9 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Turn off folding
+set nofoldenable
+
 " Run black formatter for python files on save
 autocmd BufWritePre *.py execute ':Black'
 
