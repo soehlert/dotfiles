@@ -1,0 +1,6 @@
+[compute]
+region = us-central1-a
+
+[core]
+account = sam.oehlert@gmail.com
+

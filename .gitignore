@@ -18,4 +18,5 @@ common/.vim/black
 */.config/MusicBrainz
 */.config/gtk-2.0
 */.config/asciinema
+work/.config/gcloud/
 *.swp
