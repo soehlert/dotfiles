@@ -4,6 +4,7 @@ common/.vim/autoload/plug.vim.old
 common/.vim/black
 */plug.vim.old
 ~/.config/ansible-scribe
+*/.config/gcloud
 */.config/fantascraper.conf
 */.config/physioroom.conf
 */.config/wireshark
