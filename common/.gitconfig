@@ -17,6 +17,7 @@
   po           = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
   st           = status
   up           = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  bdel         = "!f() { git push --delete origin $1; }; f"
   bclean       = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 [push]
   default      = simple
