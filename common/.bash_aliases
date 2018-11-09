@@ -30,7 +30,7 @@ alias show_hidden="defaults write com.apple.finder AppleShowAllFiles -bool true 
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # System info for macOS
-alias sysinfo='system_profiler SPSoftwareDataType'
+alias sysinfo='neofetch'
 
 # Directory backtracking
 alias ..='cd ..'
