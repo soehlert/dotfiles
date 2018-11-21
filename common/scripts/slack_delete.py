@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+
+import argparse
+import requests
+import time
+import json
+
+
+def main():
+    """
+    Entry point of the application
+    :return: void
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-t",
+        "--token",
+        required=True,
+        help="Specifies the OAuth token used for authentication, created at (https://api.slack.com/docs/oauth-test-tokens)",
+    )
+    parser.add_argument(
+        "-d",
+        "--days",
+        type=int,
+        default=None,
+        help="Delete files older than x days (optional)",
+    )
+    parser.add_argument(
+        "-c",
+        "--count",
+        type=int,
+        default=1000,
+        help="Max amount of files to delete at once (optional)",
+    )
+    options = parser.parse_args()
+
+    try:
+        print("[*] Fetching file list..")
+        file_ids = list_file_ids(
+            token=options.token, count=options.count, days=options.days
+        )
+
+        print("[*] Deleting files..")
+        delete_files(token=options.token, file_ids=file_ids)
+
+        print("[*] Done")
+
+    except KeyboardInterrupt:
+        print("\b\b[-] Aborted")
+        exit(1)
+
+
+def calculate_days(days):
+    """
+    Calculate days to unix time
+    :param days: int
+    :return: int
+    """
+    return int(time.time()) - days * 24 * 60 * 60
+
+
+def list_file_ids(token, count, days=None):
+    """
+    Get a list of all file id's
+    :param token: string
+    :param count: int
+    :param days: int
+    :return: list
+    """
+    if days:
+        params = {"token": token, "count": count, "ts_to": calculate_days(days)}
+    else:
+        params = {"token": token, "count": count}
+
+    uri = "https://slack.com/api/files.list"
+    response = requests.get(uri, params=params)
+    files = json.loads(response.text)["files"]
+    return [f["id"] for f in files]
+
+
+def delete_files(token, file_ids):
+    """
+    Delete a list of files by id
+    :param token: string
+    :param file_ids: list
+    :return: void
+    """
+    count = 0
+    num_files = len(file_ids)
+    for file_id in file_ids:
+        count += 1
+        params = {"token": token, "file": file_id}
+        uri = "https://slack.com/api/files.delete"
+        response = json.loads(requests.get(uri, params=params).text)
+        if response["ok"]:
+            print(
+                "[+] Deleted",
+                count,
+                "of",
+                num_files,
+                "-",
+                file_id,
+                json.loads(response.text)["ok"],
+            )
+        else:
+            print(
+                "[!] Unable to delete",
+                count,
+                "of",
+                num_files,
+                "-",
+                file_id + ", reason:",
+                response["error"],
+            )
+
+
+if __name__ == "__main__":
+    main()
