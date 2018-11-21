@@ -4,6 +4,9 @@ import argparse
 import requests
 import time
 import json
+import locale
+
+locale.setlocale(locale.LC_ALL, "en_US")
 
 
 def main():
@@ -75,7 +78,31 @@ def list_file_ids(token, count, days=None):
     uri = "https://slack.com/api/files.list"
     response = requests.get(uri, params=params)
     files = json.loads(response.text)["files"]
-    return [f["id"] for f in files]
+    print("[i]", len(files), "files found")
+    toast = []
+    space_saved = 0
+
+    # save the starred and pinned items, toast the rest
+    for f in files:
+        if "is_starred" in f:
+            continue
+
+        if "pinned_to" in f:
+            continue
+
+        toast.append(f["id"])
+
+        # calculate space savings
+        space_saved += f["size"]
+
+    print(
+        "[i]",
+        len(toast),
+        "files to toast, saving",
+        locale.format("%d", space_saved, grouping=True),
+        "bytes",
+    )
+    return toast
 
 
 def delete_files(token, file_ids):
@@ -88,6 +115,7 @@ def delete_files(token, file_ids):
     count = 0
     num_files = len(file_ids)
     for file_id in file_ids:
+        time.sleep(0.50)
         count += 1
         params = {"token": token, "file": file_id}
         uri = "https://slack.com/api/files.delete"
@@ -100,7 +128,7 @@ def delete_files(token, file_ids):
                 num_files,
                 "-",
                 file_id,
-                json.loads(response.text)["ok"],
+                # json.loads(response.text)["ok"],
             )
         else:
             print(
