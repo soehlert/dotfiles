@@ -115,7 +115,7 @@ def delete_files(token, file_ids):
     count = 0
     num_files = len(file_ids)
     for file_id in file_ids:
-        time.sleep(0.50)
+        time.sleep(1)
         count += 1
         params = {"token": token, "file": file_id}
         uri = "https://slack.com/api/files.delete"
