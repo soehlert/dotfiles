@@ -104,7 +104,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignor
 set wildmode=list:longest,list:full
 
 " Don't use escape or ctrl-c to exit insert mode
-nnoremap jk <Esc>`^
+inoremap jk <Esc>`^
 
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
