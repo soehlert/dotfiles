@@ -91,6 +91,7 @@ autocmd FileType sh,ruby,yaml,vim setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType php,python setlocal shiftwidth=4 tabstop=4 expandtab
 " See `:h fo-table` for details of formatoptions `t` to force wrapping of text
 autocmd FileType python,ruby,go,sh,javascript setlocal textwidth=79 formatoptions+=t
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
 
 " FZF (search files)
 " Shift-Tab to select multiple files
