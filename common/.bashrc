@@ -41,6 +41,10 @@ function bins() {
   declare -F | grep -v bins | awk '{print $3}' | grep '\b[a-z]+\b'
 }
 
+function blog() {
+  hugo new --kind post-bundle posts/$1
+}
+
 function http() {
 	curl "http://httpcode.info/$1"
 }
