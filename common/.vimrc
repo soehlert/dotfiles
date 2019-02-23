@@ -29,6 +29,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
+" Save session frequently and automatically
+Plug 'tpope/obsession'
 " Vim treat camelcase and underscores as word boundaries
 Plug 'chaoren/vim-wordmotion'
 
