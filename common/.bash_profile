@@ -15,8 +15,5 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.i
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 
 export WORKON_HOME=~/.envs
-if command -v pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYENV="true"
 pyenv virtualenvwrapper_lazy
-PATH=$PATH:/opt/metasploit-framework/bin
-export PATH=$PATH:/opt/metasploit-framework/bin
-
