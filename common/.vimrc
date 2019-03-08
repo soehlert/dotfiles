@@ -29,6 +29,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Use vim to create prompt and match it to vim/tmux
 Plug 'edkolev/promptline.vim'
+" Save session frequently and automatically
+Plug 'tpope/obsession'
 " Vim treat camelcase and underscores as word boundaries
 Plug 'chaoren/vim-wordmotion'
 
@@ -103,6 +105,9 @@ map <leader>y :Buffers<CR>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
 set wildmode=list:longest,list:full
 
+" Don't use escape or ctrl-c to exit insert mode
+inoremap jk <Esc>`^
+
 " Nerdtree settings
 " Open up nerdtree automatically when starting vim
 autocmd vimenter * NERDTree
@@ -173,3 +178,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+command Stm SyntasticToggleMode
