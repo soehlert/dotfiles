@@ -28,3 +28,5 @@ export HOMEBREW_NO_ANALYTICS=1
 # Use fd for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --color=never'
 export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
