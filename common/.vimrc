@@ -157,6 +157,9 @@ nmap ga <Plug>(EasyAlign)
 " Allow copy and paste to work
 set clipboard+=unnamed
 
+" Delete comment character when joining commented lines
+set formatoptions+=j 
+
 " Turn off folding
 set nofoldenable
 
