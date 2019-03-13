@@ -60,8 +60,12 @@ set noswapfile
 " Show incomplete commands
 set showcmd
 
+" Search settings
 " Incremental searching (search as you type)
 set incsearch
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-c> :Commits<Cr>
+nnoremap <C-g> :Rg<Cr>
 
 " Autoload files that have changed outside of vim
 set autoread
