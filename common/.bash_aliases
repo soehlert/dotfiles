@@ -6,6 +6,13 @@ alias g="git"
 alias h="history"
 alias dl="cd ~/Downloads"
 
+# FZF shortcuts
+alias ffe='fzf_find_edit'
+alias fge='fzf_grep_edit'
+alias fkill='fzf_kill'
+alias gadd='fzf_git_add'
+alias gll='fzf_git_log'
+
 # IP addresses
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias pubip2="curl ipinfo.io/ip"

@@ -42,7 +42,68 @@ function bins() {
 }
 
 function blog() {
-  hugo new --kind post-bundle posts/$1
+  hugo new --kind post-bundle "posts/$1"
+}
+
+# Fuzzy find a file, with colorful preview, then once selected edit it in your preferred editor.
+function fzf_find_edit() {
+  local file=$(
+    fzf --no-multi --preview 'bat --color=always --line-range :500 {}'
+    )
+   if [[ -n $file ]]; then
+     $EDITOR $file
+   fi
+}
+
+# Fuzzy find a file, with colorful preview, that contains the supplied term, then once selected edit it in your preferred editor.
+# Note, if your EDITOR is Vim or Neovim then you will be automatically scrolled to the selected line.
+function fzf_grep_edit(){
+    if [[ $# == 0 ]]; then
+        echo 'Error: search term was not provided.'
+        return
+    fi
+    local match=$(
+      rg --color=never --line-number "$1" |
+        fzf --no-multi --delimiter : \
+            --preview "bat --color=always --line-range {2}: {1}"
+      )
+    local file=$(echo "$match" | cut -d':' -f1)
+    if [[ -n $file ]]; then
+        $EDITOR $file +$(echo "$match" | cut -d':' -f2)
+    fi
+}
+
+# Fuzzy find a process or group of processes and SIGKILL them
+# Multi selection using TAB key
+function fzf_kill() {
+    local pids=$(
+      ps -f -u $USER | sed 1d | fzf --multi | tr -s [:blank:] | cut -d' ' -f3
+      )
+    if [[ -n $pids ]]; then
+        echo "$pids" | xargs kill -9 "$@"
+    fi
+}
+
+# Selectively add fuzzy found files for committing
+function fzf_git_add() {
+    local files=$(git ls-files --modified | fzf --ansi)
+    if [[ -n $files ]]; then
+        git add --verbose $files
+    fi
+}
+
+# A fancy compact git log list filtered with fzf; includes preview of changes
+function fzf_git_log() {
+    local commits=$(
+      git ll --color=always "$@" |
+        fzf --ansi --no-sort --height 100% \
+            --preview "echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
+                       xargs -I@ sh -c 'git show --color=always @'"
+      )
+    if [[ -n $commits ]]; then
+        local hashes=$(printf "$commits" | cut -d' ' -f2 | tr '\n' ' ')
+        git show $hashes
+    fi
 }
 
 function http() {
