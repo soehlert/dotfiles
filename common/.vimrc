@@ -150,6 +150,9 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Allow copy and paste to work
+set clipboard+=unnamed
+
 " Turn off folding
 set nofoldenable
 
