@@ -18,3 +18,4 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export WORKON_HOME=~/.envs
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYENV="true"
 pyenv virtualenvwrapper_lazy
+eval "$(jump shell --bind=c)"
