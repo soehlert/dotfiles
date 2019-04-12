@@ -1,6 +1,7 @@
 # Exports
 #########
-export PATH=/usr/local/Cellar/openssl/1.0.2o_2/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/Caskroom:~/bin:/opt/local/bin:~/.local/bin:~/scripts:~/projects/ansible/bin:~/go/bin
+export
+PATH=/usr/local/Cellar/openssl/1.0.2o_2/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/Caskroom:~/bin:/opt/local/bin:~/.local/bin:~/scripts:~/go/bin:/Users/soehlert/Library/Python/3.7/bin
 export TERM=xterm-256color
 # History file stuff
 # Larger bash history (allow 32³ entries; default is 500)
