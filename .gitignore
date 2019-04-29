@@ -5,6 +5,7 @@ common/.vim/black
 */plug.vim.old
 ~/.config/ansible-scribe
 */.config/gcloud
+work/.config/gcloud/.last_update_check.json
 */.config/fantascraper.conf
 */.config/physioroom.conf
 */.config/wireshark
