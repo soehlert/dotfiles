@@ -53,3 +53,7 @@ include/
 lib/
 local/
 .pyc
+
+# Vim #
+#######
+*.un~
