@@ -60,6 +60,12 @@ set noswapfile
 " Show incomplete commands
 set showcmd
 
+" Speed up macros
+set lazyredraw
+
+" Persistent undo
+set undofile
+
 " Search settings
 " Incremental searching (search as you type)
 set incsearch
@@ -188,4 +194,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Use stm to toggle syntastic
 command Stm SyntasticToggleMode
