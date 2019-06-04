@@ -21,3 +21,4 @@ work/.config/gcloud/.last_update_check.json
 */.config/asciinema
 work/.config/gcloud/
 *.swp
+*.un~
