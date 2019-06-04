@@ -16,6 +16,6 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 
 export WORKON_HOME=~/.envs
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYENV="true"
-if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\n; fi
+if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
 pyenv virtualenvwrapper_lazy
 eval "$(jump shell --bind=c)"
