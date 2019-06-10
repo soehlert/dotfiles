@@ -63,9 +63,6 @@ set showcmd
 " Speed up macros
 set lazyredraw
 
-" Persistent undo
-set undofile
-
 " Search settings
 " Incremental searching (search as you type)
 set incsearch
