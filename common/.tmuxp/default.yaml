@@ -1,20 +1,19 @@
+---
 session_name: default
 start_directory: ~/projects/
 windows:
-- window_name: local
-  layout: even-horizontal
-  focus: True
-  panes:
-    - focus: True
-    - pane
-    - pane
-- window_name: ssh
-  layout: even-horizontal
-  panes:
-  - focus: True
-  - pane
-  - pane
-- window_name: vim
-  layout: main-horizontal
-  panes:
-  - pane
+  - window_name: ssh
+    layout: even-horizontal
+    panes:
+      - focus: true
+      - pane
+  - window_name: local
+    layout: even-horizontal
+    focus: true
+    panes:
+      - focus: true
+      - pane
+  - window_name: vim
+    layout: main-horizontal
+    panes:
+      - focus: true

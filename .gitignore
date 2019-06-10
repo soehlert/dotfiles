@@ -22,3 +22,8 @@ work/.config/gcloud/.last_update_check.json
 work/.config/gcloud/
 *.swp
 *.un~
+work/.config/gcloud/active_config
+work/.config/gcloud/config_sentinel
+work/.config/gcloud/configurations
+work/.config/gcloud/gce
+work/.config/gcloud/logs
