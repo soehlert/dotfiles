@@ -1,5 +1,5 @@
 #!/bin/bash
 
 killall ssh-agent
-rm /Users/soehlert/.ssh/cm_socket/*
+rm -f /Users/soehlert/.ssh/master-*
 /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
