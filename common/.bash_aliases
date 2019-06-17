@@ -22,7 +22,7 @@ alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | gr
 alias gl='docker run --rm --name=gitleaks zricethezav/gitleaks --help'
 
 # Colorize grep
-alias grep='grep --color -E'
+alias grep='rg --color -E'
 
 # Make ls easier to use
 alias ls='/bin/ls -G'
