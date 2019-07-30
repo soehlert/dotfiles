@@ -38,6 +38,9 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Tab to select multiple results
 
+" Python indentation pep8 style
+Plug 'vim-scripts/indentpython.vim'
+
 " Syntax stuff
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-syntastic/syntastic'
