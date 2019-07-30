@@ -63,7 +63,7 @@ function fzf_grep_edit(){
         return
     fi
     local match=$(
-      rg --color=never --line-number "$1" |
+      rg --line-number "$1" |
         fzf --no-multi --delimiter : \
             --preview "bat --color=always --line-range {2}: {1}"
       )
