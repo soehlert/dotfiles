@@ -14,10 +14,13 @@
   cz           = !cz commit
   dp           = !git diff -R playground
   dm           = !git diff -R master
-  ll           = log --graph --format="%C(yellow)%h%C(red)%d%C(reset) -- %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"
+  ll           = "!git log --graph --format=\"%C(yellow)%h%C(red)%d%C(reset) -- %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)\""
+  merged       = "!git branch -r --merged | grep -v HEAD | xargs -L1 git --no-pager log --pretty=tformat:'%Cgreen%d%Creset - %h by %an (%Cblue%ar%Creset)' -1"
+  mergelog     = "!git --no-pager log --pretty=tformat:'%Cgreen%d%Creset - %h by %an (%Cblue%ar%Creset)' -1"
   po           = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
   st           = status
-  up           = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  unmerged     = "!git branch -r --no-merged | grep -v HEAD | xargs -L1 git mergelog"
+  up           = "!git pull --rebase --prune $@ && git submodule update --init --recursive"
   bdel         = "!f() { git push --delete origin $1; }; f"
   bclean       = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 [push]
