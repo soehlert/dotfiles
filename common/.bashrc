@@ -264,3 +264,4 @@ fi
 if [ -f ~/.fzf.bash ]; then
   . ~/.fzf.bash
 fi
+[ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
