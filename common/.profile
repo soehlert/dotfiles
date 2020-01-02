@@ -33,3 +33,4 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 
 # Tmuxp
 eval "$(_TMUXP_COMPLETE=source tmuxp)"
+source ~/.iterm2_shell_integration.bash
