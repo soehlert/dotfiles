@@ -163,12 +163,12 @@ let g:promptline_preset = {
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'b'    : '#W',
-      \'c'    : '#H',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'x'    : '#W',
+      \'c'    : '#(true)',
+      \'win'  : ['#I', '#W'],
+      \'cwin'  : ['#F', '#I', '#W'],
+      \'x'    : '#h',
       \'y'    : [ '%a', '%R' ],
-      \'z'    : '#(uptime | awk -F" {2,}" "{print $2 " " $3}" | awk -F"," "{print $1}"')}
+      \'z'    : '#(uptime | cut -d" " -f 5 | cut -d"," -f1)'}
 
 " Alignment settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
