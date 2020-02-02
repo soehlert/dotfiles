@@ -143,9 +143,6 @@ setopt NO_HIST_BEEP
 setopt NO_CASE_GLOB
 # Typing directory name by itself cds to it
 setopt AUTO_CD
-# Shell will correct misspellings on commands/paths
-setopt CORRECT
-setopt CORRECT_ALL
 # Setup autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
