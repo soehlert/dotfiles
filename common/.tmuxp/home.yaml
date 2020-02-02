@@ -1,13 +1,13 @@
 ---
-session_name: default
+session_name: home
 start_directory: ~/projects/
 windows:
-  - window_name: ssh
+  - window_name: local
     layout: even-horizontal
     panes:
       - focus: true
       - pane
-  - window_name: local
+  - window_name: ssh
     layout: even-horizontal
     focus: true
     panes:
