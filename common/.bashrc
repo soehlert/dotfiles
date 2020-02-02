@@ -265,3 +265,10 @@ if [ -f ~/.fzf.bash ]; then
   . ~/.fzf.bash
 fi
 [ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+eval "$(rbenv init -)"
+   LUNCHY_DIR=/Users/soehlert/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/lunchy-0.10.4/lib/../extras
+   if [ -f /lunchy-completion.bash ]; then
+     . /lunchy-completion.bash
+   fi
