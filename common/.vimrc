@@ -41,6 +41,9 @@ Plug 'junegunn/fzf.vim' " Tab to select multiple results
 " Python indentation pep8 style
 Plug 'vim-scripts/indentpython.vim'
 
+" Set sane vim table titles
+Plug 'MikeDacre/tmux-zsh-vim-titles'
+
 " Syntax stuff
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-syntastic/syntastic'
@@ -151,7 +154,8 @@ colorscheme solarized
 let g:promptline_preset = {
 	\'a' : [ promptline#slices#host() ],
 	\'b' : [ promptline#slices#cwd() ],
-	\'c' : [ promptline#slices#vcs_branch() ],
+  \'warn' : [ promptline#slices#last_exit_code() ],
+	\'x' : [ promptline#slices#vcs_branch() ],
 	\'y' : [ promptline#slices#git_status() ],
 	\'z' : [ promptline#slices#python_virtualenv() ]}
 
