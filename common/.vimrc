@@ -1,7 +1,7 @@
 " Install vim-plug automatically
 if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Vim-plugs
@@ -152,12 +152,23 @@ colorscheme solarized
 
 " Promptline settings
 let g:promptline_preset = {
-	\'a' : [ promptline#slices#host() ],
-	\'b' : [ promptline#slices#cwd() ],
+  \'a' : [ promptline#slices#host() ],
+  \'b' : [ promptline#slices#cwd() ],
   \'warn' : [ promptline#slices#last_exit_code() ],
-	\'x' : [ promptline#slices#vcs_branch() ],
-	\'y' : [ promptline#slices#git_status() ],
-	\'z' : [ promptline#slices#python_virtualenv() ]}
+  \'x' : [ promptline#slices#vcs_branch() ],
+  \'y' : [ promptline#slices#git_status() ],
+  \'z' : [ promptline#slices#python_virtualenv() ]}
+
+" Tmuxline settings
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'c'    : '#H',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'x'    : '#W',
+      \'y'    : [ '%a', '%R' ],
+      \'z'    : '#(uptime | awk -F" {2,}" "{print $2 " " $3}" | awk -F"," "{print $1}"')}
 
 " Alignment settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -169,7 +180,7 @@ nmap ga <Plug>(EasyAlign)
 set clipboard+=unnamed
 
 " Delete comment character when joining commented lines
-set formatoptions+=j 
+set formatoptions+=j
 
 " Turn off folding
 set nofoldenable
