@@ -2,16 +2,8 @@
 alias sudo='sudo '
 
 # Shortcuts
-alias g="git"
 alias h="history"
 alias dl="cd ~/Downloads"
-
-# FZF shortcuts
-alias ffe='fzf_find_edit'
-alias fge='fzf_grep_edit'
-alias fkill='fzf_kill'
-alias gadd='fzf_git_add'
-alias gll='fzf_git_log'
 
 # IP addresses
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -38,16 +30,6 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 
 # System info for macOS
 alias sysinfo='neofetch'
-
-# Directory backtracking
-alias ..='cd ..'
-alias ..2='..; ..'
-alias ..3='..2; ..'
-alias ..4='..3; ..'
-alias ..5='..4; ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
 
 # Confirm unsafe file operations
 alias cp='/bin/cp -i'
