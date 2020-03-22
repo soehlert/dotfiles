@@ -168,7 +168,7 @@ let g:tmuxline_preset = {
       \'cwin'  : ['#F', '#I', '#W'],
       \'x'    : '#h',
       \'y'    : [ '%a', '%R' ],
-      \'z'    : '#(uptime | cut -d" " -f 5 | cut -d"," -f1)'}
+      \'z'    : '#(uptime | cut -d" " -f 4,5 | cut -d"," -f1)'}
 
 " Alignment settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -184,6 +184,9 @@ set formatoptions+=j
 
 " Turn off folding
 set nofoldenable
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Run black formatter for python files on save
 autocmd BufWritePre *.py execute ':Black'
