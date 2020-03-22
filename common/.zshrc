@@ -28,6 +28,9 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 # k8s completion
 source <(kubectl completion zsh)
 
+# More powerful renaming
+autoload -U zm
+
 ###########
 # zplug
 ###########
