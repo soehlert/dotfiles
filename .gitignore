@@ -1,4 +1,5 @@
 .netrwhist
+*client_secret.json
 work/.config
 common/.vim/autoload/plug.vim
 common/.vim/autoload/plug.vim.old
