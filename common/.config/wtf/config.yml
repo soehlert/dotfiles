@@ -1,0 +1,70 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  grid:
+    columns: [42]
+    rows: [5, 17, 8, 9]
+  refreshInterval: 1
+  mods:
+    clocks_a:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        UTC: "Etc/UTC"
+        Champaign: "America/Chicago"
+        Berkeley: "America/Los_Angeles"
+      position:
+        top: 0
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 15
+      sort: "chronological"
+      title: "Clocks A"
+      type: "clocks"
+    gcal:
+      email: "soehlert@es.net"
+      enabled: true
+      eventCount: 5
+      hourFormat: "12"
+      multiCalendar: false
+      position:
+        top: 1
+        left: 0
+        height: 4
+        width: 1
+      refreshInterval: 300
+      secretFile: "~/.config/wtf/client_secret.json"
+      showDeclined: false
+      timezone: "America/Chicago"
+      withLocation: true
+    prettyweather:
+      enabled: true
+      city: "champaign"
+      position:
+        top: 2
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 300
+      unit: "u"
+      view: 0
+      language: "en"
+    todoist:
+      apiKey: "7cb12c1ea9aeb6483624a6ade291206c18c68a29"
+      enabled: true
+      position:
+        top: 3
+        left: 0
+        height: 5
+        width: 1
+      projects:
+        - 2233114868
+        - 2233114780
+      refreshInterval: 3600
