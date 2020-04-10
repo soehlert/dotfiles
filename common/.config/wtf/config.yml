@@ -6,7 +6,7 @@ wtf:
       normal: gray
   grid:
     columns: [42]
-    rows: [5, 8, 17, 9]
+    rows: [5, 9, 17, 8]
   refreshInterval: 1
   mods:
     clocks_a:
