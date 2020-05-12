@@ -334,3 +334,4 @@ then
 else
 	source ~/.promptline.sh
 fi
+export PATH="/usr/local/sbin:$PATH"

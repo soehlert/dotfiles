@@ -6,33 +6,14 @@ wtf:
       normal: gray
   grid:
     columns: [42]
-    rows: [5, 9, 17, 8]
+    rows: [9, 17, 8]
   refreshInterval: 1
   mods:
-    clocks_a:
-      colors:
-        rows:
-          even: "lightblue"
-          odd: "white"
-      enabled: true
-      locations:
-        UTC: "Etc/UTC"
-        Champaign: "America/Chicago"
-        Berkeley: "America/Los_Angeles"
-      position:
-        top: 0
-        left: 0
-        height: 1
-        width: 1
-      refreshInterval: 15
-      sort: "chronological"
-      title: "Clocks A"
-      type: "clocks"
     prettyweather:
       enabled: true
       city: "champaign"
       position:
-        top: 1
+        top: 0
         left: 0
         height: 1
         width: 1
@@ -47,9 +28,9 @@ wtf:
       hourFormat: "12"
       multiCalendar: false
       position:
-        top: 2
+        top: 1
         left: 0
-        height: 4
+        height: 1
         width: 1
       refreshInterval: 300
       secretFile: "~/.config/wtf/client_secret.json"
@@ -60,7 +41,7 @@ wtf:
       apiKey: "7cb12c1ea9aeb6483624a6ade291206c18c68a29"
       enabled: true
       position:
-        top: 3
+        top: 2
         left: 0
         height: 5
         width: 1
