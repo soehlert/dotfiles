@@ -52,8 +52,16 @@ zplug "zpm-zsh/undollar"
 zplug "nviennot/zsh-vim-plugin"
 # Remind me of my aliases when I should have used one
 zplug "djui/alias-tips"
+# Automatically source venv when in a python project dir
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 zplug load
+
+############
+# Auto venvs
+############
+export AUTOSWTICH_VIRTUAL_ENV_DIR="$HOME/.envs"
+export AUTOSWITCH_FILE=".autoswitch"
 
 ############
 # FZF
