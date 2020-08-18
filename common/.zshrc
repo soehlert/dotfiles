@@ -25,9 +25,6 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
  '+l:|?=** r:|?=**'
 
-# k8s completion
-source <(kubectl completion zsh)
-
 # More powerful renaming
 autoload -U zm
 

@@ -1,4 +1,5 @@
 .netrwhist
+client.json
 common/.config/wtf/gcal-auth.json
 *client_secret.json
 work/.config
