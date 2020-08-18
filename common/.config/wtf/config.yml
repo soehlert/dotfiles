@@ -33,7 +33,7 @@ wtf:
         height: 1
         width: 1
       refreshInterval: 300
-      secretFile: "~/.config/wtf/client_secret.json"
+      secretFile: "~/.config/wtf/client.json"
       showDeclined: false
       timezone: "America/Chicago"
       withLocation: true
