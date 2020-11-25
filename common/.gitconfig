@@ -1,6 +1,6 @@
 [core]
   editor       = vim
-  excludesfile = /Users/sam/.gitignore_global
+	excludesfile = /Users/soehlert/.gitignore_global
   autocrlf     = false
   safecrlf     = true
 [alias]
