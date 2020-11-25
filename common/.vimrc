@@ -52,7 +52,7 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'ambv/black',
-Plug 'prettier/vim-prettier', { 'for': 'javascript', 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
