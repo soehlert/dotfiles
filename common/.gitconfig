@@ -3,6 +3,7 @@
 	excludesfile = /Users/soehlert/.gitignore_global
   autocrlf     = false
   safecrlf     = true
+	attributesfile = /Users/soehlert/.gitattributes
 [alias]
   a            = add
   br           = branch
