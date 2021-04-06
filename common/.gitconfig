@@ -7,12 +7,11 @@
 [alias]
   a            = add
   br           = branch
-  c            = commit
   cm           = commit -m
   co           = "!f() { git checkout \"$@\" && git stash list | grep \"$1:\"; }; f"
   com          = !git checkout master
   cob          = checkout -b
-  cz           = !cz c
+  c            = !cz c
   dp           = !git diff -R playground
   dm           = !git diff -R master
   ll           = "!git log --graph --format=\"%C(yellow)%h%C(red)%d%C(reset) -- %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)\""
@@ -40,3 +39,5 @@
 [include]
   path = "/Users/soehlert/.gitaliases"
 # END ANSIBLE MANAGED BLOCK
+[pull]
+	rebase = false
