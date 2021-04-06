@@ -1,0 +1,125 @@
+my_dirs: &my_dirs
+  - ~/Downloads/Compressed
+  - ~/Downloads/IMG
+  - ~/Downloads/Important
+  - ~/Downloads/Music
+  - ~/Downloads/PDF
+  - ~/Downloads/Pics
+  - ~/Downloads/Text
+  - ~/Downloads/Video
+  - ~/Downloads/Work
+
+audio_ext: &audio
+  - mp3
+  - m4a
+  - flac
+compressed_ext: &compressed
+  - zip
+  - 7z
+  - 7zip
+  - gz
+  - tar
+
+executable_ext: &executables
+  - exe
+  - iso
+  - rpm
+  - deb
+
+important_ext: &important
+  - unf
+  - ovpn
+  - lzf
+
+text_ext: &text
+  - json
+  - txt
+  - rtf
+
+video_ext: &video
+  - m4v
+  - 3gpp
+  - mov
+  - mkv
+  - mp4
+
+work_ext: &work
+  - pp
+  - xlsx
+  - docx
+  - pptx
+
+rules:
+  # Old files
+  - folders:
+      - '~/Downloads'
+      - '! *my_dirs'
+    subfolders: false
+    filters:
+      - extension:
+      - created:
+          days: 30
+          mode: older
+    actions:
+      - trash
+
+  # Remove old screen shots
+  - folders: ~/Downloads/Pics
+    filters:
+      - filename:
+          startswith: "Screen Shot"
+    actions:
+      - trash
+
+  # Sort executables
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension: *executables
+    actions:
+      - move: ~/Downloads/IMG/
+
+  # Sort important
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+        - *important
+    actions:
+      - move: ~/Downloads/Important/
+
+  # Sort PDFs
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+          - pdf
+    actions:
+      - move: ~/Downloads/PDF/
+
+  # Sort text
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+        - *text
+    actions:
+      - move: ~/Downloads/Text/
+
+  # Sort video
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+        - *video
+    actions:
+      - move: ~/Downloads/Video/
+  # Sort work
+
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+        - *work
+    actions:
+      - move: ~/Downloads/Work/
