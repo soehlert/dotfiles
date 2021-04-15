@@ -38,6 +38,8 @@ source $ZPLUG_HOME/init.zsh
 # Unify with tmux and vim
 zplug "MikeDacre/tmux-zsh-vim-titles"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# fzf tab completion
+zplug "Aloxaf/fzf-tab"
 # Git fuzzy find stuff
 zplug "wfxr/forgit"
 zplug "zlsun/solarized-man"
