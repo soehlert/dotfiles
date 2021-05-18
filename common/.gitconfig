@@ -27,11 +27,11 @@
   default      = simple
 [credential]
 	helper       = none
-[includeIf "gitdir:~/projects/work/*.git"]
+[includeIf "gitdir:~/projects/work/"]
   [user]
     name  = Sam Oehlert
     email = soehlert@es.net
-[includeIf "gitdir:~/projects/personal/*.git"]
+[includeIf "gitdir:~/projects/personal/"]
   [user]
     name  = Sam Oehlert
     email = sam.oehlert@gmail.com
@@ -41,3 +41,5 @@
 # END ANSIBLE MANAGED BLOCK
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
