@@ -42,7 +42,7 @@ Plug 'junegunn/fzf.vim' " Tab to select multiple results
 Plug 'vim-scripts/indentpython.vim'
 
 " Set sane vim table titles
-Plug 'MikeDacre/tmux-zsh-vim-titles'
+" Plug 'MikeDacre/tmux-zsh-vim-titles'
 
 " Syntax stuff
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
