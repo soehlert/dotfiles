@@ -13,6 +13,7 @@ audio_ext: &audio
   - mp3
   - m4a
   - flac
+
 compressed_ext: &compressed
   - zip
   - 7z
@@ -30,6 +31,11 @@ important_ext: &important
   - unf
   - ovpn
   - lzf
+
+pics_ext: &pics
+  - jpg
+  - jpeg
+  - png
 
 text_ext: &text
   - json
@@ -88,6 +94,15 @@ rules:
     actions:
       - move: ~/Downloads/Important/
 
+  # Sort Pics
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension:
+        - *pics
+    actions:
+      - move: ~/Downloads/Pics/
+
   # Sort PDFs
   - folders: ~/Downloads
     subfolders: true
@@ -114,8 +129,8 @@ rules:
         - *video
     actions:
       - move: ~/Downloads/Video/
-  # Sort work
 
+  # Sort work
   - folders: ~/Downloads
     subfolders: true
     filters:
