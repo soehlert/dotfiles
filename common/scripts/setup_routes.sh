@@ -2,7 +2,7 @@
 
 # From networksetup -listnetworkserviceorder
 
-PRIMARY_IFACE_NAME="Ethernet"
+PRIMARY_IFACE_NAME="Wi-Fi"
 
 PRIMARY_V4_GW=$(networksetup -getinfo "${PRIMARY_IFACE_NAME}" | grep Router | grep -v IPv6 | cut -f 2 -d' ') 
 PRIMARY_V6_GW=$(networksetup -getinfo "${PRIMARY_IFACE_NAME}" | grep "IPv6 Router" | cut -f 3 -d' ') 
