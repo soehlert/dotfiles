@@ -56,26 +56,6 @@ work_ext: &work
   - pptx
 
 rules:
-  # Old files
-  - folders:
-      - '~/Downloads'
-      - '! *my_dirs'
-    subfolders: false
-    filters:
-      - extension:
-      - created:
-          days: 30
-          mode: older
-    actions:
-      - trash
-
-  # Remove old screen shots
-  - folders: ~/Downloads/Pics
-    filters:
-      - filename:
-          startswith: "Screen Shot"
-    actions:
-      - trash
 
   # Sort executables
   - folders: ~/Downloads
@@ -96,7 +76,7 @@ rules:
 
   # Sort Pics
   - folders: ~/Downloads
-    subfolders: true
+    subfolders: false
     filters:
       - extension:
         - *pics
@@ -138,3 +118,24 @@ rules:
         - *work
     actions:
       - move: ~/Downloads/Work/
+
+  # Old files
+  - folders:
+      - '~/Downloads'
+      - '! *my_dirs'
+    subfolders: false
+    filters:
+      - extension:
+      - created:
+          days: 30
+          mode: older
+    actions:
+      - trash
+
+  # Remove old screen shots
+  - folders: ~/Downloads/Pics
+    filters:
+      - filename:
+          startswith: "Screen Shot"
+    actions:
+      - trash
