@@ -130,7 +130,7 @@ rules:
           days: 30
           mode: older
     actions:
-      - trash
+      - shell: 'trash "{path}"'
 
   # Remove old screen shots
   - folders: ~/Downloads/Pics
@@ -138,4 +138,4 @@ rules:
       - filename:
           startswith: "Screen Shot"
     actions:
-      - trash
+      - shell: 'trash "{path}"'
