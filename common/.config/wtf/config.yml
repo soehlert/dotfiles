@@ -6,7 +6,7 @@ wtf:
       normal: gray
   grid:
     columns: [42]
-    rows: [9, 17, 8]
+    rows: [9, 17, 5]
   refreshInterval: 1
   mods:
     prettyweather:

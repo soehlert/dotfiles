@@ -33,6 +33,13 @@ autoload -U zm
 ###########
 
 export ZPLUG_HOME=/usr/local/opt/zplug
+# Check if zplug is installed
+if [[ ! -d $ZPLUG_HOME ]]; then
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME/init.zsh
+  source $ZPLUG_HOME/init.zsh && zplug update --self
+else
+  source $ZPLUG_HOME/init.zsh
+fi
 source $ZPLUG_HOME/init.zsh
 
 # Unify with tmux and vim
