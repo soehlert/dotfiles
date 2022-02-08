@@ -32,7 +32,7 @@ autoload -U zm
 # zplug
 ###########
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 # Check if zplug is installed
 if [[ ! -d $ZPLUG_HOME ]]; then
   git clone https://github.com/zplug/zplug $ZPLUG_HOME/init.zsh
