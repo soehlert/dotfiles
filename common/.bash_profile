@@ -11,3 +11,4 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 export WORKON_HOME=~/.envs
 eval "$(jump shell --bind=c)"
 
+export HOMEBREW_GITHUB_API_TOKEN=***REMOVED***
