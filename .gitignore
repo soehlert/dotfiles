@@ -31,3 +31,5 @@ work/.config/gcloud/config_sentinel
 work/.config/gcloud/configurations
 work/.config/gcloud/gce
 work/.config/gcloud/logs
+common/.config/wtf/soehlert@es.net-gcal-auth.json
+common/.config/wtf/client.json
