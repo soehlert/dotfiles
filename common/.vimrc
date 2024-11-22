@@ -41,6 +41,9 @@ Plug 'junegunn/fzf.vim' " Tab to select multiple results
 " Python indentation pep8 style
 Plug 'vim-scripts/indentpython.vim'
 
+" Terraform stuff
+Plug 'hashivim/vim-terraform'
+
 " Set sane vim table titles
 " Plug 'MikeDacre/tmux-zsh-vim-titles'
 
@@ -76,6 +79,8 @@ set incsearch
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-c> :Commits<Cr>
 nnoremap <C-g> :Rg<Cr>
+
+vnoremap <C-t> :Tab /=<Cr>
 
 " Autoload files that have changed outside of vim
 set autoread
