@@ -34,6 +34,6 @@ style = "bg:green fg:black bold"
 format = "[ $path]($style)"
 
 [character]
-success_symbol = "[ $](bold green)"
-error_symbol = "[ #](bold red)"
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\#](bold red)"
 format = "$symbol "
