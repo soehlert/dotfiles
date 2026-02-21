@@ -1,1 +1,0 @@
-SILO_PATH=/tmp/ansible ansible-silo --update

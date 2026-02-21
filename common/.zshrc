@@ -114,4 +114,4 @@ function mkd() {
 }
 
 # Prompt
-source ~/.shell_prompt.sh
+eval "$(starship init zsh)"
