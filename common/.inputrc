@@ -29,7 +29,7 @@ set echo-control-characters off
 set completion-query-items 200
 
 # Show extra file information when completing, like `ls -F` does
-set visible-stats on
+set colored-stats on
 
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and

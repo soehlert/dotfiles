@@ -47,14 +47,91 @@ Thumbs.db
 ###########
 .vagrant/
 
-# Python #
-##########
+.autoswitch
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*-
+
+# Swap files
+*.swp
+*.swo
+
+# Vagrant
+.vagrant/
+
+# Python
 bin/
 build/
 include/
 lib/
-.pyc
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+*.egg
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
-# Vim #
-#######
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Vim
 *.un~
+
+# Node
+node_modules/
+npm-debug.log
+.npm/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Editor directories
+.idea/
+.vscode/
+
+# Direnv
+.envrc
+.env
+

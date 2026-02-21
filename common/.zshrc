@@ -1,5 +1,5 @@
 # Path
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/scripts:$HOME/go/bin:$PATH
 
 # History
 HISTFILE=~/.zsh_history
@@ -14,6 +14,11 @@ setopt AUTO_CD
 setopt CORRECT
 setopt NO_CASE_GLOB
 unsetopt BEEP
+
+export HOMEBREW_NO_ANALYTICS=1
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export MANPAGER="less -X"
 
 # Completion
 autoload -Uz compinit && compinit
@@ -31,10 +36,11 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # forgit (installed via brew)
 [ -f $(brew --prefix)/share/forgit/forgit.plugin.zsh ] && source $(brew --prefix)/share/forgit/forgit.plugin.zsh
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git"'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# Better fzf config (adds previews with bat and tree)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 
 # zoxide (replaces autojump)
 eval "$(zoxide init zsh)"

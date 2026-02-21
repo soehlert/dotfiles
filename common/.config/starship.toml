@@ -9,17 +9,17 @@ $character"""
 disabled = true
 
 [python]
-format = "[$virtualenv]($style) "
-style = "bold yellow"
+format = "[ $virtualenv ]($style)"
+style = "fg:white bold"
 
 [git_branch]
-format = "[$symbol$branch]($style) "
-symbol = " "
-style = "bold purple"
+format = "[ ($branch) ]($style)"
+symbol = ""
+style = "fg:purple bold"
 
 [git_status]
-format = '([$all_status$ahead_behind]($style) )'
-style = "bold red"
+format = "[  $all_status$ahead_behind ]($style)"
+style = "bg:blue fg:white bold"
 ahead = "⇡${count}"
 behind = "⇣${count}"
 modified = "!${count}"
@@ -31,9 +31,9 @@ deleted = "✘${count}"
 truncation_length = 3
 truncate_to_repo = false
 style = "bg:green fg:black bold"
-format = "[ $path ]($style)"
+format = "[ $path]($style)"
 
 [character]
-success_symbol = "[\\$](bold green)"
-error_symbol = "[\\$](bold red)"
+success_symbol = "[ $](bold green)"
+error_symbol = "[ #](bold red)"
 format = "$symbol "
