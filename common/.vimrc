@@ -1,223 +1,186 @@
-" Install vim-plug automatically
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" Vim-plugs
-"""""""""""
+" ============================================================================
+" Plugins
+" ============================================================================
 call plug#begin('~/.vim/plugged')
-" Vim looks
+
+" UI
+Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
-" Tmux statusline looks like vim-airline
-Plug 'edkolev/tmuxline.vim'
-" Play nicely with git
-Plug 'tpope/vim-fugitive'
-" Auto add closing brackets/quotes/parens
-Plug 'Raimondi/delimitMate'
-" Comment/uncomment easily
-Plug 'tpope/vim-commentary' " Quickly line up things with :Tab command
-Plug 'godlygeek/tabular' " Set up easy alignment
-Plug 'junegunn/vim-easy-align'
-" Allow vim to work well with csv files
-Plug 'chrisbra/csv.vim'
-" NERD tree will be loaded on the first invocation of NERDTreeToggle command
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" NERD tree git
+Plug 'preservim/nerdtree'          " updated from scrooloose/nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Use vim to create prompt and match it to vim/tmux
-Plug 'edkolev/promptline.vim'
-" Save session frequently and automatically
-Plug 'tpope/vim-obsession'
-" Vim treat camelcase and underscores as word boundaries
-Plug 'chaoren/vim-wordmotion'
 
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim' " Tab to select multiple results
+" Navigation
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'            " replaces ctrlp
 
-" Python indentation pep8 style
-Plug 'vim-scripts/indentpython.vim'
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-" Terraform stuff
+" Editing
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'        " replaces nerdcommenter, simpler
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
+" Linting + Completion
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}   " replaces YCM
+
+" Syntax
+Plug 'stephpy/vim-yaml'
+Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
+Plug 'fatih/vim-go'
 
-" Set sane vim table titles
-" Plug 'MikeDacre/tmux-zsh-vim-titles'
-
-" Syntax stuff
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'vim-syntastic/syntastic'
-Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'nvie/vim-flake8', { 'for': 'python' }
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'ambv/black',
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 call plug#end()
 
-" Vim settings
-""""""""""""""
-" Use delete like normal
-set backspace=indent,eol,start
-
-" No swap file
-set noswapfile
-
-" Show incomplete commands
-set showcmd
-
-" Speed up macros
-set lazyredraw
-
-" Search settings
-" Incremental searching (search as you type)
-set incsearch
-nnoremap <C-p> :Files<Cr>
-nnoremap <C-c> :Commits<Cr>
-nnoremap <C-g> :Rg<Cr>
-
-vnoremap <C-t> :Tab /=<Cr>
-
-" Autoload files that have changed outside of vim
-set autoread
-
-" Visual autocomplete for command menu (e.g. :e ~/path/to/file)
-set wildmenu
-
-" Allow substitutions to dynamically be represented in the buffer
-" https://asciinema.org/a/92207
-:silent! set inccommand=nosplit
-
-filetype indent plugin on
-" Autoindent
-set autoindent
-" Allows for dynamic variables depending on file type
-set modeline
-" Intelligently indent on new line
-set smartindent
-" Convert tabs to spaces
-set expandtab
-" Manual indenting tab size in spaces
-set tabstop=2
-" Automatic indenting tab size in spaces
-set shiftwidth=2
-
-autocmd FileType gitcommit setlocal spell textwidth=72
-autocmd FileType markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd FileType sh,ruby,yaml,vim setlocal shiftwidth=2 tabstop=2 expandtab
-autocmd FileType php,python setlocal shiftwidth=4 tabstop=4 expandtab
-" See `:h fo-table` for details of formatoptions `t` to force wrapping of text
-autocmd FileType python,ruby,go,sh,javascript setlocal textwidth=79 formatoptions+=t
-autocmd FileType yaml setlocal ai ts=2 sw=2 et
-
-" FZF (search files)
-" Shift-Tab to select multiple files
-" Ctrl-t = tab
-" Ctrl-x = split
-" Ctrl-y = vertical
-map <leader>t :FZF<CR>
-map <leader>y :Buffers<CR>
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store " Files matched are ignored when expanding wildcards
-set wildmode=list:longest,list:full
-
-" Don't use escape or ctrl-c to exit insert mode
-inoremap jk <Esc>`^
-
-" Nerdtree settings
-" Open up nerdtree automatically when starting vim
-autocmd vimenter * NERDTree
-" Set focus to actual file by default instead of nerdtree
-autocmd VimEnter * wincmd p
-" Auto close vim if nerdtree is the only thing open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Map ctrl-n to toggle nerdtree
-map <C-n> :NERDTreeToggle<CR>
-" Ignore rnd file permissions issue
-let NERDTreeIgnore = [ '.rnd' ]
-" Show hidden files
-let NERDTreeShowHidden=1
-
-" Need to download and install the fonts first
-" (https://github.com/powerline/fonts)
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-" Solarized settings
-set t_Co=256
+" ============================================================================
+" General
+" ============================================================================
+set nocompatible
+filetype plugin indent on
 syntax enable
-let g:solarized_termtrans = 1
-let g:solarized_termcolors=256
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline_solarized_normal_green = 1
+
+set encoding=utf-8
+set number
+set ruler
+set showcmd
+set showmatch
+set cursorline
+
+set wildmenu                   " needed for wildmode to work properly
+set wildmode=list:longest
+
+set scrolloff=5
+set laststatus=2
+
+" ============================================================================
+" Leader
+" ============================================================================
+let mapleader = ","
+
+" ============================================================================
+" Theme
+" ============================================================================
+set background=dark
 colorscheme solarized
 
-" Promptline settings
-let g:promptline_preset = {
-  \'a' : [ promptline#slices#host() ],
-  \'b' : [ promptline#slices#cwd() ],
-  \'warn' : [ promptline#slices#last_exit_code() ],
-  \'x' : [ promptline#slices#vcs_branch() ],
-  \'y' : [ promptline#slices#git_status() ],
-  \'z' : [ promptline#slices#python_virtualenv() ]}
+" ============================================================================
+" Whitespace
+" ============================================================================
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set nowrap
 
-" Tmuxline settings
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : '#W',
-      \'c'    : '#(true)',
-      \'win'  : ['#I', '#W'],
-      \'cwin'  : ['#F', '#I', '#W'],
-      \'x'    : '#h',
-      \'y'    : [ '%a', '%R' ],
-      \'z'    : '#(uptime | cut -d" " -f 4,5 | cut -d"," -f1)'}
+" Strip trailing whitespace on save (scoped to common filetypes only)
+autocmd BufWritePre *.py,*.js,*.rb,*.yml,*.yaml,*.sh,*.vim :%s/\s\+$//e
 
-" Alignment settings
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" ============================================================================
+" Search
+" ============================================================================
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-" Allow copy and paste to work
-set clipboard+=unnamed
+" ============================================================================
+" Files & Backups
+" ============================================================================
+set nobackup
+set noswapfile
+set autoread
 
-" Delete comment character when joining commented lines
-set formatoptions+=j
+" ============================================================================
+" Splits
+" ============================================================================
+set splitbelow
+set splitright
 
-" Turn off folding
-set nofoldenable
+" ============================================================================
+" Key Mappings
+" ============================================================================
+" Toggle invisible characters
+map <leader>l :set list!<CR>
 
-" Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+" Clear search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
-" Run black formatter for python files on save
-autocmd BufWritePre *.py execute ':Black'
+" NERDTree
+map <leader>n :NERDTreeToggle<CR>
 
-" Prettier Settings
-" Turn off auto focus on quickfix for prettier
-let g:prettier#quickfix_auto_focus = 0
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue Prettier
+" fzf
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :Rg<CR>
 
-" Syntax highlighting for specific files
-autocmd BufRead,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
-" Set yaml.ansible file type on playbooks as well
-au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_ansible_checkers=['ansible_lint']
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E305,E302,W503 --max-line-length=88'
-let g:syntastic_yaml_checkers = ['yamllint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" Use stm to toggle syntastic
-command Stm SyntasticToggleMode
+" ============================================================================
+" coc.nvim extensions
+" ============================================================================
+let g:coc_global_extensions = [
+\  'coc-pyright',
+\  'coc-tsserver',
+\  'coc-html',
+\  'coc-css',
+\  'coc-yaml',
+\  'coc-sh',
+\  'coc-json',
+\  'coc-prettier',
+\]
+
+" ============================================================================
+" ALE
+" ============================================================================
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\  'python':     ['flake8'],
+\  'typescript': ['eslint', 'tsserver'],
+\  'javascript': ['eslint'],
+\  'yaml':       ['yamllint'],
+\  'bash':       ['shellcheck'],
+\  'html':       ['htmlhint'],
+\}
+let g:ale_fixers = {
+\  '*':          ['remove_trailing_lines', 'trim_whitespace'],
+\  'python':     ['black', 'isort'],
+\  'typescript': ['prettier', 'eslint'],
+\  'javascript': ['prettier', 'eslint'],
+\  'yaml':       ['prettier'],
+\  'html':       ['prettier'],
+\  'bash':       ['shfmt'],
+\}
+
+" ============================================================================
+" NERDTree
+" ============================================================================
+let NERDTreeShowHidden=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+  \ && b:NERDTree.isTabTree()) | q | endif   " close vim if NERDTree is last window
+
+" ============================================================================
+" Airline
+" ============================================================================
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
+
+" ============================================================================
+" vim-go
+" ============================================================================
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+
+" ============================================================================
+" Terraform
+" ============================================================================
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
