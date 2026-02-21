@@ -3,7 +3,6 @@ $python\
 $git_branch\
 $git_status\
 $directory\
-$line_break\
 $character"""
 
 [hostname]
@@ -27,13 +26,14 @@ modified = "!${count}"
 staged = "+${count}"
 untracked = "?${count}"
 deleted = "✘${count}"
-clean = "✔"
 
 [directory]
 truncation_length = 3
 truncate_to_repo = false
-style = "bold green"
+style = "bg:green fg:black bold"
+format = "[ $path ]($style)"
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
+format = "$symbol "
