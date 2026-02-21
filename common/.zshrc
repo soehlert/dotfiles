@@ -39,12 +39,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # zoxide (replaces autojump)
 eval "$(zoxide init zsh)"
 
-# rbenv
-eval "$(rbenv init -)"
-
-# direnv
-eval "$(direnv hook zsh)"
-
 # Key bindings
 bindkey -v
 bindkey '^R' history-incremental-search-backward
