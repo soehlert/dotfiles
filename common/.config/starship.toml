@@ -9,16 +9,16 @@ $character"""
 disabled = true
 
 [python]
-format = "[ $virtualenv ]($style)"
-style = "fg:white bold"
+format = "($virtualenv )($style)"
+style = "fg:yellow bold"
 
 [git_branch]
-format = "[ ($branch) ]($style)"
+format = "($branch )($style)"
 symbol = ""
 style = "fg:purple bold"
 
 [git_status]
-format = "[  $all_status$ahead_behind ]($style)"
+format = "([  $all_status$ahead_behind ]($style))"
 style = "bg:blue fg:white bold"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -35,5 +35,5 @@ format = "[ $path]($style)"
 
 [character]
 success_symbol = "[\\$](bold green)"
-error_symbol = "[\\#](bold red)"
-format = "$symbol "
+error_symbol = "[❯](bold red)"
+format = " $symbol "
