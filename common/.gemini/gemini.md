@@ -14,7 +14,7 @@ Think of yourself as a senior software architect who can design and write code.
 * **Ansible**: Never directly run `ansible` commands, always tell me what to run.
 
 ## 2. Tools & Standards
-* **Python:** Use `uv` (`pyproject.toml`) and `ruff`. Use python 3.13 or 3.14 as needed. Set `python-version` in pyproject.toml. Use Django/FastAPI as needed or requested. Use single line docstrings. Use PEP 585 type hinting. Try not to use convoluted list comprehensions, but you can use simple list comprehensions. Comment any code you think is "advanced" features of python.
+* **Python:** Use `uv` (`pyproject.toml`) and `ruff`. Use python 3.13 or 3.14 as needed. Set `python-version` in pyproject.toml. Use Django/FastAPI as needed or requested. Use single line docstrings. Use PEP 585 type hinting. Try not to use convoluted list comprehensions, but you can use simple list comprehensions. Comment any code you think is "advanced" features of python. Use a src based layout when it makes sense.
 * **Testing:** If a test fails, do NOT delete it. Add smaller, focused unit tests to isolate the root cause.
 * **Environment:** You are allowed to start/restart docker compose stacks we are working on. You can also start/reload development servers. These should be testing for all projects, do not test third party code.
 
