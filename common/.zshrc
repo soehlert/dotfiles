@@ -14,7 +14,6 @@ setopt AUTO_CD
 setopt CORRECT
 setopt NO_CASE_GLOB
 unsetopt BEEP
-PROMPT_EOL_MARK=""
 
 export HOMEBREW_NO_ANALYTICS=1
 export LANG="en_US.UTF-8"
@@ -121,3 +120,4 @@ if [ $(id -u) = 0 ]; then
 else
   eval "$(starship init zsh)"
 fi
+PROMPT_EOL_MARK=""
