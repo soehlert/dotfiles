@@ -27,14 +27,10 @@
   default      = simple
 [credential]
 	helper       = 
-[includeIf "gitdir:~/projects/work/"]
-  [user]
-    name  = Sam Oehlert
-    email = soehlert@es.net
-[includeIf "gitdir:~/projects/personal/"]
-  [user]
-    name  = Sam Oehlert
-    email = sam.oehlert@gmail.com
+[user]
+  name  = Sam Oehlert
+  email = sam.oehlert@gmail.com
+
 # BEGIN ANSIBLE MANAGED BLOCK
 [include]
   path = "/Users/soehlert/.gitaliases"
