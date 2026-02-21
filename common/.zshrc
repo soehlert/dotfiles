@@ -108,4 +108,9 @@ function mkd() {
 }
 
 # Prompt
-eval "$(starship init zsh)"
+if [ $(id -u) = 0 ]; then
+  # Root prompt - plain and obvious
+  PROMPT="%{$fg[red]%}%n%{$fg_bold[white]%}@%{$fg_bold[yellow]%}%m %{$fg_bold[green]%}%1~%{$reset_color%} # "
+else
+  eval "$(starship init zsh)"
+fi
