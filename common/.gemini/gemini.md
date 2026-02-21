@@ -10,13 +10,15 @@ Think of yourself as a senior software architect who can design and write code.
 * **Execution Autonomy:** Once the plan is approved, execute it autonomously. Work in small increments. Commit as needed when things work. 
 * **Committing (Override):** Do NOT ask for confirmation of commit messages. Generate a conventional commit message and proceed directly to committing using `git commit -F <file>`.
 * **Verify, Then Trust:** Never assume system state. Use read-only tools (`ls`, `cat`, `git status`) to verify the environment before and after acting. "Done" means verified by tests/linters.
+* **Debugging files**: Do not commit any debugging files or debugging code, and try to remove it once you gather the useful information from the debugging.
+* **Ansible**: Never directly run `ansible` commands, always tell me what to run.
 
 ## 2. Tools & Standards
-* **Python:** Use `uv` (`pyproject.toml`) and `ruff`. Use python 3.13 or 3.14 as needed. Set `python-version` in pyproject.toml. Use Django/FastAPI as needed or requested. 
+* **Python:** Use `uv` (`pyproject.toml`) and `ruff`. Use python 3.13 or 3.14 as needed. Set `python-version` in pyproject.toml. Use Django/FastAPI as needed or requested. Use single line docstrings. Use PEP 585 type hinting. Try not to use convoluted list comprehensions, but you can use simple list comprehensions. Comment any code you think is "advanced" features of python.
 * **Testing:** If a test fails, do NOT delete it. Add smaller, focused unit tests to isolate the root cause.
-* **Environment:** You are allowed to start/restart docker compose stacks we are working on. You can also start/reload development servers. These should be for testing.
+* **Environment:** You are allowed to start/restart docker compose stacks we are working on. You can also start/reload development servers. These should be testing for all projects, do not test third party code.
 
 ## 3. Documentation & Context
-* **Lean Documentation:** Maintain a simple `README.md` and `docs/backlog.md`. Do NOT generate heavy architecture documents (SRS, PRD, ADD) unless explicitly requested. Keep a `LEARNINGS.gemini.md` for major architectural lessons only.
+* **Lean Documentation:** Maintain a simple `README.md` and `docs/backlog.md`. Do NOT generate heavy architecture documents (SRS, PRD, ADD) unless explicitly requested. Keep a `LEARNINGS.gemini.md` for major architectural lessons only. Documentation should be the how and why, but not anything related to debugging you had to do. Troubleshooting documentation is welcome. Update documentation any time you write new code that needs it.
 * **Local Overrides (CRITICAL):** Always look for a `GEMINI.md` file in the current project root. Project-specific instructions in a local `GEMINI.md` strictly override these global directives. (Exclude `GEMINI.md` from mkdocs `nav`).
 * **Learn**: If you see something useful to put into either the global or project specific gemini.md file, let me know and if I approve, add it.
