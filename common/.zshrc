@@ -113,6 +113,65 @@ function mkd() {
   cd "$@" || exit
 }
 
+# Encrypt with 7z
+enc() {
+    # 1. Password collection and verification
+    read -rs "pass1?Enter password for $1.7z: "
+    echo
+    read -rs "pass2?Verify password: "
+    echo
+
+    if [ "$pass1" != "$pass2" ]; then
+        echo "Error: Passwords do not match. Encryption aborted."
+        return 1
+    fi
+
+    # 2. Run the encryption
+    7z a -p"$pass1" -mhe=on "$1.7z" "$1"
+    local enc_status=$?
+
+    # Exit code 1 means minor warnings (like .DS_Store skips), which is okay.
+    # Exit code 0 means perfection. Anything higher (>1) is a critical failure.
+    if [ $enc_status -gt 1 ]; then
+        echo "\n[ERROR] 7z encryption failed critically. Keeping original files."
+        return 1
+    fi
+
+    # 3. The Ultimate Safety Check: Test the newly created archive
+    echo "\nVerifying archive integrity..."
+    7z t -p"$pass1" "$1.7z" > /dev/null 2>&1
+
+    if [ $? -eq 0 ]; then
+        echo "Verification successful! Deleting original folder safely..."
+        rm -rf "$1"
+    else
+        echo "\n[CRITICAL ERROR] Archive failed integrity test! Original folder preserved."
+        return 1
+    fi
+}
+
+dec() {
+    # 1. Ensure the user passed a file argument
+    if [ -z "$1" ]; then
+        echo "Error: Please specify a .7z file to decrypt."
+        return 1
+    fi
+
+    # 2. Run the extraction
+    7z x "$1"
+    local dec_status=$?
+
+    # 3. Safety Check: Only delete .7z if extraction was 100% perfect (Exit Code 0)
+    # Note: Unlike encryption, we demand 0 here because missing a file during extraction is unsafe.
+    if [ $dec_status -eq 0 ]; then
+        echo "\nSuccess! Files extracted perfectly. Removing archive safely..."
+        rm -f "$1"
+    else
+        echo "\n[ERROR] Decryption failed or was cancelled. Archive preserved."
+        return 1
+    fi
+}
+
 # Prompt
 if [ $(id -u) = 0 ]; then
   # Root prompt - plain and obvious
@@ -121,3 +180,4 @@ else
   eval "$(starship init zsh)"
 fi
 PROMPT_EOL_MARK=""
+alias ll='ls -al'
